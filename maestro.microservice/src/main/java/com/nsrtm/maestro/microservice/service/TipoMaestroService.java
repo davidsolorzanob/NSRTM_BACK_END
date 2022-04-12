@@ -19,7 +19,13 @@ public class TipoMaestroService {
 	private TipoMaestroRepository tipoMaestroRepository;
 
 	public TipoMaestro Guardar(TipoMaestro e) {
-		return tipoMaestroRepository.save(e);
+		try{
+				return tipoMaestroRepository.save(e);
+		}
+		catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
 	}
 
 	public void Actualizar(TipoMaestro e){
@@ -35,7 +41,13 @@ public class TipoMaestroService {
 	}
 
 	public void Eliminar(Integer id){
-		tipoMaestroRepository.deleteById(id);
+		try{
+			tipoMaestroRepository.deleteById(id);
+		}
+			catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
 	}
 
 	public TipoMaestro ObtenerPorId(Integer id) {

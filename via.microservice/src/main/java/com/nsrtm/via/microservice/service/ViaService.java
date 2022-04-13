@@ -16,8 +16,14 @@ public class ViaService {
     @Autowired
     private ViaRepository viaRepository;
 
-    public Via Guardar(Via e) {
-        return viaRepository.save(e);
+    public void Guardar(Via e) {
+        try{
+            viaRepository.save(e);
+        }
+        catch (Exception ex){
+            logger.info(ex.getMessage());
+            throw ex;
+        }
     }
 
     public void Actualizar(Via e){

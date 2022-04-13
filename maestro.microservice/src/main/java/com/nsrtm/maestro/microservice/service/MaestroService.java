@@ -2,24 +2,30 @@ package com.nsrtm.maestro.microservice.service;
 
 import java.util.List;
 
-import com.nsrtm.maestro.microservice.domain.TipoMaestro;
-import org.hibernate.annotations.Where;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
 import com.nsrtm.maestro.microservice.domain.Maestro;
 import com.nsrtm.maestro.microservice.repository.MaestroRepository;
 
 @Service
 public class MaestroService {
+	private static final Logger logger = LogManager.getLogger(TipoMaestroService.class);
+
 	@Autowired
 	private MaestroRepository maestroRepository;
 	
-	public Maestro Guardar(Maestro e) {
-		return maestroRepository.save(e);
+	public void Guardar(Maestro e) {
+		try
+		{
+			maestroRepository.save(e);
+		}
+		catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
 	}
 
 	public void Actualizar(Maestro e){
@@ -29,21 +35,40 @@ public class MaestroService {
 			Guardar(tipoDb);
 		}
 		catch (Exception ex){
+			logger.info(ex.getMessage());
 			throw ex;
 		}
 	}
 
 	public void Eliminar(Integer id){
-		maestroRepository.deleteById(id);
+		try {
+			maestroRepository.deleteById(id);
+		}
+		catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
 	}
 
 	public Maestro ObtenerPorId (Integer id) {
-		return maestroRepository.findById(id).get();
+		try{
+			return maestroRepository.findById(id).get();
+		}
+		catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
 	}
 
 	public List<Maestro> ObtenerPorFiltro (Maestro e) {
-		Maestro m = Maestro.builder().tipoMaestroId(e.tipoMaestroId).build();
-		return maestroRepository.findAll(Example.of(m));
+		try{
+			Maestro m = Maestro.builder().tipoMaestroId(e.tipoMaestroId).build();
+			return maestroRepository.findAll(Example.of(m));
+		}
+		catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
 	}
 
 	public List<Maestro> Todos(){

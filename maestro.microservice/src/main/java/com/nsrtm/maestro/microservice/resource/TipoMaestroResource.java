@@ -11,10 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.nsrtm.maestro.microservice.domain.TipoMaestro;
 import com.nsrtm.maestro.microservice.service.TipoMaestroService;
-import org.springframework.web.context.request.WebRequest;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,7 +53,7 @@ public class TipoMaestroResource extends BasicErrorController {
 	public List<TipoMaestro> Todos() {
 		return tipoMaestroService.Todos();
 	}
-
+/*
 	@Override
 	public ResponseEntity error(HttpServletRequest request) {
 		HttpStatus status = getStatus(request);
@@ -68,7 +64,7 @@ public class TipoMaestroResource extends BasicErrorController {
 		}
 		return super.error(request);
 	}
-/*
+
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) {
 		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),

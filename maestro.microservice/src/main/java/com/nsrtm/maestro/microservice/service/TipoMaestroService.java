@@ -20,7 +20,7 @@ public class TipoMaestroService {
 
 	public TipoMaestro Guardar(TipoMaestro e) {
 		try{
-				return tipoMaestroRepository.save(e);
+			return tipoMaestroRepository.save(e);
 		}
 		catch (Exception ex){
 			logger.info(ex.getMessage());
@@ -44,7 +44,7 @@ public class TipoMaestroService {
 		try{
 			tipoMaestroRepository.deleteById(id);
 		}
-			catch (Exception ex){
+		catch (Exception ex){
 			logger.info(ex.getMessage());
 			throw ex;
 		}

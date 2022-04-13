@@ -1,28 +1,19 @@
 package com.nsrtm.contribuyente.microservice.domain;
 
-//import java.io.Serializable;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity
-@Table (name="contribuyente")
+@Table (name="contribuyente", schema = "public")
 public class Contribuyente extends Persona {
-	//private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public String contribuyenteId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "contribuyente_id")
+	public Long contribuyenteId;
+
+	@Column(name = "sec_ejec")
 	public String secEjec;
+
+	@Column(name = "tipo_contribuyente_id")
 	public String tipoContribuyenteId;
 }

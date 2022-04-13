@@ -12,7 +12,7 @@ import com.nsrtm.maestro.microservice.repository.MaestroRepository;
 
 @Service
 public class MaestroService {
-	private static final Logger logger = LogManager.getLogger(TipoMaestroService.class);
+	private static final Logger logger = LogManager.getLogger(MaestroService.class);
 
 	@Autowired
 	private MaestroRepository maestroRepository;

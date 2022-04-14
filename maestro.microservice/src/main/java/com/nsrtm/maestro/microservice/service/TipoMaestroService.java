@@ -63,5 +63,4 @@ public class TipoMaestroService {
 	public List<TipoMaestro> Todos(){
 		return tipoMaestroRepository.findAll();
 	}
-
 }

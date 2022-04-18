@@ -1,6 +1,8 @@
+  <!--Puerto de api gateway-->
 server:
   port: 8090
 
+<!--Rutas de microservicios-->
 spring:
   cloud:
     gateway:

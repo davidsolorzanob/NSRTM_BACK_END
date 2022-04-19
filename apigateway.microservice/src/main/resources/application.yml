@@ -6,7 +6,7 @@ server:
 spring:
   cloud:
     gateway:
-      routes:
+      routes:amigo un fa
         - id: via
           uri: http://localhost:8084/
           predicates:

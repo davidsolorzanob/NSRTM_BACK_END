@@ -1,7 +1,9 @@
 package com.nsrtm.contribuyente.microservice.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Table;
 
+@Table(name="contribuyente", schema = "public")
 public class Persona extends Auditoria {
 	public String personaId;
 

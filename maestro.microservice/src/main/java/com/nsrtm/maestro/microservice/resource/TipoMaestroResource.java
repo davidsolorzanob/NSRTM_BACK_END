@@ -2,6 +2,7 @@ package com.nsrtm.maestro.microservice.resource;
 
 import java.util.List;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
@@ -16,13 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/tipomaestro")
-public class TipoMaestroResource extends BasicErrorController {
+public class TipoMaestroResource {
 	@Autowired
 	private TipoMaestroService tipoMaestroService;
-
-	public TipoMaestroResource(ServerProperties serverProperties) {
-		super(new DefaultErrorAttributes(), serverProperties.getError());
-	}
 
 	@PostMapping("crear")
 	@ResponseStatus(HttpStatus.OK)
@@ -53,6 +50,19 @@ public class TipoMaestroResource extends BasicErrorController {
 	public List<TipoMaestro> Todos() {
 		return tipoMaestroService.Todos();
 	}
+
+
+	@GetMapping("todostest")
+	@CircuitBreaker(name = "tipoMaestroService", fallbackMethod = "TodosTestError")
+	//@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<TipoMaestro> TodosTest(Integer id) {
+		return new ResponseEntity<TipoMaestro>(tipoMaestroService.TodosTest(id),HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> TodosTestError(Exception e) {
+		return new ResponseEntity<String>("subscribe service is down", HttpStatus.OK);
+	}
+
 /*
 	@Override
 	public ResponseEntity error(HttpServletRequest request) {

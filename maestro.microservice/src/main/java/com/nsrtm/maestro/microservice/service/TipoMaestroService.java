@@ -3,7 +3,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,5 +61,16 @@ public class TipoMaestroService {
 
 	public List<TipoMaestro> Todos(){
 		return tipoMaestroRepository.findAll();
+	}
+
+	public TipoMaestro TodosTest(Integer id) {
+		try {
+			TipoMaestro m =tipoMaestroRepository.findById(id).get();
+			return m;
+		}
+		catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
 	}
 }

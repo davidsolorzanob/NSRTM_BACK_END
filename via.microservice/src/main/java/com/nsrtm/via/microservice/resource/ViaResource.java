@@ -2,11 +2,15 @@ package com.nsrtm.via.microservice.resource;
 
 import com.nsrtm.via.microservice.domain.Via;
 import com.nsrtm.via.microservice.service.ViaService;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/via")
@@ -39,9 +43,14 @@ public class ViaResource {
     }
 
     @GetMapping("todos")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Via> Todos() {
-        return viaService.Todos();
+    @Bulkhead(name = "viaServiceBulk", fallbackMethod = "errorGetAll", type = Bulkhead.Type.THREADPOOL)
+    @TimeLimiter(name = "viaServiceTime", fallbackMethod = "errorGetAll")
+    //@ResponseStatus(HttpStatus.OK)
+    public CompletableFuture<ResponseEntity<List<Via>>> Todos() {
+        return CompletableFuture.completedFuture( new ResponseEntity<List<Via>>(viaService.Todos(),HttpStatus.OK));
     }
 
+    public CompletableFuture<ResponseEntity<String>> errorGetAll(Exception e){
+        return CompletableFuture.completedFuture(new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST));
+    }
 }

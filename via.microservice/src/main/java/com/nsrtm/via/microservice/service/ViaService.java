@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ViaService {
@@ -69,6 +70,10 @@ public class ViaService {
     }
 
     public List<Via> Todos(){
+        try {
+            Thread.sleep(100);
+        }
+        catch (Exception ex){}
         return viaRepository.findAll();
     }
 }

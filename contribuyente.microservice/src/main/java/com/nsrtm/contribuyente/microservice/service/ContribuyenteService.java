@@ -6,6 +6,7 @@ import com.nsrtm.contribuyente.microservice.domain.Domicilio;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.nsrtm.contribuyente.microservice.domain.Contribuyente;
@@ -73,5 +74,24 @@ public class ContribuyenteService {
 
 	public List<Contribuyente> Todos(){
 		return contribuyenteRepository.findAll();
+	}
+
+	//public List<Contribuyente> ListarPorFiltros(Contribuyente e){
+		//return contribuyenteRepository.findByContribuyente(e.tipoDocumento, e.numeroDocumento, e.secEjec,e.apellidoPaterno);
+		//return contribuyenteRepository.findBytipoDocumentoAndnumeroDocumentoAndsecEjec(e.tipoDocumento, e.numeroDocumento, e.secEjec);
+		//Specification<Contribuyente> spec =
+		//return contribuyenteRepository.findByTipoDocumentoAndNumeroDocumentoAndSecEjec(e.tipoDocumento, e.numeroDocumento, e.secEjec);
+	//}
+	private static Specification<Contribuyente> getByNroDocumento(String numeroDocumento) {
+		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("numeroDocumento"), numeroDocumento);
+	}
+
+	private static Specification<Contribuyente> getBySecEjec(String secEjec) {
+		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("secEjec"), secEjec);
+	}
+
+	public List<Contribuyente> ListarPorFiltros(Contribuyente e){
+		Specification<Contribuyente> spec = Specification.where(getByNroDocumento(e.numeroDocumento).and(getBySecEjec(e.secEjec)));
+		return contribuyenteRepository.findAll(spec);
 	}
 }

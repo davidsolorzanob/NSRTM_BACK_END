@@ -7,6 +7,9 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Persona extends Auditoria {
 
+	@Column(name = "tipo_documento")
+	public Integer tipoDocumento;
+
 	@Column(name = "numero_documento")
 	public String numeroDocumento;
 

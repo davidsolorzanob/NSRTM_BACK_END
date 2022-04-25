@@ -2,6 +2,7 @@ package com.nsrtm.contribuyente.microservice.resource;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.nsrtm.contribuyente.microservice.domain.Contribuyente;
@@ -41,5 +42,11 @@ public class ContribuyenteResource {
 	@ResponseStatus(HttpStatus.OK)
 	public List<Contribuyente> Todos() {
 		return contribuyenteService.Todos();
+	}
+
+	@PostMapping("filtrar")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Contribuyente> Filtrar(@RequestBody Contribuyente contribuyente) {
+		return contribuyenteService.ListarPorFiltros(contribuyente);
 	}
 }

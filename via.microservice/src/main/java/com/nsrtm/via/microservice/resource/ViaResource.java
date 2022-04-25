@@ -5,6 +5,7 @@ import com.nsrtm.via.microservice.service.ViaService;
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,4 +54,12 @@ public class ViaResource {
     public CompletableFuture<ResponseEntity<String>> errorGetAll(Exception e){
         return CompletableFuture.completedFuture(new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST));
     }
+
+    @GetMapping("otros")
+    @Cacheable(value="ViaService")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Via> Otros() {
+        return viaService.Otros();
+    }
+
 }

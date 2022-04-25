@@ -54,7 +54,6 @@ public class TipoMaestroResource {
 
 	@GetMapping("todostest")
 	@CircuitBreaker(name = "tipoMaestroService", fallbackMethod = "TodosTestError")
-	//@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<TipoMaestro> TodosTest(Integer id) {
 		return new ResponseEntity<TipoMaestro>(tipoMaestroService.TodosTest(id),HttpStatus.OK);
 	}

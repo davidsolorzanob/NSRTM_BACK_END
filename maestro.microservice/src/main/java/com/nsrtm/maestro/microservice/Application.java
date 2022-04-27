@@ -2,6 +2,11 @@ package com.nsrtm.maestro.microservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
 @SpringBootApplication
 public class Application {
@@ -10,4 +15,23 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	@Bean
+	public RedisTemplate<?, ?> redisTemplate(RedisConnectionFactory connectionFactory) {
+		RedisTemplate<?, ?> template = new RedisTemplate<>();
+		template.setConnectionFactory(connectionFactory);
+
+		return template;
+	}
+
+	@Bean
+	public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig() //
+				.prefixCacheNameWith(this.getClass().getPackageName() + ".") ;//
+		//.entryTtl(Duration.ofHours(1)) //
+		//.disableCachingNullValues();
+
+		return RedisCacheManager.builder(connectionFactory) //
+				.cacheDefaults(config) //
+				.build();
+	}
 }

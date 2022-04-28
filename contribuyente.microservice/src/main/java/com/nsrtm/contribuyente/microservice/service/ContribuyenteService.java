@@ -34,8 +34,10 @@ public class ContribuyenteService {
 	public void Actualizar(Contribuyente e){
 		try {
 			Contribuyente contribuyente = ObtenerPorId(e.contribuyenteId);
+			contribuyente.codigo = e.codigo;
 			contribuyente.contribuyenteId = e.contribuyenteId;
 			contribuyente.secEjec = e.secEjec;
+			contribuyente.tipoDocumento = e.tipoDocumento;
 			contribuyente.tipoContribuyenteId = e.tipoContribuyenteId;
 			contribuyente.numeroDocumento = e.numeroDocumento;
 			contribuyente.apellidoPaterno = e.apellidoPaterno;

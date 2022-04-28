@@ -8,6 +8,8 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import java.time.Duration;
+
 @SpringBootApplication
 public class Application {
 
@@ -26,9 +28,9 @@ public class Application {
 	@Bean
 	public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
 		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig() //
-				.prefixCacheNameWith(this.getClass().getPackageName() + ".") ;//
-		//.entryTtl(Duration.ofHours(1)) //
-		//.disableCachingNullValues();
+				.prefixCacheNameWith(this.getClass().getPackageName() + ".") //
+		.entryTtl(Duration.ofHours(1))
+		.disableCachingNullValues();
 
 		return RedisCacheManager.builder(connectionFactory) //
 				.cacheDefaults(config) //

@@ -30,9 +30,9 @@ public class Application {
 	@Bean
 	public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
 		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig() //
-				.prefixCacheNameWith(this.getClass().getPackageName() + ".") ;//
-				//.entryTtl(Duration.ofHours(1)) //
-				//.disableCachingNullValues();
+				.prefixCacheNameWith(this.getClass().getPackageName() + ".") //
+				.entryTtl(Duration.ofHours(1)) //
+				.disableCachingNullValues();
 
 		return RedisCacheManager.builder(connectionFactory) //
 				.cacheDefaults(config) //

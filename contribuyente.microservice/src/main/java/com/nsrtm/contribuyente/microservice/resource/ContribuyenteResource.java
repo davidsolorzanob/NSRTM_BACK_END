@@ -20,13 +20,13 @@ public class ContribuyenteResource {
 		contribuyenteService.Guardar(contribuyente);
 	}
 
-	@PostMapping("editar")
+	@PutMapping("editar")
 	@ResponseStatus(HttpStatus.OK)
 	public void Editar(@RequestBody Contribuyente contribuyente) {
 		contribuyenteService.Actualizar(contribuyente);
 	}
 
-	@PostMapping("eliminar")
+	@DeleteMapping("eliminar")
 	@ResponseStatus(HttpStatus.OK)
 	public void Eliminar(Long id) {
 		contribuyenteService.Eliminar(id);

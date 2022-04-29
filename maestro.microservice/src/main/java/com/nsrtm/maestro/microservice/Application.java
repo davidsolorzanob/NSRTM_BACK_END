@@ -28,22 +28,7 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-/*
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping(configCORS.getMapping())
-						.allowedOrigins(configCORS.getAllowOrigins())
-						.allowedMethods(configCORS.getAllowMethods())
-						//.allowCredentials(configCORS.isAllowCredentials())
-						.maxAge(configCORS.getMaxAge());
-						//.exposedHeaders(configCORS.getExposedHeaders());
-			}
-		};
-	}
-*/
+
 	@Bean
 	CorsFilter corsFilter() {
 		CorsConfiguration config = new CorsConfiguration();

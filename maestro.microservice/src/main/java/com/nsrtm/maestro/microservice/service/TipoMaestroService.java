@@ -1,10 +1,13 @@
 package com.nsrtm.maestro.microservice.service;
+import com.nsrtm.maestro.microservice.util.ResponseService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.nsrtm.maestro.microservice.domain.TipoMaestro;
@@ -17,26 +20,16 @@ public class TipoMaestroService {
 	@Autowired
 	private TipoMaestroRepository tipoMaestroRepository;
 
-	public TipoMaestro Guardar(TipoMaestro e) {
-		try{
-			return tipoMaestroRepository.save(e);
-		}
-		catch (Exception ex){
-			logger.info(ex.getMessage());
-			throw ex;
-		}
+	public ResponseEntity<Object> Guardar(TipoMaestro e) {
+		tipoMaestroRepository.save(e);
+		return ResponseService.setResponse(true, HttpStatus.OK, "El registro se guardó satisfactoriamente", e);
 	}
 
-	public void Actualizar(TipoMaestro e){
-		try {
-			TipoMaestro tipoDb = ObtenerPorId(e.tipoMaestroId);
-			tipoDb.nombre = e.nombre;
-			Guardar(tipoDb);
-		}
-		catch (Exception ex){
-			logger.info(ex.getMessage());
-			throw ex;
-		}
+	public ResponseEntity<Object> Actualizar(TipoMaestro e){
+		TipoMaestro tipoDb = ObtenerPorId(e.tipoMaestroId);
+		tipoDb.nombre = e.nombre;
+		tipoMaestroRepository.save(e);
+		return ResponseService.setResponse(true, HttpStatus.OK, "El registro se actualizó satisfactoriamente", tipoDb);
 	}
 
 	public void Eliminar(Integer id){

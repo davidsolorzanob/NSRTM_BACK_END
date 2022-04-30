@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Locale;
 
 import com.nsrtm.contribuyente.microservice.domain.Domicilio;
+import com.nsrtm.contribuyente.microservice.util.ResponseService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
@@ -21,18 +24,12 @@ public class ContribuyenteService {
 	@Autowired
 	private ContribuyenteRepository contribuyenteRepository;
 
-	public void Guardar(Contribuyente e) {
-		try{
-			contribuyenteRepository.save(e);
-		}
-		catch (Exception ex){
-			logger.info(ex.getMessage());
-			throw ex;
-		}
+	public ResponseEntity<Object> Guardar(Contribuyente e) {
+		contribuyenteRepository.save(e);
+		return ResponseService.setResponse(true, HttpStatus.OK, "El registro se guardó satisfactoriamente", e);
 	}
 
-	public void Actualizar(Contribuyente e){
-		try {
+	public ResponseEntity<Object> Actualizar(Contribuyente e){
 			Contribuyente contribuyente = ObtenerPorId(e.contribuyenteId);
 			contribuyente.codigo = e.codigo;
 			contribuyente.contribuyenteId = e.contribuyenteId;
@@ -48,12 +45,7 @@ public class ContribuyenteService {
 			contribuyente.celular2 = e.celular2;
 			contribuyente.correoElectronico1 = e.correoElectronico1;
 			contribuyente.correoElectronico2 = e.correoElectronico2;
-			Guardar(contribuyente);
-		}
-		catch (Exception ex){
-			logger.info(ex.getMessage());
-			throw ex;
-		}
+			return Guardar(contribuyente);
 	}
 
 	public void Eliminar(Long id){
@@ -79,13 +71,6 @@ public class ContribuyenteService {
 	public List<Contribuyente> Todos(){
 		return contribuyenteRepository.findAll();
 	}
-
-	//public List<Contribuyente> ListarPorFiltros(Contribuyente e){
-		//return contribuyenteRepository.findByContribuyente(e.tipoDocumento, e.numeroDocumento, e.secEjec,e.apellidoPaterno);
-		//return contribuyenteRepository.findBytipoDocumentoAndnumeroDocumentoAndsecEjec(e.tipoDocumento, e.numeroDocumento, e.secEjec);
-		//Specification<Contribuyente> spec =
-		//return contribuyenteRepository.findByTipoDocumentoAndNumeroDocumentoAndSecEjec(e.tipoDocumento, e.numeroDocumento, e.secEjec);
-	//}
 
 	private static Specification<Contribuyente> getByApellidoPaterno(String apellidoPaterno) {
 		if(apellidoPaterno == null) return null;

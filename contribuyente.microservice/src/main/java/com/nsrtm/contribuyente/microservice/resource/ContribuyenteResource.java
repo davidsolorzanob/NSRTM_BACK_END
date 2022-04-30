@@ -1,13 +1,20 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
 import java.util.List;
+
+import com.nsrtm.contribuyente.microservice.util.ResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.nsrtm.contribuyente.microservice.domain.Contribuyente;
 import com.nsrtm.contribuyente.microservice.service.ContribuyenteService;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.validation.Valid;
+
+@EnableWebMvc
 @RestController
 @RequestMapping("/api/contribuyente")
 public class ContribuyenteResource {
@@ -16,8 +23,10 @@ public class ContribuyenteResource {
 
 	@PostMapping("crear")
 	@ResponseStatus(HttpStatus.OK)
-	public void Crear(@RequestBody Contribuyente contribuyente) {
-		contribuyenteService.Guardar(contribuyente);
+	public ResponseEntity<Object> Crear(@Valid @RequestBody Contribuyente contribuyente, BindingResult result) {
+		if(result.hasErrors())
+			return ResponseService.setResponse(HttpStatus.MULTI_STATUS, "Los campos del registro no son válidos");
+		return contribuyenteService.Guardar(contribuyente);
 	}
 
 	@PutMapping("editar")

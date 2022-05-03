@@ -1,8 +1,5 @@
-  <!--Puerto de api gateway-->
 server:
   port: 8090
-
-<!--Rutas de microservicios-->
 spring:
   cloud:
     gateway:
@@ -23,13 +20,3 @@ spring:
           uri: http://localhost:8082/
           predicates:
             - Path=/api/contribuyente/**
-
-<!--Configuración de CORS-->
-cors:
-  allowCredentials: false
-  allowHeaders: *
-  allowMethods: GET,POST,PUT,DELETE,OPTIONS
-  allowOrigins: *
-  exposedHeaders: *
-  maxAge: 3600
-  mapping: /**

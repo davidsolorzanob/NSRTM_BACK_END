@@ -21,7 +21,7 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-
+/*
 	@Bean
 	CorsFilter corsFilter() {
 		CorsConfiguration config = new CorsConfiguration();
@@ -36,4 +36,5 @@ public class Application {
 
 		return new CorsFilter(source);
 	}
+*/
 }

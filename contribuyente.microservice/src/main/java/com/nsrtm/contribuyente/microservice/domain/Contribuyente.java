@@ -17,5 +17,6 @@ public class Contribuyente extends Persona {
 	@Column(name = "tipo_contribuyente_id")
 	public Integer tipoContribuyenteId;
 
-
+	@Column(name = "codigo")
+	public String codigo;
 }

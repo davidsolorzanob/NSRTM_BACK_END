@@ -2,32 +2,30 @@ package com.nsrtm.maestro.microservice.resource;
 
 import java.util.List;
 
+import com.nsrtm.maestro.microservice.util.ResponseService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
-import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.nsrtm.maestro.microservice.domain.TipoMaestro;
 import com.nsrtm.maestro.microservice.service.TipoMaestroService;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/tipomaestro")
-public class TipoMaestroResource extends BasicErrorController {
+public class TipoMaestroResource {
 	@Autowired
 	private TipoMaestroService tipoMaestroService;
 
-	public TipoMaestroResource(ServerProperties serverProperties) {
-		super(new DefaultErrorAttributes(), serverProperties.getError());
-	}
-
 	@PostMapping("crear")
 	@ResponseStatus(HttpStatus.OK)
-	public void Crear(@RequestBody TipoMaestro tipo) {
-		tipoMaestroService.Guardar(tipo);
+	public ResponseEntity<Object> Crear(@Valid @RequestBody TipoMaestro tipo, BindingResult result) {
+		if(result.hasErrors())
+			return ResponseService.setResponse(HttpStatus.MULTI_STATUS, "Los campos del registro no son válidos");
+		return tipoMaestroService.Guardar(tipo);
 	}
 
 	@PostMapping("editar")
@@ -53,6 +51,17 @@ public class TipoMaestroResource extends BasicErrorController {
 	public List<TipoMaestro> Todos() {
 		return tipoMaestroService.Todos();
 	}
+
+	@GetMapping("todostest")
+	@CircuitBreaker(name = "tipoMaestroService", fallbackMethod = "TodosTestError")
+	public ResponseEntity<TipoMaestro> TodosTest(Integer id) {
+		return new ResponseEntity<TipoMaestro>(tipoMaestroService.TodosTest(id),HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> TodosTestError(Exception e) {
+		return new ResponseEntity<String>("subscribe service is down", HttpStatus.OK);
+	}
+
 /*
 	@Override
 	public ResponseEntity error(HttpServletRequest request) {

@@ -1,9 +1,7 @@
 package com.nsrtm.maestro.microservice.resource;
 
-import java.util.LinkedList;
 import java.util.List;
 
-import com.nsrtm.maestro.microservice.domain.TipoMaestro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

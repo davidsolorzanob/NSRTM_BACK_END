@@ -24,7 +24,6 @@ public class Application {
 
 	@Autowired
 	private CORS cors;
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

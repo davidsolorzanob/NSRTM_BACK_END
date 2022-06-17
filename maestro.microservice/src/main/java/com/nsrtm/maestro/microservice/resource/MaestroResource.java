@@ -15,39 +15,10 @@ public class MaestroResource {
 	@Autowired
 	private MaestroService maestroService;
 
-	@PostMapping("crear")
-	@ResponseStatus(HttpStatus.OK)
-	public void Crear(@RequestBody Maestro e) {
-		maestroService.Guardar(e);
-	}
-
-	@PostMapping("editar")
-	@ResponseStatus(HttpStatus.OK)
-	public void Editar(@RequestBody Maestro e) {
-		maestroService.Actualizar(e);
-	}
-
-	@PostMapping("eliminar")
-	@ResponseStatus(HttpStatus.OK)
-	public void Eliminar(Integer id) {
-		maestroService.Eliminar(id);
-	}
-
-	@GetMapping("obtener")
-	@ResponseStatus(HttpStatus.OK)
-	public Maestro ObtenerPorId(Integer id) {
-		return maestroService.ObtenerPorId(id);
-	}
-
 	@PostMapping("filtrar")
 	@ResponseStatus(HttpStatus.OK)
-	public List<Maestro> Filtrar(@RequestBody Maestro e) {
-		return maestroService.ObtenerPorFiltro(e);
+	public List<Maestro> Filtrar(Integer tipoMaestroId) {
+		return maestroService.ObtenerPorFiltro(tipoMaestroId);
 	}
 
-	@GetMapping("todos")
-	@ResponseStatus(HttpStatus.OK)
-	public List<Maestro> Todos() {
-		return maestroService.Todos();
-	}
 }

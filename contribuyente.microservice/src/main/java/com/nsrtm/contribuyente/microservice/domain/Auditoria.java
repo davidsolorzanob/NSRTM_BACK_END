@@ -7,15 +7,21 @@ import java.util.Date;
 @MappedSuperclass
 public class Auditoria {
 
-	@Column(name = "usuario_registro")
-	public String usuarioRegistro;
+	@Column(name = "USUARIO_CREACION")
+	public Long usuarioCreacion;
 
-	@Column(name = "fecha_registro")
-	public Date fechaRegistro;
+	@Column(name = "FECHA_CREACION")
+	public Date fechaCreacion;
 
-	@Column(name = "usuario_edicion")
-	public String usuarioEdicion;
+	@Column(name = "TERMINAL_CREACION")
+	public String terminalCreacion;
 
-	@Column(name = "fecha_edicion")
-	public Date fechaEdicion;
+	@Column(name = "USUARIO_MODIFICACION")
+	public Long usuarioModificacion;
+
+	@Column(name = "FECHA_MODIFICACION")
+	public Date fechaModificacion;
+
+	@Column(name = "TERMINAL_MODIFICACION")
+	public String terminalModificacion;
 }

@@ -1,39 +1,46 @@
 package com.nsrtm.contribuyente.microservice.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.util.Date;
 
-@MappedSuperclass
+@Entity
+@Table(name="PERSONA", schema = "NSRTM")
 public class Persona extends Auditoria {
 
-	@Column(name = "tipo_documento")
-	public Integer tipoDocumento;
+	@Id
+	@Column(name = "PERSONA_ID")
+	public Long personaId;
 
-	@Column(name = "numero_documento")
-	public String numeroDocumento;
+	@Column(name = "DOC_IDENTIDAD_ID")
+	public Integer docIdentidadId;
 
-	@Column(name = "apellido_paterno")
+	@Column(name = "NUM_DOC_IDENTIDAD")
+	public String numDocIdentidad;
+
+	@Column(name = "APE_PATERNO")
 	public String apellidoPaterno;
 
-	@Column(name = "apellido_materno")
+	@Column(name = "APE_MATERNO")
 	public String apellidoMaterno;
 
-	@Column(name = "nombres")
+	@Column(name = "NOMBRES")
 	public String nombres;
 
-	@Column(name = "razon_social")
+	@Column(name = "RAZ_SOCIAL")
 	public String razonSocial;
 
-	@Column(name = "celular_1")
-	public String celular1;
+	@Column(name = "NOMBRE_COMPLETO")
+	public String nombreCompleto;
 
-	@Column(name = "celular_2")
-	public String celular2;
+	@Column(name = "FEC_NACIMIENTO")
+	public Date fechaNacimiento;
 
-	@Column(name = "correo_electronico_1")
-	public String correoElectronico1;
+	@Column(name = "GENERO")
+	public String genero;
 
-	@Column(name = "correo_electronico_2")
-	public String correoElectronico2;
+	@Column(name = "FALLECIO")
+	public Integer fallecido;
+
+	@Column(name = "FEC_FALLECIMIENTO")
+	public Date fechaFallecimiento;
 }

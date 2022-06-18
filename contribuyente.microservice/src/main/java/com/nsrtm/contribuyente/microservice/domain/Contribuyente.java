@@ -1,22 +1,55 @@
 package com.nsrtm.contribuyente.microservice.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table (name="contribuyente", schema = "public")
-public class Contribuyente extends Persona {
+@Table (name="CONTRIBUYENTE", schema = "NSRTM")
+public class Contribuyente extends Auditoria {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "contribuyente_id")
-	public Long contribuyenteId;
+	@Column(name = "MUNICIPALIDAD_ID")
+	public Long municipalidadId;
 
-	@Column(name = "sec_ejec")
-	public String secEjec;
+	@Column(name = "CONTRIBUYENTE_NUMERO")
+	public Long contribuyenteNumero;
 
-	@Column(name = "tipo_contribuyente_id")
-	public Integer tipoContribuyenteId;
+	@Column(name = "FEC_INSCRIPCION")
+	public Date fechaInscripcion;
 
-	@Column(name = "codigo")
-	public String codigo;
+	@Column(name = "FECHA_DJ")
+	public Date fechaDJ;
+
+	@Column(name = "NUMERO_DJ")
+	public Long numeroDJ;
+
+	@Column(name = "PERSONA_ID")
+	public Long personaId;
+
+	@Column(name = "TIP_PERSONA_ID")
+	public Integer tipoPersonaId;
+
+	@Column(name = "MOTIVO_DJ_ID")
+	public Integer motivoDjId;
+
+	@Column(name = "ESTADO_DJ_ID")
+	public Integer estadoDjId;
+
+	@Column(name = "MOD_OFICIO")
+	public Integer modalidadOficio;
+
+	@Column(name = "TIP_MED_DETERMINA_ID")
+	public Integer tipoMedioDeterminacionId;
+
+	@Column(name = "MED_DETERMINA_ID")
+	public Integer medioDeterminacionId;
+
+	@Column(name = "SEG_CONTRIBUYENTE_ID")
+	public Integer segContribuyenteId;
+
+	@Column(name = "FUENTE_INFO_ID")
+	public Integer fuenteInformacionId;
+
+	@Column(name = "CLAVE")
+	public String clave;
 }

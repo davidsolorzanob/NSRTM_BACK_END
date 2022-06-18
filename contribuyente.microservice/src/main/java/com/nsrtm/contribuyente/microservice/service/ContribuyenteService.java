@@ -30,7 +30,8 @@ public class ContribuyenteService {
 
 	public void Actualizar(Contribuyente e){
 		try {
-			Contribuyente contribuyente = ObtenerPorId(e.contribuyenteId);
+			Contribuyente contribuyente = ObtenerPorId(e.contribuyenteNumero);
+			/*
 			contribuyente.contribuyenteId = e.contribuyenteId;
 			contribuyente.secEjec = e.secEjec;
 			contribuyente.tipoContribuyenteId = e.tipoContribuyenteId;
@@ -43,6 +44,8 @@ public class ContribuyenteService {
 			contribuyente.celular2 = e.celular2;
 			contribuyente.correoElectronico1 = e.correoElectronico1;
 			contribuyente.correoElectronico2 = e.correoElectronico2;
+
+			 */
 			Guardar(contribuyente);
 		}
 		catch (Exception ex){

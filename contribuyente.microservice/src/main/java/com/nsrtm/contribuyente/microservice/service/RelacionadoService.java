@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public class RelacionadoService {
-    private static final Logger logger = LogManager.getLogger(DomicilioRelacionadoService.class);
+    private static final Logger logger = LogManager.getLogger(RelacionadoService.class);
 
     @Autowired
     private RelacionadoRepository relacionadoRepository;

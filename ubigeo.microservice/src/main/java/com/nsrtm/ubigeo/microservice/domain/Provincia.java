@@ -1,17 +1,16 @@
 package com.nsrtm.ubigeo.microservice.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="PROVINCIA", schema = "NSRTM")
+@IdClass(ProvinciaId.class)
 public class Provincia extends Auditoria {
     @Id
     @Column(name = "DEPARTAMENTO_ID")
     public Long departamentoId;
 
+    @Id
     @Column(name = "PROVINCIA_ID")
     public Long provinciaId;
 

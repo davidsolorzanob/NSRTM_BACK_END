@@ -1,8 +1,6 @@
 package com.nsrtm.ubigeo.microservice.resource;
 
-import com.nsrtm.ubigeo.microservice.domain.Distrito;
 import com.nsrtm.ubigeo.microservice.domain.Provincia;
-import com.nsrtm.ubigeo.microservice.service.DistritoService;
 import com.nsrtm.ubigeo.microservice.service.ProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,14 +28,20 @@ public class ProvinciaResource {
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public void Eliminar(Long id) {
-        provinciaService.Eliminar(id);
+    public void Eliminar(Long idDepartamento, Long idProvincia) {
+        provinciaService.Eliminar(idDepartamento,idProvincia);
     }
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public Provincia ObtenerPorId(Long id) {
-        return provinciaService.ObtenerPorId(id);
+    public Provincia ObtenerPorId(Long idDepartamento, Long idProvincia) {
+        return provinciaService.ObtenerPorId(idDepartamento,idProvincia);
+    }
+
+    @GetMapping("filtrarpordepartamento")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Provincia>  FiltrarPorDepartamento(Long idDepartamento) {
+        return provinciaService.FiltrarPorDepartamento(idDepartamento);
     }
 
     @GetMapping("todos")

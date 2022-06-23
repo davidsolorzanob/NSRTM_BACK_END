@@ -15,7 +15,7 @@ public class MaestroResource {
 	@Autowired
 	private MaestroService maestroService;
 
-	@PostMapping("filtrarportipo")
+	@GetMapping("filtrarportipo")
 	@ResponseStatus(HttpStatus.OK)
 	public List<Maestro> FiltrarPorTipo(Integer tipoMaestroId) {
 		return maestroService.ObtenerPorFiltro(tipoMaestroId);

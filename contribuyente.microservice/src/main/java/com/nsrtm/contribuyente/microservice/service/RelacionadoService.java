@@ -1,6 +1,8 @@
 package com.nsrtm.contribuyente.microservice.service;
 
+import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionadoId;
 import com.nsrtm.contribuyente.microservice.domain.Relacionado;
+import com.nsrtm.contribuyente.microservice.domain.RelacionadoId;
 import com.nsrtm.contribuyente.microservice.repository.RelacionadoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +28,7 @@ public class RelacionadoService {
 
     public void Actualizar(Relacionado e){
         try {
-            Relacionado contribuyente = ObtenerPorId(e.relContribuyenteNumero);
+            Relacionado contribuyente = ObtenerPorId(e.municipalidadId,e.contribuyenteNumero,e.relContribuyenteNumero);
 			/*
 			contribuyente.contribuyenteId = e.contribuyenteId;
 			contribuyente.secEjec = e.secEjec;
@@ -50,8 +52,9 @@ public class RelacionadoService {
         }
     }
 
-    public void Eliminar(Long id){
+    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
         try{
+            RelacionadoId id = new RelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
             relacionadoRepository.deleteById(id);
         }
         catch (Exception ex){
@@ -60,8 +63,9 @@ public class RelacionadoService {
         }
     }
 
-    public Relacionado ObtenerPorId(Long id) {
+    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
         try {
+            RelacionadoId id = new RelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
             return relacionadoRepository.findById(id).get();
         }
         catch (Exception ex){

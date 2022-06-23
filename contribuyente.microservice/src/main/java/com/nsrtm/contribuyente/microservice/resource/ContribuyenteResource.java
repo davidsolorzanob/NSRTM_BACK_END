@@ -27,14 +27,14 @@ public class ContribuyenteResource {
 
 	@PostMapping("eliminar")
 	@ResponseStatus(HttpStatus.OK)
-	public void Eliminar(Long id) {
-		contribuyenteService.Eliminar(id);
+	public void Eliminar(Long municipalidadId, Long contribuyenteNumero) {
+		contribuyenteService.Eliminar(municipalidadId, contribuyenteNumero);
 	}
 
 	@GetMapping("obtener")
 	@ResponseStatus(HttpStatus.OK)
-	public Contribuyente ObtenerPorId(Long id) {
-		return contribuyenteService.ObtenerPorId(id);
+	public Contribuyente ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
+		return contribuyenteService.ObtenerPorId(municipalidadId, contribuyenteNumero);
 	}
 
 	@GetMapping("todos")

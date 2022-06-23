@@ -28,14 +28,14 @@ public class DomicilioRelacionadoResource {
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public void Eliminar(Long id) {
-        domicilioRelacionadoService.Eliminar(id);
+    public void Eliminar(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
+        domicilioRelacionadoService.Eliminar(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
     }
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public DomicilioRelacionado ObtenerPorId(Long id) {
-        return domicilioRelacionadoService.ObtenerPorId(id);
+    public DomicilioRelacionado ObtenerPorId(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
+        return domicilioRelacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
     }
 
     @GetMapping("todos")

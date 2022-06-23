@@ -5,12 +5,14 @@ import java.util.Date;
 
 @Entity
 @Table (name="CONTRIBUYENTE", schema = "NSRTM")
+@IdClass(ContribuyenteId.class)
 public class Contribuyente extends Auditoria {
 
 	@Id
 	@Column(name = "MUNICIPALIDAD_ID")
 	public Long municipalidadId;
 
+	@Id
 	@Column(name = "CONTRIBUYENTE_NUMERO")
 	public Long contribuyenteNumero;
 

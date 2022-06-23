@@ -2,7 +2,7 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import java.util.List;
 
-import com.nsrtm.contribuyente.microservice.domain.Domicilio;
+import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class ContribuyenteService {
 
 	public void Actualizar(Contribuyente e){
 		try {
-			Contribuyente contribuyente = ObtenerPorId(e.contribuyenteNumero);
+			Contribuyente contribuyente = ObtenerPorId(e.municipalidadId,e.contribuyenteNumero);
 			/*
 			contribuyente.contribuyenteId = e.contribuyenteId;
 			contribuyente.secEjec = e.secEjec;
@@ -54,8 +54,9 @@ public class ContribuyenteService {
 		}
 	}
 
-	public void Eliminar(Long id){
+	public void Eliminar(Long municipalidadId, Long contribuyenteNumero){
 		try{
+			ContribuyenteId id = new ContribuyenteId(municipalidadId,contribuyenteNumero);
 			contribuyenteRepository.deleteById(id);
 		}
 		catch (Exception ex){
@@ -64,8 +65,9 @@ public class ContribuyenteService {
 		}
 	}
 
-	public Contribuyente ObtenerPorId(Long id) {
+	public Contribuyente ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
 		try {
+			ContribuyenteId id = new ContribuyenteId(municipalidadId,contribuyenteNumero);
 			return contribuyenteRepository.findById(id).get();
 		}
 		catch (Exception ex){

@@ -29,14 +29,14 @@ public class RelacionadoResource {
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public void Eliminar(Long id) {
-        relacionadoService.Eliminar(id);
+    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
+        relacionadoService.Eliminar(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
     }
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public Relacionado ObtenerPorId(Long id) {
-        return relacionadoService.ObtenerPorId(id);
+    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero){
+        return relacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
     }
 
     @GetMapping("todos")

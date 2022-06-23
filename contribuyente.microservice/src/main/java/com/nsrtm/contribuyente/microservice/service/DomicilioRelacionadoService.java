@@ -1,6 +1,7 @@
 package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
+import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionadoId;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioRelacionadoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +27,7 @@ public class DomicilioRelacionadoService {
 
     public void Actualizar(DomicilioRelacionado e){
         try {
-            DomicilioRelacionado contribuyente = ObtenerPorId(e.domicilioRelacionadoNumero);
+            DomicilioRelacionado contribuyente = ObtenerPorId(e.municipalidadId,e.contribuyenteNumero,e.relContribuyenteNumero,e.domicilioRelacionadoNumero);
 			/*
 			contribuyente.contribuyenteId = e.contribuyenteId;
 			contribuyente.secEjec = e.secEjec;
@@ -50,8 +51,9 @@ public class DomicilioRelacionadoService {
         }
     }
 
-    public void Eliminar(Long id){
+    public void Eliminar(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
         try{
+            DomicilioRelacionadoId id = new DomicilioRelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
             domicilioRelacionadoRepository.deleteById(id);
         }
         catch (Exception ex){
@@ -60,8 +62,9 @@ public class DomicilioRelacionadoService {
         }
     }
 
-    public DomicilioRelacionado ObtenerPorId(Long id) {
+    public DomicilioRelacionado ObtenerPorId(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
         try {
+            DomicilioRelacionadoId id = new DomicilioRelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
             return domicilioRelacionadoRepository.findById(id).get();
         }
         catch (Exception ex){

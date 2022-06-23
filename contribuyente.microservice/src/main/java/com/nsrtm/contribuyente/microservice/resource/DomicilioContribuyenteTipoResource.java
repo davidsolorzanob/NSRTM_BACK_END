@@ -29,14 +29,14 @@ public class DomicilioContribuyenteTipoResource {
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public void Eliminar(Long id) {
-        domicilioContribuyenteTipoService.Eliminar(id);
+    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero, Long tipoDomicilioId) {
+        domicilioContribuyenteTipoService.Eliminar(municipalidadId, contribuyenteNumero,domicilioContribuyenteNumero,tipoDomicilioId);
     }
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public DomicilioContribuyenteTipo ObtenerPorId(Long id) {
-        return domicilioContribuyenteTipoService.ObtenerPorId(id);
+    public DomicilioContribuyenteTipo ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero, Long tipoDomicilioId) {
+        return domicilioContribuyenteTipoService.ObtenerPorId(municipalidadId, contribuyenteNumero,domicilioContribuyenteNumero,tipoDomicilioId);
     }
 
     @GetMapping("todos")

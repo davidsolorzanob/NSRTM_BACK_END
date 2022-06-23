@@ -1,22 +1,22 @@
 package com.nsrtm.contribuyente.microservice.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="RE_CONTRIBUYENTE", schema = "NSRTM")
+@Table(name="REL_CONTRIBUYENTE", schema = "NSRTM")
+@IdClass(RelacionadoId.class)
 public class Relacionado extends Auditoria {
 
     @Id
     @Column(name = "MUNICIPALIDAD_ID")
     public Long municipalidadId;
 
+    @Id
     @Column(name = "CONTRIBUYENTE_NUMERO")
     public Long contribuyenteNumero;
 
+    @Id
     @Column(name = "REL_CONTRIBUYENTE_NUMERO")
     public Long relContribuyenteNumero;
 

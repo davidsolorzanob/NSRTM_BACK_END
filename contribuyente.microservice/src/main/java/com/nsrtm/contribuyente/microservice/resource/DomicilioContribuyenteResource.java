@@ -1,6 +1,7 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
+import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteId;
 import com.nsrtm.contribuyente.microservice.service.DomicilioContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,14 +29,14 @@ public class DomicilioContribuyenteResource {
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public void Eliminar(Long id) {
-        domicilioContribuyenteService.Eliminar(id);
+    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero ) {
+        domicilioContribuyenteService.Eliminar(municipalidadId,contribuyenteNumero,domicilioContribuyenteNumero);
     }
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public DomicilioContribuyente ObtenerPorId(Long id) {
-        return domicilioContribuyenteService.ObtenerPorId(id);
+    public DomicilioContribuyente ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero ) {
+        return domicilioContribuyenteService.ObtenerPorId(municipalidadId,contribuyenteNumero,domicilioContribuyenteNumero);
     }
 
     @GetMapping("todos")

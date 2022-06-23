@@ -1,6 +1,7 @@
 package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteTipo;
+import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteTipoId;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioContribuyenteTipoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +27,7 @@ public class DomicilioContribuyenteTipoService {
 
     public void Actualizar(DomicilioContribuyenteTipo e){
         try {
-            DomicilioContribuyenteTipo contribuyente = ObtenerPorId(e.domicilioContribuyenteNumero);
+            DomicilioContribuyenteTipo contribuyente = ObtenerPorId(e.municipalidadId, e.contribuyenteNumero,e.domicilioContribuyenteNumero,e.tipoDomicilioId);
 			/*
 			contribuyente.contribuyenteId = e.contribuyenteId;
 			contribuyente.secEjec = e.secEjec;
@@ -50,8 +51,9 @@ public class DomicilioContribuyenteTipoService {
         }
     }
 
-    public void Eliminar(Long id){
+    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero, Long tipoDomicilioId) {
         try{
+            DomicilioContribuyenteTipoId id =new DomicilioContribuyenteTipoId(municipalidadId, contribuyenteNumero,domicilioContribuyenteNumero,tipoDomicilioId);
             domicilioContribuyenteTipoRepository.deleteById(id);
         }
         catch (Exception ex){
@@ -60,8 +62,9 @@ public class DomicilioContribuyenteTipoService {
         }
     }
 
-    public DomicilioContribuyenteTipo ObtenerPorId(Long id) {
+    public DomicilioContribuyenteTipo ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero, Long tipoDomicilioId) {
         try {
+            DomicilioContribuyenteTipoId id =new DomicilioContribuyenteTipoId(municipalidadId, contribuyenteNumero,domicilioContribuyenteNumero,tipoDomicilioId);
             return domicilioContribuyenteTipoRepository.findById(id).get();
         }
         catch (Exception ex){

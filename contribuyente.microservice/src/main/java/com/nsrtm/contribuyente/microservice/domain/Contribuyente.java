@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 @Table (name="CONTRIBUYENTE", schema = "NSRTM")
 @IdClass(ContribuyenteId.class)
-public class Contribuyente extends Auditoria {
+public class Contribuyente extends Persona {
 
 	@Id
 	@Column(name = "MUNICIPALIDAD_ID")

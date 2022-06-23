@@ -3,6 +3,7 @@ package com.nsrtm.contribuyente.microservice.service;
 import java.util.List;
 
 import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
+import com.nsrtm.contribuyente.microservice.repository.PersonaRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ContribuyenteService {
 	@Autowired
 	private ContribuyenteRepository contribuyenteRepository;
 
+	@Autowired
+	private PersonaRepository personaRepository;
+
 	public void Guardar(Contribuyente e) {
 		try{
 			contribuyenteRepository.save(e);
@@ -31,6 +35,7 @@ public class ContribuyenteService {
 	public void Actualizar(Contribuyente e){
 		try {
 			Contribuyente contribuyente = ObtenerPorId(e.municipalidadId,e.contribuyenteNumero);
+
 			/*
 			contribuyente.contribuyenteId = e.contribuyenteId;
 			contribuyente.secEjec = e.secEjec;
@@ -44,7 +49,6 @@ public class ContribuyenteService {
 			contribuyente.celular2 = e.celular2;
 			contribuyente.correoElectronico1 = e.correoElectronico1;
 			contribuyente.correoElectronico2 = e.correoElectronico2;
-
 			 */
 			Guardar(contribuyente);
 		}

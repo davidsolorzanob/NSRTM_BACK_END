@@ -5,7 +5,7 @@ import javax.persistence.*;
 @NamedStoredProcedureQueries({
 		@NamedStoredProcedureQuery(
 				name = "GetMaestro",
-				procedureName = "NSRTM.PKG_CONTRIBUYENTE.GET_MAESTRO",
+				procedureName = "NSRTM.PKG_MAESTRO.GET_MAESTRO",
 				resultClasses = Maestro.class,
 
 				parameters = {

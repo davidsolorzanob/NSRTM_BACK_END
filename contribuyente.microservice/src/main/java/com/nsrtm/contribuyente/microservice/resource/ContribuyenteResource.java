@@ -15,9 +15,9 @@ public class ContribuyenteResource {
 	@Autowired
 	private ContribuyenteService contribuyenteService;
 
-	@PostMapping("editar")
+	@PostMapping("guardar")
 	@ResponseStatus(HttpStatus.OK)
-	public void guardar (@RequestBody ContribuyenteCustom contribuyente) {
+	public void Guardar (@RequestBody ContribuyenteCustom contribuyente) {
 
 		if(contribuyente.contribuyenteNumero <=0)
 			contribuyenteService.Crear(contribuyente);

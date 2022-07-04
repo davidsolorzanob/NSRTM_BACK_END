@@ -8,6 +8,7 @@ import java.util.Date;
 public class Persona extends Auditoria {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PERSONA_ID")
 	public Long personaId;
 

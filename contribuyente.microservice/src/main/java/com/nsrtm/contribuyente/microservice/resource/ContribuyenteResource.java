@@ -1,6 +1,8 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
 import java.util.List;
+
+import com.nsrtm.contribuyente.microservice.domain.ContribuyenteCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +15,14 @@ public class ContribuyenteResource {
 	@Autowired
 	private ContribuyenteService contribuyenteService;
 
-	@PostMapping("crear")
-	@ResponseStatus(HttpStatus.OK)
-	public void Crear(@RequestBody Contribuyente contribuyente) {
-		contribuyenteService.Guardar(contribuyente);
-	}
-
 	@PostMapping("editar")
 	@ResponseStatus(HttpStatus.OK)
-	public void Editar(@RequestBody Contribuyente contribuyente) {
-		contribuyenteService.Actualizar(contribuyente);
+	public void guardar (@RequestBody ContribuyenteCustom contribuyente) {
+
+		if(contribuyente.contribuyenteNumero <=0)
+			contribuyenteService.Crear(contribuyente);
+		else
+			contribuyenteService.Actualizar(contribuyente);
 	}
 
 	@PostMapping("eliminar")

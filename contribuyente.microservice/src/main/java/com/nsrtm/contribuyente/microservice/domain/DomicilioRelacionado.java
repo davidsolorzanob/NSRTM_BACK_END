@@ -12,7 +12,6 @@ public class DomicilioRelacionado extends Auditoria {
     public Long municipalidadId;
 
     @Id
-
     @Column(name = "CONTRIBUYENTE_NUMERO")
     public Long contribuyenteNumero;
 

@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.util.Date;
 
-public class ContribuyenteCustom {
+public class ContribuyenteCustom extends Auditoria{
 
     @Id
     @Column(name = "MUNICIPALIDAD_ID")

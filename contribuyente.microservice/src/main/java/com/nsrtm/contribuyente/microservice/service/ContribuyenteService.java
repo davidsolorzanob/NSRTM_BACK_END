@@ -2,7 +2,9 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import java.util.List;
 
+import com.nsrtm.contribuyente.microservice.domain.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
+import com.nsrtm.contribuyente.microservice.domain.Persona;
 import com.nsrtm.contribuyente.microservice.repository.PersonaRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,24 +34,85 @@ public class ContribuyenteService {
 		}
 	}
 
-	public void Actualizar(Contribuyente e){
+	public void Crear(ContribuyenteCustom e){
+		try {
+			Contribuyente contribuyente = new Contribuyente();
+			contribuyente.municipalidadId = e.municipalidadId;
+			contribuyente.fechaInscripcion = e.fechaInscripcion;
+			contribuyente.fechaDJ=e.fechaDJ;
+			contribuyente.numeroDJ=e.numeroDJ;
+			contribuyente.personaId=e.personaId;
+			contribuyente.tipoPersonaId=e.tipoPersonaId;
+			contribuyente.motivoDjId=e.motivoDjId;
+			contribuyente.estadoDjId=e.estadoDjId;
+			contribuyente.modalidadOficio=e.modalidadOficio;
+			contribuyente.tipoMedioDeterminacionId=e.tipoMedioDeterminacionId;
+			contribuyente.medioDeterminacionId=e.medioDeterminacionId;
+			contribuyente.segContribuyenteId=e.segContribuyenteId;
+			contribuyente.fuenteInformacionId=e.fuenteInformacionId;
+			contribuyente.usuarioCreacion = e.usuarioCreacion;
+			contribuyente.terminalCreacion = e.terminalCreacion;
+
+			Persona persona =new Persona();
+			persona.docIdentidadId= e.docIdentidadId;
+			persona.numDocIdentidad=e.numDocIdentidad;
+			persona.apellidoPaterno=e.apellidoPaterno;
+			persona.apellidoMaterno=e.apellidoMaterno;
+			persona.nombres=e.nombres;
+			persona.razonSocial=e.razonSocial;
+			persona.nombreCompleto=e.nombreCompleto;
+			persona.fechaNacimiento=e.fechaNacimiento;
+			persona.genero=e.genero;
+			persona.fallecido=e.fallecido;
+			persona.fechaFallecimiento=e.fechaFallecimiento;
+			persona.usuarioCreacion = e.usuarioCreacion;
+			persona.terminalCreacion = e.terminalCreacion;
+			personaRepository.save(persona);
+
+			contribuyente.personaId = persona.personaId;
+			Guardar(contribuyente);
+		}
+		catch (Exception ex){
+			logger.info(ex.getMessage());
+			throw ex;
+		}
+	}
+
+
+	public void Actualizar(ContribuyenteCustom e){
 		try {
 			Contribuyente contribuyente = ObtenerPorId(e.municipalidadId,e.contribuyenteNumero);
+			contribuyente.fechaInscripcion = e.fechaInscripcion;
+			contribuyente.fechaDJ=e.fechaDJ;
+			contribuyente.numeroDJ=e.numeroDJ;
+			contribuyente.personaId=e.personaId;
+			contribuyente.tipoPersonaId=e.tipoPersonaId;
+			contribuyente.motivoDjId=e.motivoDjId;
+			contribuyente.estadoDjId=e.estadoDjId;
+			contribuyente.modalidadOficio=e.modalidadOficio;
+			contribuyente.tipoMedioDeterminacionId=e.tipoMedioDeterminacionId;
+			contribuyente.medioDeterminacionId=e.medioDeterminacionId;
+			contribuyente.segContribuyenteId=e.segContribuyenteId;
+			contribuyente.fuenteInformacionId=e.fuenteInformacionId;
+			contribuyente.usuarioCreacion = e.usuarioCreacion;
+			contribuyente.terminalCreacion = e.terminalCreacion;
 
-			/*
-			contribuyente.contribuyenteId = e.contribuyenteId;
-			contribuyente.secEjec = e.secEjec;
-			contribuyente.tipoContribuyenteId = e.tipoContribuyenteId;
-			contribuyente.numeroDocumento = e.numeroDocumento;
-			contribuyente.apellidoPaterno = e.apellidoPaterno;
-			contribuyente.apellidoMaterno = e.apellidoMaterno;
-			contribuyente.nombres = e.nombres;
-			contribuyente.razonSocial = e.razonSocial;
-			contribuyente.celular1 = e.celular1;
-			contribuyente.celular2 = e.celular2;
-			contribuyente.correoElectronico1 = e.correoElectronico1;
-			contribuyente.correoElectronico2 = e.correoElectronico2;
-			 */
+			Persona persona =personaRepository.getById(e.personaId);
+			persona.docIdentidadId= e.docIdentidadId;
+			persona.numDocIdentidad=e.numDocIdentidad;
+			persona.apellidoPaterno=e.apellidoPaterno;
+			persona.apellidoMaterno=e.apellidoMaterno;
+			persona.nombres=e.nombres;
+			persona.razonSocial=e.razonSocial;
+			persona.nombreCompleto=e.nombreCompleto;
+			persona.fechaNacimiento=e.fechaNacimiento;
+			persona.genero=e.genero;
+			persona.fallecido=e.fallecido;
+			persona.fechaFallecimiento=e.fechaFallecimiento;
+			persona.usuarioCreacion = e.usuarioCreacion;
+			persona.terminalCreacion = e.terminalCreacion;
+			personaRepository.save(persona);
+
 			Guardar(contribuyente);
 		}
 		catch (Exception ex){

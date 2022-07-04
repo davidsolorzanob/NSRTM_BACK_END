@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
 <Configuration>
     <Properties>
         <Property name="LOG_PATTERN">
@@ -18,7 +19,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="com.example.contribuyente.microservice" level="debug" additivity="false">
+        <Logger name="com.nsrtm.contribuyente.microservice" level="debug" additivity="false">
             <AppenderRef ref="LogToFile"/>
             <AppenderRef ref="LogToConsole"/>
         </Logger>
@@ -30,5 +31,30 @@
             <AppenderRef ref="LogToFile"/>
         </Root>
 
+    </Loggers>
+    -->
+<Configuration status="DEBUG">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n"/>
+        </Console>
+        <File name="LogToFile" fileName="C:\log4j\ContribuyenteTemp.log">
+            <PatternLayout>
+                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.example.contribuyente.microservice" level="debug" additivity="false">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="org.springframework.boot" level="error" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
     </Loggers>
 </Configuration>

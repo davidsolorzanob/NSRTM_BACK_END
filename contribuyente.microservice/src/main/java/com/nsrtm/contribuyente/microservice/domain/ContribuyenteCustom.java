@@ -25,6 +25,7 @@ import java.util.Date;
                 }
         )})
 @Entity
+@IdClass(ContribuyenteId.class)
 public class ContribuyenteCustom extends Auditoria{
 
     @Id
@@ -107,4 +108,6 @@ public class ContribuyenteCustom extends Auditoria{
     @Column(name = "FEC_FALLECIMIENTO")
     public Date fechaFallecimiento;
 
+    @Column(name = "TIPO_ID")
+    public Integer tipoFiltro;
 }

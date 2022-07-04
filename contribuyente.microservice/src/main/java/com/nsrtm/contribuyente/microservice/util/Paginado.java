@@ -3,11 +3,11 @@ package com.nsrtm.contribuyente.microservice.util;
 public class Paginado {
     public Integer tamanio;
     public Integer nroPagina;
-    public Integer totalPaginas;
+    public Integer totalRegistros;
 
-    public Paginado(Integer tamanio, Integer nroPagina, Integer totalPaginas) {
+    public Paginado(Integer tamanio, Integer nroPagina, Integer totalRegistros) {
         this.tamanio = tamanio;
         this.nroPagina = nroPagina;
-        this.totalPaginas = totalPaginas;
+        this.totalRegistros = totalRegistros;
     }
 }

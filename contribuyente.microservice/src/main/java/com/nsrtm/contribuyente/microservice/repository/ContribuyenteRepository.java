@@ -10,6 +10,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-public interface ContribuyenteRepository extends JpaRepository<Contribuyente, ContribuyenteId>, JpaSpecificationExecutor {
+public interface ContribuyenteRepository extends JpaRepository<Contribuyente, ContribuyenteId>, JpaSpecificationExecutor, ContribuyenteCustomRepository {
 
 }

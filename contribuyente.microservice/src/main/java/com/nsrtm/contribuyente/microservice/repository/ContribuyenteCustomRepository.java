@@ -1,14 +1,15 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.ContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.query.Procedure;
-import org.springframework.data.repository.query.Param;
+import com.nsrtm.contribuyente.microservice.util.MessageResponse;
+import com.nsrtm.contribuyente.microservice.util.PageRequest;
+import com.nsrtm.contribuyente.microservice.util.PageResponse;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface ContribuyenteCustomRepository extends JpaRepository<ContribuyenteCustom, ContribuyenteId> {
+public interface ContribuyenteCustomRepository {
+    /*
     @Procedure(name = "GetContribuyenteListar")
     List<ContribuyenteCustom> ListaContribuyentePaginado(@Param("P_TIPO_FILTRO") Integer tipoFiltro,
                                                          @Param("P_MUNICIPALIDAD_ID") Integer municipalidadId,
@@ -21,21 +22,12 @@ public interface ContribuyenteCustomRepository extends JpaRepository<Contribuyen
                                                          @Param("P_RAZ_SOCIAL") Integer razonSocial,
                                                          @Param("P_NRO_PAGINA") Integer nroPagina,
                                                          @Param("P_TAM_PAGINA") Integer tamPagina,
-                                                         @Param("P_TOTAL_FILAS") Integer totalRegistros
+                                                         @Param("P_TOTAL_FILAS")  Integer totalRegistros
     );
-    /*
-     @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_TIPO_FILTRO"),
- @StoredProcedureParameter(type = Long.class, mode = ParameterMode.IN, name = "P_MUNICIPALIDAD_ID"),
- @StoredProcedureParameter(type = Long.class, mode = ParameterMode.IN, name = "P_CONTRIBUYENTE_NUMERO"),
- @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_TIP_PERSONA_ID"),
- @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_NUM_DOC_IDENTIDAD"),
- @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_APE_PATERNO"),
- @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_APE_MATERNO"),
- @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_NOMBRES"),
- @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_RAZ_SOCIAL"),
- @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_NRO_PAGINA"),
- @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_TAM_PAGINA"),
- @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.OUT, name = "P_TOTAL_FILAS"),
- @StoredProcedureParameter(type = void.class, mode = ParameterMode.REF_CURSOR)
-    * */
+    */
+    ResponseEntity<Object> CrearContribuyente(ContribuyenteCustom custom);
+    ResponseEntity<Object> ActualizarContribuyente(ContribuyenteCustom custom);
+    PageResponse<List<ContribuyenteCustom>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom);
+
+
 }

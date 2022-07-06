@@ -1,32 +1,10 @@
 package com.nsrtm.contribuyente.microservice.domain;
-
 import javax.persistence.*;
 import java.util.Date;
 
-@NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(
-                name = "GetContribuyentesPaginado",
-                procedureName = "NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR",
-                resultClasses = ContribuyenteCustom.class,
-                parameters = {
-                        @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_TIPO_FILTRO"),
-                        @StoredProcedureParameter(type = Long.class, mode = ParameterMode.IN, name = "P_MUNICIPALIDAD_ID"),
-                        @StoredProcedureParameter(type = Long.class, mode = ParameterMode.IN, name = "P_CONTRIBUYENTE_NUMERO"),
-                        @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_TIP_PERSONA_ID"),
-                        @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_NUM_DOC_IDENTIDAD"),
-                        @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_APE_PATERNO"),
-                        @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_APE_MATERNO"),
-                        @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN, name = "P_NOMBRES"),
-                        @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_RAZ_SOCIAL"),
-                        @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_NRO_PAGINA"),
-                        @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN, name = "P_TAM_PAGINA"),
-                        @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.OUT, name = "P_TOTAL_FILAS"),
-                        @StoredProcedureParameter(type = void.class, mode = ParameterMode.REF_CURSOR)
-                }
-        )})
 @Entity
 @IdClass(ContribuyenteId.class)
-public class ContribuyenteCustom extends Auditoria{
+public class ContribuyenteCustom extends Auditoria {
 
     @Id
     @Column(name = "MUNICIPALIDAD_ID")

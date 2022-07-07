@@ -72,4 +72,6 @@ public class RelacionadoCustom extends Auditoria {
     @Column(name = "FEC_FALLECIMIENTO")
     public Date fechaFallecimiento;
 
+    @Column(name = "EST_CIVIL_TIP_ID")
+    public Integer estadoCivil;
 }

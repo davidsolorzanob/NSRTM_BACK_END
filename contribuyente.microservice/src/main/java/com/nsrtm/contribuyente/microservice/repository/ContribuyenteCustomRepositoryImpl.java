@@ -47,6 +47,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .registerStoredProcedureParameter("P_GENERO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_CREACION", Integer.class, ParameterMode.IN)
 
@@ -62,7 +63,6 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_MED_DETERMINA_ID", custom.medioDeterminacionId)
                 .setParameter("P_SEG_CONTRIBUYENTE_ID", custom.segContribuyenteId)
                 .setParameter("P_FUENTE_INFO_ID", custom.fuenteInformacionId)
-                //.setParameter("P_CLAVE", custom.clave)
                 .setParameter("P_DOC_IDENTIDAD_ID", custom.docIdentidadId)
                 .setParameter("P_NUM_DOC_IDENTIDAD", custom.numDocIdentidad)
                 .setParameter("P_APE_PATERNO", custom.apellidoPaterno)
@@ -74,6 +74,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_GENERO", custom.genero)
                 .setParameter("P_FALLECIO", custom.fallecido)
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
+                .setParameter("P_EST_CIVIL_TIP_ID", custom.estadoCivil)
                 .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
         success = query.execute();
@@ -113,6 +114,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .registerStoredProcedureParameter("P_GENERO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_CREACION", Integer.class, ParameterMode.IN)
 
@@ -141,6 +143,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_GENERO", custom.genero)
                 .setParameter("P_FALLECIO", custom.fallecido)
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
+                .setParameter("P_EST_CIVIL_TIP_ID", custom.estadoCivil)
                 .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
         success = query.execute();

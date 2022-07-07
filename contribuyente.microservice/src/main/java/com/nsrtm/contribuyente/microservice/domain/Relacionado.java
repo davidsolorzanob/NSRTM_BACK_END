@@ -38,4 +38,6 @@ public class Relacionado extends Auditoria {
     @Column(name = "ESTADO_ID")
     public Integer estadoId;
 
+    @Column(name = "EST_CIVIL_TIP_ID")
+    public Integer estadoCivil;
 }

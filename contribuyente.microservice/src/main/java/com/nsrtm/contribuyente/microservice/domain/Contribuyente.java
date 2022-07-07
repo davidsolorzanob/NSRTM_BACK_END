@@ -55,4 +55,7 @@ public class Contribuyente extends Auditoria {
 
 	@Column(name = "CLAVE")
 	public String clave;
+
+	@Column(name = "EST_CIVIL_TIP_ID")
+	public Integer estadoCivil;
 }

@@ -88,4 +88,7 @@ public class ContribuyenteCustom extends Auditoria {
 
     @Column(name = "TIPO_ID")
     public Integer tipoFiltro;
+
+    @Column(name = "EST_CIVIL_TIP_ID")
+    public Integer estadoCivil;
 }

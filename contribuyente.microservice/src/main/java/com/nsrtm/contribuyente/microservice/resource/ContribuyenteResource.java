@@ -21,7 +21,7 @@ public class ContribuyenteResource {
 	@PostMapping("guardar")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> Guardar (@RequestBody ContribuyenteCustom contribuyente) {
-		if(contribuyente.contribuyenteNumero <=0)
+		if(contribuyente.contribuyenteNumero == null)
 			return contribuyenteService.Crear(contribuyente);
 		else
 			return contribuyenteService.Actualizar(contribuyente);

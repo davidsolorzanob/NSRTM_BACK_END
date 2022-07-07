@@ -48,8 +48,8 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TERMINAL_CREACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_CREACION", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_CREACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_FEC_INSCRIPCION", custom.fechaInscripcion)
@@ -77,10 +77,10 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_EST_CIVIL_TIP_ID", custom.estadoCivil)
                 .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
-        success = query.execute();
+        query.execute();
         custom.contribuyenteNumero = (Long) query.getOutputParameterValue("P_CONTRIBUYENTE_NUMERO");
         custom.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
-        return MessageResponse.setResponse(success,"El contribuyente se registró satisfactoriamente",custom);
+        return MessageResponse.setResponse(true,"El contribuyente se registró satisfactoriamente",custom);
     }
 
     @Override
@@ -115,8 +115,8 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TERMINAL_CREACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
@@ -144,10 +144,10 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_FALLECIO", custom.fallecido)
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
                 .setParameter("P_EST_CIVIL_TIP_ID", custom.estadoCivil)
-                .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
-                .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
-        success = query.execute();
-        return MessageResponse.setResponse(success,"Los datos del contribuyente se actualizaron satisfactoriamente",custom);
+                .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
+                .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
+        query.execute();
+        return MessageResponse.setResponse(true,"Los datos del contribuyente se actualizaron satisfactoriamente",custom);
     }
 
     @Override

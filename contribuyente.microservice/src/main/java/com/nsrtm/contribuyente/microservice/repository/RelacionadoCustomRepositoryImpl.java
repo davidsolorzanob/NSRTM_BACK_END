@@ -61,7 +61,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
                 .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
-        success = query.execute();
+        query.execute();
         custom.relContribuyenteNumero = (Long) query.getOutputParameterValue("P_REL_CONTRIBUYENTE_NUMERO");
         custom.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
         return MessageResponse.setResponse(success,"El relacionado se registró satisfactoriamente",custom);
@@ -115,8 +115,8 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
                 .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
-        success = query.execute();
-        return MessageResponse.setResponse(success,"Los datos del relacionado se actualizaron satisfactoriamente",custom);
+        query.execute();
+        return MessageResponse.setResponse(true,"Los datos del relacionado se actualizaron satisfactoriamente",custom);
     }
 
 }

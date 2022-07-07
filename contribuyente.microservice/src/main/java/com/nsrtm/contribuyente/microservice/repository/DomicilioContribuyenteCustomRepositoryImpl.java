@@ -86,9 +86,9 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
 
-        success = query.execute();
+        query.execute();
         custom.domicilioContribuyenteNumero = (Long) query.getOutputParameterValue("P_DOM_CONTRIBUYENTE_NUMERO");
-        return MessageResponse.setResponse(success,"El domicilio del contribuyente se registró satisfactoriamente",custom);
+        return MessageResponse.setResponse(true,"El domicilio del contribuyente se registró satisfactoriamente",custom);
     }
 
     @Override
@@ -165,8 +165,8 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
 
-        success = query.execute();
-        return MessageResponse.setResponse(success,"El domicilio del contribuyente se actualizó satisfactoriamente",custom);
+        query.execute();
+        return MessageResponse.setResponse(true,"El domicilio del contribuyente se actualizó satisfactoriamente",custom);
     }
 
 }

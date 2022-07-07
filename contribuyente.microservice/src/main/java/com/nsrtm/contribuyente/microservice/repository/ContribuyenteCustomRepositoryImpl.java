@@ -82,6 +82,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
         return MessageResponse.setResponse(success,"El contribuyente se registró satisfactoriamente",custom);
     }
 
+    @Override
     public ResponseEntity<Object> ActualizarContribuyente(ContribuyenteCustom custom) {
         boolean success = false;
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_CONTRIBUYENTE")

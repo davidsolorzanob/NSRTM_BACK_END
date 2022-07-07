@@ -1,11 +1,12 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
 import com.nsrtm.contribuyente.microservice.domain.Relacionado;
+import com.nsrtm.contribuyente.microservice.domain.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.service.RelacionadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -15,22 +16,19 @@ public class RelacionadoResource {
     @Autowired
     private RelacionadoService relacionadoService;
 
-    @PostMapping("crear")
+    @PostMapping("guardar")
     @ResponseStatus(HttpStatus.OK)
-    public void Crear(@RequestBody Relacionado relacionado) {
-        relacionadoService.Guardar(relacionado);
-    }
-
-    @PostMapping("editar")
-    @ResponseStatus(HttpStatus.OK)
-    public void Editar(@RequestBody Relacionado relacionado) {
-        relacionadoService.Actualizar(relacionado);
+    public ResponseEntity<Object> Guardar (@RequestBody RelacionadoCustom relacionado) {
+        if(relacionado.relContribuyenteNumero <=0)
+            return relacionadoService.Crear(relacionado);
+        else
+            return relacionadoService.Actualizar(relacionado);
     }
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
-        relacionadoService.Eliminar(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
+    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
+        return relacionadoService.Eliminar(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
     }
 
     @GetMapping("obtener")

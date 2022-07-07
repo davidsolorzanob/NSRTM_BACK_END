@@ -58,4 +58,15 @@ public class MessageResponse {
 
         return new ResponseEntity<Object>(map,status);
     }
+
+    public static ResponseEntity<Object> setResponse(boolean success,String message) {
+        HttpStatus status = success ? HttpStatus.OK:HttpStatus.BAD_REQUEST;
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("success", success);
+        map.put("message", message);
+        map.put("status", status);
+        map.put("data", null);
+
+        return new ResponseEntity<Object>(map,status);
+    }
 }

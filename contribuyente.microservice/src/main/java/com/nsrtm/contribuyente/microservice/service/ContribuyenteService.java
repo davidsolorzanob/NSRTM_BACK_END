@@ -6,6 +6,7 @@ import com.nsrtm.contribuyente.microservice.domain.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
 import com.nsrtm.contribuyente.microservice.domain.Persona;
 import com.nsrtm.contribuyente.microservice.repository.PersonaRepository;
+import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
 import org.apache.logging.log4j.LogManager;
@@ -47,6 +48,12 @@ public class ContribuyenteService {
 		return contribuyenteRepository.CrearContribuyente(e);
 	}
 
+	public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero){
+		ContribuyenteId id = new ContribuyenteId(municipalidadId,contribuyenteNumero);
+		contribuyenteRepository.deleteById(id);
+		return MessageResponse.setResponse(true, "El registro del contribuyente se eliminó satisfactoriamente");
+	}
+
 	public Contribuyente ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
 		try {
 			ContribuyenteId id = new ContribuyenteId(municipalidadId,contribuyenteNumero);
@@ -58,11 +65,11 @@ public class ContribuyenteService {
 		}
 	}
 
-	public List<Contribuyente> Todos(){
-		return contribuyenteRepository.findAll();
-	}
-
 	public PageResponse<List<ContribuyenteCustom>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom){
 		return contribuyenteRepository.ListaContribuyentePaginado(custom);
+	}
+
+	public List<Contribuyente> Todos(){
+		return contribuyenteRepository.findAll();
 	}
 }

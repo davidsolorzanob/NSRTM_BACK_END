@@ -27,6 +27,12 @@ public class ContribuyenteResource {
 			return contribuyenteService.Actualizar(contribuyente);
 	}
 
+	@PostMapping("eliminar")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero) {
+		return contribuyenteService.Eliminar(municipalidadId, contribuyenteNumero);
+	}
+
 	@GetMapping("obtener")
 	@ResponseStatus(HttpStatus.OK)
 	public Contribuyente ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {

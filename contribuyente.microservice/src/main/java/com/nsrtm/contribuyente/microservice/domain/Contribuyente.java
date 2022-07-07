@@ -13,7 +13,6 @@ public class Contribuyente extends Auditoria {
 	public Long municipalidadId;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CONTRIBUYENTE_NUMERO")
 	public Long contribuyenteNumero;
 

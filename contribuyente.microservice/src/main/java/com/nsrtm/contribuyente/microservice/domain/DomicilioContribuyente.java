@@ -16,7 +16,6 @@ public class DomicilioContribuyente extends Auditoria {
     public Long contribuyenteNumero;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "DOM_CONTRIBUYENTE_NUMERO")
     public Long domicilioContribuyenteNumero;
 

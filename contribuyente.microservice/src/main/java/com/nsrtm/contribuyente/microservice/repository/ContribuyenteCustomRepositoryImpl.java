@@ -24,7 +24,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_FEC_INSCRIPCION", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FECHA_DJ", Date.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_PERSONA_ID", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_TIP_PERSONA_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_MOTIVO_DJ_ID", Integer.class, ParameterMode.IN)
@@ -54,7 +54,6 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_FEC_INSCRIPCION", custom.fechaInscripcion)
                 .setParameter("P_FECHA_DJ", custom.fechaDJ)
-                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_TIP_PERSONA_ID", custom.tipoPersonaId)
                 .setParameter("P_MOTIVO_DJ_ID", custom.motivoDjId)
                 .setParameter("P_ESTADO_DJ_ID", custom.estadoDjId)
@@ -79,6 +78,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
         query.execute();
         custom.contribuyenteNumero = (Long) query.getOutputParameterValue("P_CONTRIBUYENTE_NUMERO");
+        custom.numeroDJ = (Long) query.getOutputParameterValue("P_NUMERO_DJ");
         custom.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
         return MessageResponse.setResponse(true,"El contribuyente se registró satisfactoriamente",custom);
     }

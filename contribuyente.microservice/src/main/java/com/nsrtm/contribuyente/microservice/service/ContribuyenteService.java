@@ -28,18 +28,6 @@ public class ContribuyenteService {
 	@Autowired
 	private PersonaRepository personaRepository;
 
-	/*
-	public void Guardar(Contribuyente e) {
-		try{
-			contribuyenteRepository.save(e);
-		}
-		catch (Exception ex){
-			logger.info(ex.getMessage());
-			throw ex;
-		}
-	}
-*/
-
 	public ResponseEntity<Object> Crear(ContribuyenteCustom e){
 		return contribuyenteRepository.CrearContribuyente(e);
 	}

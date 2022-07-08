@@ -5,7 +5,6 @@ import java.util.List;
 import com.nsrtm.contribuyente.microservice.domain.*;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
-import com.nsrtm.contribuyente.microservice.repository.interfaces.PersonaRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
@@ -15,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.nsrtm.contribuyente.microservice.repository.interfaces.ContribuyenteRepository;
+import com.nsrtm.contribuyente.microservice.repository.ContribuyenteRepository;
 
 @Service
 public class ContribuyenteService {
@@ -24,15 +23,12 @@ public class ContribuyenteService {
 	@Autowired
 	private ContribuyenteRepository contribuyenteRepository;
 
-	@Autowired
-	private PersonaRepository personaRepository;
-
 	public ResponseEntity<Object> Crear(ContribuyenteCustom e){
 		return contribuyenteRepository.CrearContribuyente(e);
 	}
 
 	public ResponseEntity<Object> Actualizar(ContribuyenteCustom e){
-		return contribuyenteRepository.CrearContribuyente(e);
+		return contribuyenteRepository.ActualizarContribuyente(e);
 	}
 
 	public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero){

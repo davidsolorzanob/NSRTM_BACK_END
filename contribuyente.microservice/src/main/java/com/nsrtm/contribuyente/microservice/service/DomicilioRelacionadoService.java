@@ -2,7 +2,7 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionadoId;
-import com.nsrtm.contribuyente.microservice.repository.interfaces.DomicilioRelacionadoRepository;
+import com.nsrtm.contribuyente.microservice.repository.DomicilioRelacionadoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

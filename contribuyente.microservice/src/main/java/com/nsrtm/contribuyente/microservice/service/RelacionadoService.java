@@ -2,7 +2,7 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.*;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
-import com.nsrtm.contribuyente.microservice.repository.interfaces.RelacionadoRepository;
+import com.nsrtm.contribuyente.microservice.repository.RelacionadoRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

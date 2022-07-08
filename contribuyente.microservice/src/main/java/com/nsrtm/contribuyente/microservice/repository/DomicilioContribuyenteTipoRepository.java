@@ -1,4 +1,4 @@
-package com.nsrtm.contribuyente.microservice.repository.interfaces;
+package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteTipo;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteTipoId;

@@ -1,8 +1,7 @@
-package com.nsrtm.contribuyente.microservice.repository.implementations;
+package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
-import com.nsrtm.contribuyente.microservice.repository.interfaces.ContribuyenteCustomRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;

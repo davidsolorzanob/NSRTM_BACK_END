@@ -2,7 +2,7 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteTipo;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteTipoId;
-import com.nsrtm.contribuyente.microservice.repository.interfaces.DomicilioContribuyenteTipoRepository;
+import com.nsrtm.contribuyente.microservice.repository.DomicilioContribuyenteTipoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

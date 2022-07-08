@@ -7,7 +7,6 @@ import javax.persistence.*;
 				name = "GetMaestro",
 				procedureName = "NSRTM.PKG_MAESTRO.GET_MAESTRO",
 				resultClasses = Maestro.class,
-
 				parameters = {
 						@StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN),
 						@StoredProcedureParameter(type = void.class, mode = ParameterMode.REF_CURSOR)

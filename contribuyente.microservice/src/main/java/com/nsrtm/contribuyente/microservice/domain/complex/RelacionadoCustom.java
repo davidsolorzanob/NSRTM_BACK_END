@@ -1,4 +1,7 @@
-package com.nsrtm.contribuyente.microservice.domain;
+package com.nsrtm.contribuyente.microservice.domain.complex;
+
+import com.nsrtm.contribuyente.microservice.domain.Auditoria;
+import com.nsrtm.contribuyente.microservice.domain.RelacionadoId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

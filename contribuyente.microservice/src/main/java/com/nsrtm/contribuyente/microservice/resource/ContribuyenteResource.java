@@ -2,7 +2,8 @@ package com.nsrtm.contribuyente.microservice.resource;
 
 import java.util.List;
 
-import com.nsrtm.contribuyente.microservice.domain.ContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class ContribuyenteResource {
 
 	@PostMapping("listaContribuyentePaginado")
 	@ResponseStatus(HttpStatus.OK)
-	public PageResponse<List<ContribuyenteCustom>> ListaContribuyentePaginado(@RequestBody PageRequest<ContribuyenteCustom> custom){
+	public PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(@RequestBody PageRequest<ContribuyenteCustom> custom){
 		return contribuyenteService.ListaContribuyentePaginado(custom);
 	}
 }

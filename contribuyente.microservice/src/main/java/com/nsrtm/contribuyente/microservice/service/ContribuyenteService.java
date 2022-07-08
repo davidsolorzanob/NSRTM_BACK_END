@@ -2,10 +2,10 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import java.util.List;
 
-import com.nsrtm.contribuyente.microservice.domain.ContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
-import com.nsrtm.contribuyente.microservice.domain.Persona;
-import com.nsrtm.contribuyente.microservice.repository.PersonaRepository;
+import com.nsrtm.contribuyente.microservice.domain.*;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
+import com.nsrtm.contribuyente.microservice.repository.interfaces.PersonaRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
@@ -15,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.nsrtm.contribuyente.microservice.domain.Contribuyente;
-import com.nsrtm.contribuyente.microservice.repository.ContribuyenteRepository;
+import com.nsrtm.contribuyente.microservice.repository.interfaces.ContribuyenteRepository;
 
 @Service
 public class ContribuyenteService {
@@ -53,7 +52,7 @@ public class ContribuyenteService {
 		}
 	}
 
-	public PageResponse<List<ContribuyenteCustom>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom){
+	public PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom){
 		return contribuyenteRepository.ListaContribuyentePaginado(custom);
 	}
 

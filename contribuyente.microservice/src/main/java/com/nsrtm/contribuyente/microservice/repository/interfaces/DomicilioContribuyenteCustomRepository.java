@@ -1,4 +1,4 @@
-package com.nsrtm.contribuyente.microservice.repository;
+package com.nsrtm.contribuyente.microservice.repository.interfaces;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import org.springframework.http.ResponseEntity;

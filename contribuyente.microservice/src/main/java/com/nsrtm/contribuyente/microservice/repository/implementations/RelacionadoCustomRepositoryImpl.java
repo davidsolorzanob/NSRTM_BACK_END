@@ -1,6 +1,7 @@
-package com.nsrtm.contribuyente.microservice.repository;
+package com.nsrtm.contribuyente.microservice.repository.implementations;
 
-import com.nsrtm.contribuyente.microservice.domain.RelacionadoCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
+import com.nsrtm.contribuyente.microservice.repository.interfaces.RelacionadoCustomRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.springframework.http.ResponseEntity;
 
@@ -10,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
 
-public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomRepository{
+public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomRepository {
     @PersistenceContext
     EntityManager entityManager;
 

@@ -1,4 +1,4 @@
-package com.nsrtm.contribuyente.microservice.repository;
+package com.nsrtm.contribuyente.microservice.repository.interfaces;
 
 import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
 import org.springframework.data.jpa.repository.JpaRepository;

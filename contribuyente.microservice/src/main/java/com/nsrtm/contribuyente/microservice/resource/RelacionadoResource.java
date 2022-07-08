@@ -1,7 +1,7 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
 import com.nsrtm.contribuyente.microservice.domain.Relacionado;
-import com.nsrtm.contribuyente.microservice.domain.RelacionadoCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.service.RelacionadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

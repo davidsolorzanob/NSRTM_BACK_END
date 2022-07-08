@@ -1,6 +1,7 @@
-package com.nsrtm.contribuyente.microservice.repository;
+package com.nsrtm.contribuyente.microservice.repository.implementations;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
+import com.nsrtm.contribuyente.microservice.repository.interfaces.DomicilioContribuyenteCustomRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.springframework.http.ResponseEntity;
 
@@ -9,7 +10,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 
-public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioContribuyenteCustomRepository{
+public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioContribuyenteCustomRepository {
     @PersistenceContext
     EntityManager entityManager;
 

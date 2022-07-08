@@ -1,6 +1,8 @@
-package com.nsrtm.contribuyente.microservice.repository;
+package com.nsrtm.contribuyente.microservice.repository.implementations;
 
-import com.nsrtm.contribuyente.microservice.domain.ContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
+import com.nsrtm.contribuyente.microservice.repository.interfaces.ContribuyenteCustomRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
@@ -12,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRepository{
+public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRepository {
     @PersistenceContext
     EntityManager entityManager;
 
@@ -151,8 +153,8 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
     }
 
     @Override
-    public PageResponse<List<ContribuyenteCustom>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR")
+    public PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR",ContribuyenteResult.class)
                 .registerStoredProcedureParameter("P_TIPO_FILTRO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -166,6 +168,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .registerStoredProcedureParameter("P_TAM_PAGINA", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TOTAL_FILAS", Integer.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
                 .setParameter("P_TIPO_FILTRO", custom.data.tipoFiltro)
                 .setParameter("P_MUNICIPALIDAD_ID", custom.data.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.data.contribuyenteNumero)
@@ -178,8 +181,8 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_NRO_PAGINA", custom.nroPage)
                 .setParameter("P_TAM_PAGINA", custom.size);
 
-        PageResponse<List<ContribuyenteCustom>> page = new PageResponse<List<ContribuyenteCustom>>(custom.size,custom.nroPage);
-        page.data = query.getResultList();
+        PageResponse<List<ContribuyenteResult>> page = new PageResponse<List<ContribuyenteResult>>(custom.size,custom.nroPage);
+        page.data = (List<ContribuyenteResult>)query.getResultList();
         page.totalRows = (Integer) query.getOutputParameterValue("P_TOTAL_FILAS");
         return page;
     }

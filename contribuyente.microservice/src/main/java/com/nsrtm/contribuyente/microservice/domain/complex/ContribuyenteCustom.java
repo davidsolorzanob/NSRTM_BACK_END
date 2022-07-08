@@ -1,4 +1,7 @@
-package com.nsrtm.contribuyente.microservice.domain;
+package com.nsrtm.contribuyente.microservice.domain.complex;
+import com.nsrtm.contribuyente.microservice.domain.Auditoria;
+import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -54,7 +57,7 @@ public class ContribuyenteCustom extends Auditoria {
     public Integer docIdentidadId;
 
     @Column(name = "DESC_DOC_IDENTIDAD")
-    public Integer descDocIdentidadId;
+    public String descDocIdentidadId;
 
     @Column(name = "NUM_DOC_IDENTIDAD")
     public String numDocIdentidad;

@@ -39,12 +39,6 @@ public class ContribuyenteResource {
 		return contribuyenteService.ObtenerPorId(municipalidadId, contribuyenteNumero);
 	}
 
-	@GetMapping("todos")
-	@ResponseStatus(HttpStatus.OK)
-	public List<Contribuyente> Todos() {
-		return contribuyenteService.Todos();
-	}
-
 	@PostMapping("listaContribuyentePaginado")
 	@ResponseStatus(HttpStatus.OK)
 	public PageResponse<List<ContribuyenteCustom>> ListaContribuyentePaginado(@RequestBody PageRequest<ContribuyenteCustom> custom){

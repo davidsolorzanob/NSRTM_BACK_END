@@ -16,16 +16,14 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
 
     @Override
     public ResponseEntity<Object> CrearRelacionado(RelacionadoCustom custom) {
-        boolean success = false;
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_PERSONA_ID", Long.class, ParameterMode.OUT)
-                .registerStoredProcedureParameter("P_TIP_PERSONA_ID", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TIP_RELACIONADO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_VIG_INICIAL", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_VIG_FINAL", Date.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TIP_PERSONA_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTADO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOC_IDENTIDAD_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_NUM_DOC_IDENTIDAD", String.class, ParameterMode.IN)
@@ -39,8 +37,9 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .registerStoredProcedureParameter("P_GENERO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TERMINAL_CREACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_CREACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
@@ -59,12 +58,13 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .setParameter("P_GENERO", custom.genero)
                 .setParameter("P_FALLECIO", custom.fallecido)
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
+                .setParameter("P_EST_CIVIL_TIP_ID", custom.estadoCivil)
                 .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
         query.execute();
         custom.relContribuyenteNumero = (Long) query.getOutputParameterValue("P_REL_CONTRIBUYENTE_NUMERO");
         custom.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
-        return MessageResponse.setResponse(success,"El relacionado se registró satisfactoriamente",custom);
+        return MessageResponse.setResponse(true,"El relacionado se registró satisfactoriamente",custom);
     }
 
     @Override
@@ -73,12 +73,11 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
-                .registerStoredProcedureParameter("P_PERSONA_ID", Long.class, ParameterMode.OUT)
-                .registerStoredProcedureParameter("P_TIP_PERSONA_ID", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_PERSONA_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TIP_RELACIONADO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_VIG_INICIAL", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_VIG_FINAL", Date.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TIP_PERSONA_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTADO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOC_IDENTIDAD_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_NUM_DOC_IDENTIDAD", String.class, ParameterMode.IN)
@@ -92,6 +91,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .registerStoredProcedureParameter("P_GENERO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_CREACION", Integer.class, ParameterMode.IN)
 
@@ -113,6 +113,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .setParameter("P_GENERO", custom.genero)
                 .setParameter("P_FALLECIO", custom.fallecido)
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
+                .setParameter("P_EST_CIVIL_TIP_ID", custom.estadoCivil)
                 .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
         query.execute();

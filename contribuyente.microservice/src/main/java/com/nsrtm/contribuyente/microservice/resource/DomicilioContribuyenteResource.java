@@ -5,6 +5,7 @@ import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteId;
 import com.nsrtm.contribuyente.microservice.service.DomicilioContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,16 +16,13 @@ public class DomicilioContribuyenteResource {
     @Autowired
     private DomicilioContribuyenteService domicilioContribuyenteService;
 
-    @PostMapping("crear")
+    @PostMapping("guardar")
     @ResponseStatus(HttpStatus.OK)
-    public void Crear(@RequestBody DomicilioContribuyente contribuyente) {
-        domicilioContribuyenteService.Guardar(contribuyente);
-    }
-
-    @PostMapping("editar")
-    @ResponseStatus(HttpStatus.OK)
-    public void Editar(@RequestBody DomicilioContribuyente contribuyente) {
-        domicilioContribuyenteService.Actualizar(contribuyente);
+    public ResponseEntity<Object> Guardar(@RequestBody DomicilioContribuyente domicilio) {
+        if(domicilio.domicilioContribuyenteNumero == null)
+            return domicilioContribuyenteService.Crear(domicilio);
+        else
+            return domicilioContribuyenteService.Actualizar(domicilio);
     }
 
     @PostMapping("eliminar")

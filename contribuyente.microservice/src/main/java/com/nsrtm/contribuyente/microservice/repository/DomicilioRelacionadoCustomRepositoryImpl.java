@@ -1,6 +1,6 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
-import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
+import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.springframework.http.ResponseEntity;
 
@@ -9,17 +9,17 @@ import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 
-public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioContribuyenteCustomRepository {
+public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelacionadoCustomRepository{
     @PersistenceContext
     EntityManager entityManager;
 
     @Override
-    public ResponseEntity<Object> CrearDomicilioContribuyente(DomicilioContribuyente custom) {
-        boolean success = false;
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTRIBUYENTE")
+    public ResponseEntity<Object> CrearDomicilioRelacionado(DomicilioRelacionado custom) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_DOMICILIO_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
+                .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_DOM_RELACIONADO_NUMERO", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PROVINCIA_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DISTRITO_ID", Integer.class, ParameterMode.IN)
@@ -43,8 +43,6 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .registerStoredProcedureParameter("P_INGRESO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PISO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_KILOMETRO", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_LATITUD", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_LONGITUD", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DES_DOMICILIO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTRUCTURADO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FUENTE_INFO_ID", Integer.class, ParameterMode.IN)
@@ -77,8 +75,6 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_INGRESO", custom.ingreso)
                 .setParameter("P_PISO", custom.piso)
                 .setParameter("P_KILOMETRO", custom.kilometro)
-                .setParameter("P_LATITUD", custom.latitud)
-                .setParameter("P_LONGITUD", custom.longitud)
                 .setParameter("P_DES_DOMICILIO", custom.descripcionDomicilio)
                 .setParameter("P_ESTRUCTURADO", custom.estructurado)
                 .setParameter("P_FUENTE_INFO_ID", custom.fuenteInformacionId)
@@ -87,17 +83,17 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
 
         query.execute();
-        custom.domicilioContribuyenteNumero = (Long) query.getOutputParameterValue("P_DOM_CONTRIBUYENTE_NUMERO");
-        return MessageResponse.setResponse(true,"El domicilio del contribuyente se registró satisfactoriamente",custom);
+        custom.domicilioRelacionadoNumero = (Long) query.getOutputParameterValue("P_DOM_RELACIONADO_NUMERO");
+        return MessageResponse.setResponse(true,"El domicilio del relacionado se registró satisfactoriamente",custom);
     }
 
     @Override
-    public ResponseEntity<Object> ActualizarDomicilioContribuyente(DomicilioContribuyente custom) {
-        boolean success = false;
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_CONTRIBUYENTE")
+    public ResponseEntity<Object> ActualizarDomicilioRelacionado(DomicilioRelacionado custom) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_DOMICILIO_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
+                .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_DOM_RELACIONADO_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PROVINCIA_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DISTRITO_ID", Integer.class, ParameterMode.IN)
@@ -121,8 +117,6 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .registerStoredProcedureParameter("P_INGRESO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PISO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_KILOMETRO", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_LATITUD", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_LONGITUD", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DES_DOMICILIO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTRUCTURADO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FUENTE_INFO_ID", Integer.class, ParameterMode.IN)
@@ -132,7 +126,8 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
-                .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", custom.domicilioContribuyenteNumero)
+                .setParameter("P_REL_CONTRIBUYENTE_NUMERO", custom.relContribuyenteNumero)
+                .setParameter("P_DOM_RELACIONADO_NUMERO", custom.domicilioRelacionadoNumero)
                 .setParameter("P_DEPARTAMENTO_ID", custom.departamentoId)
                 .setParameter("P_PROVINCIA_ID", custom.provinciaId)
                 .setParameter("P_DISTRITO_ID", custom.distritoId)
@@ -156,8 +151,6 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_INGRESO", custom.ingreso)
                 .setParameter("P_PISO", custom.piso)
                 .setParameter("P_KILOMETRO", custom.kilometro)
-                .setParameter("P_LATITUD", custom.latitud)
-                .setParameter("P_LONGITUD", custom.longitud)
                 .setParameter("P_DES_DOMICILIO", custom.descripcionDomicilio)
                 .setParameter("P_ESTRUCTURADO", custom.estructurado)
                 .setParameter("P_FUENTE_INFO_ID", custom.fuenteInformacionId)
@@ -166,7 +159,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
 
         query.execute();
-        return MessageResponse.setResponse(true,"El domicilio del contribuyente se actualizó satisfactoriamente",custom);
+        return MessageResponse.setResponse(true,"El domicilio del relacionado se actualizó satisfactoriamente",custom);
     }
 
 }

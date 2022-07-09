@@ -2,10 +2,12 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteId;
+import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioContribuyenteRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,26 +19,12 @@ public class DomicilioContribuyenteService {
     @Autowired
     private DomicilioContribuyenteRepository domicilioContribuyenteRepository;
 
-    public void Guardar(DomicilioContribuyente e) {
-        try{
-            domicilioContribuyenteRepository.save(e);
-        }
-        catch (Exception ex){
-            logger.info(ex.getMessage());
-            throw ex;
-        }
+    public ResponseEntity<Object> Crear(DomicilioContribuyente e){
+        return domicilioContribuyenteRepository.CrearDomicilioContribuyente(e);
     }
 
-    public void Actualizar(DomicilioContribuyente e){
-        try {
-            DomicilioContribuyente contribuyente = ObtenerPorId(e.municipalidadId, e.contribuyenteNumero, e.domicilioContribuyenteNumero);
-
-            Guardar(contribuyente);
-        }
-        catch (Exception ex){
-            logger.info(ex.getMessage());
-            throw ex;
-        }
+    public ResponseEntity<Object> Actualizar(DomicilioContribuyente e){
+        return domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(e);
     }
 
     public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero) {

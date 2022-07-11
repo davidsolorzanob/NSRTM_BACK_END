@@ -35,6 +35,9 @@ public class ContribuyenteCustom extends Auditoria {
     @Column(name = "ESTADO_DJ_ID")
     public Integer estadoDjId;
 
+    @Column(name = "DES_ESTADO_DJ")
+    public Integer desEstadoDj;
+
     @Column(name = "MOD_OFICIO")
     public Integer modalidadOficio;
 

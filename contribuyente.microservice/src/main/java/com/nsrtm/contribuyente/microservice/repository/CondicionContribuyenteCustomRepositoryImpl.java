@@ -37,7 +37,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
                 .registerStoredProcedureParameter("P_TERMINAL_CREACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", custom.numeroDocumento)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
                 .setParameter("P_TIP_CON_INAFECTACION_ID", custom.tipoCondicionInafectacionId)
                 .setParameter("P_TIP_CON_CONCURSAL_ID", custom.tipoCondicionConcursalId)
                 .setParameter("P_TIP_DOCUMENTO_ID", custom.tipoDocumentoId)

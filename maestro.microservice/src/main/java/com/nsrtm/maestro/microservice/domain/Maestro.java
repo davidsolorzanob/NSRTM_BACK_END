@@ -9,6 +9,7 @@ import javax.persistence.*;
 				resultClasses = Maestro.class,
 				parameters = {
 						@StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN),
+						@StoredProcedureParameter(type = Long.class, mode = ParameterMode.IN),
 						@StoredProcedureParameter(type = void.class, mode = ParameterMode.REF_CURSOR)
 				}
 		)})

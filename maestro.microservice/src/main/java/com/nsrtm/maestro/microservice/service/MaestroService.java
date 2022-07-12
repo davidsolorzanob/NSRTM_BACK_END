@@ -18,8 +18,8 @@ public class MaestroService {
 	@Autowired
 	private MaestroRepository maestroRepository;
 
-	public List<Maestro> ObtenerPorFiltro (int tipoMaestroId) {
-		return maestroRepository.ObtenerMaestro(tipoMaestroId);
+	public List<Maestro> ObtenerPorFiltro (Integer tipoMaestroId, Long municipalidadId) {
+		return maestroRepository.ObtenerMaestro(tipoMaestroId, municipalidadId);
 	}
 
 }

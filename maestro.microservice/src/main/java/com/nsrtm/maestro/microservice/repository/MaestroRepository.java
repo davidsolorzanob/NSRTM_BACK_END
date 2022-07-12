@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface MaestroRepository extends JpaRepository<Maestro, Integer> {
     @Procedure(name = "GetMaestro")
-    List<Maestro> ObtenerMaestro(@Param("TIPO_ID") Integer tipoMaestroId);
+    List<Maestro> ObtenerMaestro(@Param("TIPO_ID") Integer tipoMaestroId,@Param("MUNICIPALIDAD_ID") Long municipalidadId);
 }

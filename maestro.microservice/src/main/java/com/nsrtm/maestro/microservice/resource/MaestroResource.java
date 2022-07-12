@@ -17,8 +17,8 @@ public class MaestroResource {
 
 	@GetMapping("filtrarportipo")
 	@ResponseStatus(HttpStatus.OK)
-	public List<Maestro> FiltrarPorTipo(Integer tipoMaestroId) {
-		return maestroService.ObtenerPorFiltro(tipoMaestroId);
+	public List<Maestro> FiltrarPorTipo(Integer tipoMaestroId, Long municipalidadId) {
+		return maestroService.ObtenerPorFiltro(tipoMaestroId,municipalidadId);
 	}
 
 }

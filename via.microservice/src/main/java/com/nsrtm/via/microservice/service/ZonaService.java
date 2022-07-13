@@ -10,14 +10,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ViaService {
+public class ZonaService {
     private static final Logger logger = LogManager.getLogger(ViaService.class);
 
     @Autowired
     private ViaRepository viaRepository;
 
-    public List<Ubicacion> ListaVia(Ubicacion custom){
-        return viaRepository.ListaVia(custom);
+    public List<Ubicacion> ListaZonaUrbana(Ubicacion custom){
+        return viaRepository.ListaZonaUrbana(custom);
     }
 
+    public List<Ubicacion> ListaSubZonaUrbana(Ubicacion custom){
+        return viaRepository.ListaSubZonaUrbana(custom);
+    }
 }

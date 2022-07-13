@@ -41,7 +41,7 @@ public class DomicilioContribuyente extends Auditoria {
     public Integer viaDistritoId;
 
     @Column(name = "VIA_ID")
-    public Integer viaId;
+    public Long viaId;
 
     @Column(name = "NUMERO_1")
     public Integer numero1;

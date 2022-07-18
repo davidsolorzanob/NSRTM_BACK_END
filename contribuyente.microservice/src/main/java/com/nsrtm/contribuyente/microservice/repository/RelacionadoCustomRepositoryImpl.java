@@ -92,8 +92,8 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TERMINAL_CREACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", Integer.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)

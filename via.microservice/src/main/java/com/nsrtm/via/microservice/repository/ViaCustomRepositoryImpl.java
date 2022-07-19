@@ -68,7 +68,7 @@ public class ViaCustomRepositoryImpl implements ViaCustomRepository {
 
     @Override
     public List<Ubicacion> ListaEdificacion(Ubicacion custom) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_VIA.GET_SUBZONA_URBANA_LISTAR",Ubicacion.class)
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_VIA.GET_EDIFICACION_LISTAR",Ubicacion.class)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PROVINCIA_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DISTRITO_ID", Integer.class, ParameterMode.IN)

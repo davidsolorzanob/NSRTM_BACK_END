@@ -1,6 +1,5 @@
 package com.nsrtm.via.microservice.resource;
 
-import com.nsrtm.via.microservice.domain.Via;
 import com.nsrtm.via.microservice.domain.complex.Ubicacion;
 import com.nsrtm.via.microservice.service.ViaService;
 import org.springframework.beans.factory.annotation.Autowired;

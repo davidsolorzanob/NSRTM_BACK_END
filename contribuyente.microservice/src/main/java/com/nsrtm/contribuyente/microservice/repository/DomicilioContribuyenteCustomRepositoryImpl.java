@@ -16,7 +16,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     @Override
     public ResponseEntity<Object> CrearDomicilioContribuyente(DomicilioContribuyente custom) {
         boolean success = false;
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTRIBUYENTE")
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
@@ -35,21 +35,21 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .registerStoredProcedureParameter("P_MANZANA", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_LOTE", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_SUB_LOTE", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_ZONA_URBANA_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_SUBZONA_URBANA_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_EDIFICACION_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TIP_INTERIOR_ID", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_ZONA_URBANA_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_SUBZONA_URBANA_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_EDIFICACION_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TIP_INTERIOR_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DES_INTERIOR", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_INGRESO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PISO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_KILOMETRO", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_LATITUD", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_LONGITUD", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_LATITUD", Double.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_LONGITUD", Double.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DES_DOMICILIO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTRUCTURADO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FUENTE_INFO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTADO_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_CREACION", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_CREACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
@@ -94,7 +94,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     @Override
     public ResponseEntity<Object> ActualizarDomicilioContribuyente(DomicilioContribuyente custom) {
         boolean success = false;
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_CONTRIBUYENTE")
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
@@ -127,7 +127,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .registerStoredProcedureParameter("P_ESTRUCTURADO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FUENTE_INFO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTADO_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)

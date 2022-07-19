@@ -19,7 +19,7 @@ public class RelacionadoResource {
     @PostMapping("guardar")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> Guardar (@RequestBody RelacionadoCustom relacionado) {
-        if(relacionado.relContribuyenteNumero != null)
+        if(relacionado.relContribuyenteNumero == null)
             return relacionadoService.Crear(relacionado);
         else
             return relacionadoService.Actualizar(relacionado);

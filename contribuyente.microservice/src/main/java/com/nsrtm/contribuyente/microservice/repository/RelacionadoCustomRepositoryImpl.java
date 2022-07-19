@@ -16,7 +16,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
 
     @Override
     public ResponseEntity<Object> CrearRelacionado(RelacionadoCustom custom) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTRIBUYENTE")
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
@@ -38,7 +38,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_CREACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_CREACION", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_CREACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
@@ -70,7 +70,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
     @Override
     public ResponseEntity<Object> ActualizarRelacionado(RelacionadoCustom custom) {
         boolean success = false;
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTRIBUYENTE")
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -92,8 +92,8 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .registerStoredProcedureParameter("P_FALLECIO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_FALLECIMIENTO", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_EST_CIVIL_TIP_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)

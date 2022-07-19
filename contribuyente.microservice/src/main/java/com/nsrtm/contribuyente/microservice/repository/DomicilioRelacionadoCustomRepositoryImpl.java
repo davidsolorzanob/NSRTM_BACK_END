@@ -121,7 +121,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
                 .registerStoredProcedureParameter("P_ESTRUCTURADO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FUENTE_INFO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_ESTADO_ID", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)

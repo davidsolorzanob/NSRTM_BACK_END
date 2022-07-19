@@ -44,6 +44,10 @@ public class RelacionadoService {
         }
     }
 
+    public List<TipoRelacionado> ListarTipoRelacionado(Integer tipo){
+        return relacionadoRepository.ListaTipoRelacionado(tipo);
+    }
+
     public List<Relacionado> Todos(){
         return relacionadoRepository.findAll();
     }

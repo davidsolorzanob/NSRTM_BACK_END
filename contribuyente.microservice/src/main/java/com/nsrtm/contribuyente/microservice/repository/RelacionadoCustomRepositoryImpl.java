@@ -1,7 +1,12 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
+import com.nsrtm.contribuyente.microservice.domain.TipoRelacionado;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
+import com.nsrtm.contribuyente.microservice.util.PageRequest;
+import com.nsrtm.contribuyente.microservice.util.PageResponse;
 import org.springframework.http.ResponseEntity;
 
 import javax.persistence.EntityManager;
@@ -9,6 +14,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
+import java.util.List;
 
 public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomRepository {
     @PersistenceContext
@@ -118,6 +124,17 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
         query.execute();
         return MessageResponse.setResponse(true,"Los datos del relacionado se actualizaron satisfactoriamente",custom);
+    }
+
+    @Override
+    public List<TipoRelacionado> ListaTipoRelacionado(Integer tipo) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_TIPO_RELACIONADO_LISTAR", TipoRelacionado.class)
+                .registerStoredProcedureParameter("P_TIP_PERSONA_ID", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+                .setParameter("P_TIP_PERSONA_ID", tipo);
+
+        List<TipoRelacionado> lista = (List<TipoRelacionado>)query.getResultList();
+        return lista;
     }
 
 }

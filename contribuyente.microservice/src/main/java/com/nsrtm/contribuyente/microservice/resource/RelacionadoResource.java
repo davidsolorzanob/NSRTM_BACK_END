@@ -1,6 +1,7 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
 import com.nsrtm.contribuyente.microservice.domain.Relacionado;
+import com.nsrtm.contribuyente.microservice.domain.TipoRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.service.RelacionadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,12 @@ public class RelacionadoResource {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
         return relacionadoService.Eliminar(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
+    }
+
+    @GetMapping("listarTipoRelacionado")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TipoRelacionado> listarTipoRelacionado(Integer tipo) {
+        return relacionadoService.ListarTipoRelacionado(tipo);
     }
 
     @GetMapping("obtener")

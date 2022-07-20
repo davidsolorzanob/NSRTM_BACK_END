@@ -1,12 +1,8 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.TipoRelacionado;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
-import com.nsrtm.contribuyente.microservice.util.PageRequest;
-import com.nsrtm.contribuyente.microservice.util.PageResponse;
 import org.springframework.http.ResponseEntity;
 
 import javax.persistence.EntityManager;

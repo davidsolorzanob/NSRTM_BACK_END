@@ -1,29 +1,4 @@
 <Configuration status="DEBUG">
-    <!--
-    <Appenders>
-        <Console name="LogToConsole" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        </Console>
-        <File name="LogToFile" fileName="C:\log4j\ViaApplication.log">
-            <PatternLayout>
-                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
-            </PatternLayout>
-        </File>
-    </Appenders>
-    <Loggers>
-        <Logger name="com.example.maestro.microservice" level="debug" additivity="false">
-            <AppenderRef ref="LogToFile"/>
-            <AppenderRef ref="LogToConsole"/>
-        </Logger>
-        <Logger name="org.springframework.boot" level="error" additivity="false">
-            <AppenderRef ref="LogToConsole"/>
-        </Logger>
-        <Root level="error">
-            <AppenderRef ref="LogToFile"/>
-            <AppenderRef ref="LogToConsole"/>
-        </Root>
-    </Loggers>
-    -->
     <Properties>
         <Property name="LOG_PATTERN">
             %style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable
@@ -34,7 +9,7 @@
             <JsonLayout complete="false"  compact="true" eventEol="true"></JsonLayout>
             <PatternLayout pattern="${LOG_PATTERN}" />
         </Console>
-        <File name="LogToFile" fileName="C:\log4j\MaestroApplication.log">
+        <File name="LogToFile" fileName="C:\log4j\UbigeoApplication.log">
             <JsonLayout complete="false"  compact="true" eventEol="true"></JsonLayout>
             <PatternLayout>
                 <Pattern>${LOG_PATTERN}</Pattern>

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @IdClass(RelacionadoId.class)
-public class RelacionadoCustom extends Auditoria {
+public class RelacionadoCustom extends DomicilioRelacionado {
 
     @Id
     @Column(name = "MUNICIPALIDAD_ID")
@@ -77,6 +77,4 @@ public class RelacionadoCustom extends Auditoria {
     @Column(name = "EST_CIVIL_TIP_ID")
     public Integer estadoCivil;
 
-    @OneToOne
-    public DomicilioRelacionado domicilioRelacionado;
 }

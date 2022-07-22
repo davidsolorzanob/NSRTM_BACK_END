@@ -2,6 +2,7 @@ package com.nsrtm.contribuyente.microservice.resource;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
+import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.service.DomicilioContribuyenteService;
 import com.nsrtm.contribuyente.microservice.service.DomicilioRelacionadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,13 @@ public class DomicilioRelacionadoResource {
 
     @PostMapping("guardar")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> Guardar(@RequestBody DomicilioRelacionado domicilio) {
+    public ResponseEntity<Object> Guardar(@RequestBody RelacionadoCustom domicilio) {
         //if(domicilio.domicilioRelacionadoNumero == null)
             //return domicilioRelacionadoService.Crear(domicilio);
        // else
             return domicilioRelacionadoService.Actualizar(domicilio);
     }
-
+/*
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
     public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero, Long domicilioRelacionadoNumero ) {
@@ -43,4 +44,5 @@ public class DomicilioRelacionadoResource {
     public List<DomicilioRelacionado> Todos() {
         return domicilioRelacionadoService.Todos();
     }
+    */
 }

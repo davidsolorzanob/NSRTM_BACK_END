@@ -3,6 +3,7 @@ package com.nsrtm.contribuyente.microservice.service;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionadoId;
+import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioRelacionadoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,14 +21,14 @@ public class DomicilioRelacionadoService {
     private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
 
 
-    public DomicilioRelacionado Crear(DomicilioRelacionado e){
+    public RelacionadoCustom Crear(RelacionadoCustom e){
         return domicilioRelacionadoRepository.CrearDomicilioRelacionado(e);
     }
 
-    public ResponseEntity<Object> Actualizar(DomicilioRelacionado e){
+    public ResponseEntity<Object> Actualizar(RelacionadoCustom e){
         return domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(e);
     }
-
+/*
     public void Eliminar(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
         try{
             DomicilioRelacionadoId id = new DomicilioRelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
@@ -38,7 +39,9 @@ public class DomicilioRelacionadoService {
             throw ex;
         }
     }
-
+    }
+*/
+    /*
     public DomicilioRelacionado ObtenerPorId(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
         try {
             DomicilioRelacionadoId id = new DomicilioRelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
@@ -53,4 +56,6 @@ public class DomicilioRelacionadoService {
     public List<DomicilioRelacionado> Todos(){
         return domicilioRelacionadoRepository.findAll();
     }
+    */
+
 }

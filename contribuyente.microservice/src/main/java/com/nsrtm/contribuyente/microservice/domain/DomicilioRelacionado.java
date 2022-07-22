@@ -2,11 +2,13 @@ package com.nsrtm.contribuyente.microservice.domain;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="DOM_RELACIONADO", schema = "NSRTM")
-@IdClass(DomicilioRelacionadoId.class)
-public class DomicilioRelacionado extends Auditoria {
+//@Entity
+//@Table(name="DOM_RELACIONADO", schema = "NSRTM")
+//@IdClass(DomicilioRelacionadoId.class)
 
+@MappedSuperclass
+public class DomicilioRelacionado extends Auditoria  {
+/*
     @Id
     @Column(name = "MUNICIPALIDAD_ID")
     public Long municipalidadId;
@@ -18,8 +20,8 @@ public class DomicilioRelacionado extends Auditoria {
     @Id
     @Column(name = "REL_CONTRIBUYENTE_NUMERO")
     public Long relContribuyenteNumero;
-
-    @Id
+*/
+   // @Id
     @Column(name = "DOM_RELACIONADO_NUMERO")
     public Long domicilioRelacionadoNumero;
 

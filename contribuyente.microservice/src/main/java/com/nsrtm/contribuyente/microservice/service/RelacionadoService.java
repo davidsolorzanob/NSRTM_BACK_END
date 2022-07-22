@@ -30,7 +30,7 @@ public class RelacionadoService {
 
         if (rel.relContribuyenteNumero != null) {
             e.relContribuyenteNumero = rel.relContribuyenteNumero;
-            rel.domicilioRelacionado = domicilioRelacionadoRepository.CrearDomicilioRelacionado(e.domicilioRelacionado);
+            rel = domicilioRelacionadoRepository.CrearDomicilioRelacionado(e);
         }
         return MessageResponse.setResponse(true,"El relacionado y su domicilio se registró correctamente", rel);
     }

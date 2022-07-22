@@ -14,7 +14,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
     EntityManager entityManager;
 
     @Override
-    public ResponseEntity<Object> CrearDomicilioRelacionado(DomicilioRelacionado custom) {
+    public DomicilioRelacionado CrearDomicilioRelacionado(DomicilioRelacionado custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_DOMICILIO_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -52,6 +52,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_REL_CONTRIBUYENTE_NUMERO", custom.relContribuyenteNumero)
                 .setParameter("P_DEPARTAMENTO_ID", custom.departamentoId)
                 .setParameter("P_PROVINCIA_ID", custom.provinciaId)
                 .setParameter("P_DISTRITO_ID", custom.distritoId)
@@ -84,7 +85,8 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
 
         query.execute();
         custom.domicilioRelacionadoNumero = (Long) query.getOutputParameterValue("P_DOM_RELACIONADO_NUMERO");
-        return MessageResponse.setResponse(true,"El domicilio del relacionado se registró satisfactoriamente",custom);
+        return custom;
+        //return MessageResponse.setResponse(true,"El domicilio del relacionado se registró satisfactoriamente",custom);
     }
 
     @Override

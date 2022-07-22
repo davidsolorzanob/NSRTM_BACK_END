@@ -4,6 +4,6 @@ import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
 import org.springframework.http.ResponseEntity;
 
 public interface DomicilioRelacionadoCustomRepository {
-    ResponseEntity<Object> CrearDomicilioRelacionado(DomicilioRelacionado custom);
+    DomicilioRelacionado CrearDomicilioRelacionado(DomicilioRelacionado custom);
     ResponseEntity<Object> ActualizarDomicilioRelacionado(DomicilioRelacionado custom);
 }

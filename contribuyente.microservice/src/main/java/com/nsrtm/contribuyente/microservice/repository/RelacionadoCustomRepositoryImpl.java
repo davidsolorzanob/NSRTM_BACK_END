@@ -17,7 +17,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
     EntityManager entityManager;
 
     @Override
-    public ResponseEntity<Object> CrearRelacionado(RelacionadoCustom custom) {
+    public RelacionadoCustom CrearRelacionado(RelacionadoCustom custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -66,7 +66,8 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
         query.execute();
         custom.relContribuyenteNumero = (Long) query.getOutputParameterValue("P_REL_CONTRIBUYENTE_NUMERO");
         custom.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
-        return MessageResponse.setResponse(true,"El relacionado se registró satisfactoriamente",custom);
+        return custom;
+        //return MessageResponse.setResponse(true,"El relacionado se registró satisfactoriamente",custom);
     }
 
     @Override

@@ -20,9 +20,9 @@ public class DomicilioRelacionadoResource {
     @PostMapping("guardar")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> Guardar(@RequestBody DomicilioRelacionado domicilio) {
-        if(domicilio.domicilioRelacionadoNumero == null)
-            return domicilioRelacionadoService.Crear(domicilio);
-        else
+        //if(domicilio.domicilioRelacionadoNumero == null)
+            //return domicilioRelacionadoService.Crear(domicilio);
+       // else
             return domicilioRelacionadoService.Actualizar(domicilio);
     }
 

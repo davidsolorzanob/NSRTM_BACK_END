@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface RelacionadoCustomRepository {
-    ResponseEntity<Object> CrearRelacionado(RelacionadoCustom custom);
+    RelacionadoCustom CrearRelacionado(RelacionadoCustom custom);
     ResponseEntity<Object> ActualizarRelacionado(RelacionadoCustom custom);
     List<TipoRelacionado> ListaTipoRelacionado(Integer tipo);
 }

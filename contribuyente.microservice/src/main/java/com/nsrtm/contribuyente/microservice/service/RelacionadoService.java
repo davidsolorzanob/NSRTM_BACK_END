@@ -2,6 +2,7 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.*;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
+import com.nsrtm.contribuyente.microservice.repository.DomicilioRelacionadoRepository;
 import com.nsrtm.contribuyente.microservice.repository.RelacionadoRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.apache.logging.log4j.LogManager;
@@ -19,8 +20,19 @@ public class RelacionadoService {
     @Autowired
     private RelacionadoRepository relacionadoRepository;
 
-    public ResponseEntity<Object> Crear(RelacionadoCustom e){
-        return relacionadoRepository.CrearRelacionado(e);
+    @Autowired
+    private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
+
+
+    public ResponseEntity<Object> Crear(RelacionadoCustom e) {
+        RelacionadoCustom rel = relacionadoRepository.CrearRelacionado(e);
+        //DomicilioRelacionado dom = e.domicilioRelacionado.get(0);
+
+        if (rel.relContribuyenteNumero != null) {
+            e.relContribuyenteNumero = rel.relContribuyenteNumero;
+            rel.domicilioRelacionado = domicilioRelacionadoRepository.CrearDomicilioRelacionado(e.domicilioRelacionado);
+        }
+        return MessageResponse.setResponse(true,"El relacionado y su domicilio se registró correctamente", rel);
     }
 
     public ResponseEntity<Object> Actualizar(RelacionadoCustom e){

@@ -20,7 +20,7 @@ public class DomicilioRelacionadoService {
     private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
 
 
-    public ResponseEntity<Object> Crear(DomicilioRelacionado e){
+    public DomicilioRelacionado Crear(DomicilioRelacionado e){
         return domicilioRelacionadoRepository.CrearDomicilioRelacionado(e);
     }
 

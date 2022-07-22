@@ -1,13 +1,12 @@
 package com.nsrtm.contribuyente.microservice.domain.complex;
 
 import com.nsrtm.contribuyente.microservice.domain.Auditoria;
+import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.RelacionadoId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @IdClass(RelacionadoId.class)
@@ -77,4 +76,7 @@ public class RelacionadoCustom extends Auditoria {
 
     @Column(name = "EST_CIVIL_TIP_ID")
     public Integer estadoCivil;
+
+    @OneToOne
+    public DomicilioRelacionado domicilioRelacionado;
 }

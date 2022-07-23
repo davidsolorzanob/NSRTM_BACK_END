@@ -33,10 +33,10 @@ public class RelacionadoCustom extends DomicilioRelacionado {
     public Integer docIdentidadId;
 
     @Column(name = "FEC_VIG_INICIAL")
-    public Date fechaVigenciaInicial;
+    public Date fechaVigenciaInicialRela;
 
     @Column(name = "FEC_VIG_FINAL")
-    public Date fechaVigenciaFinal;
+    public Date fechaVigenciaFinalRela;
 
     @Column(name = "ESTADO_ID")
     public Integer estadoId;

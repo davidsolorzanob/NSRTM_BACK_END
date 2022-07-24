@@ -4,6 +4,7 @@ import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteId;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioContribuyenteRepository;
+import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,13 @@ public class DomicilioContribuyenteService {
     private DomicilioContribuyenteRepository domicilioContribuyenteRepository;
 
     public ResponseEntity<Object> Crear(DomicilioContribuyente e){
-        return domicilioContribuyenteRepository.CrearDomicilioContribuyente(e);
+        e = domicilioContribuyenteRepository.CrearDomicilioContribuyente(e);
+        return MessageResponse.setResponse(true,"El domicilio del contribuyente se registró correctamente", e);
     }
 
     public ResponseEntity<Object> Actualizar(DomicilioContribuyente e){
-        return domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(e);
+        domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(e);
+        return MessageResponse.setResponse(true,"El domicilio del contribuyente se actualizó correctamente", e);
     }
 
     public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero) {

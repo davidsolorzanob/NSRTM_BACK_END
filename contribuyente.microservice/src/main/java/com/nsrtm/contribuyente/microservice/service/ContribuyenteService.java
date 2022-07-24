@@ -42,16 +42,32 @@ public class ContribuyenteService {
 										CondicionContribuyenteCustom condicion,
 										DomicilioContribuyente domContribuyente,
 										RelacionadoCustom relacionado){
-		contribuyenteRepository.CrearContribuyente(contribuyente);
+
+		contribuyente = contribuyenteRepository.CrearContribuyente(contribuyente);
+
+		condicion.contribuyenteNumero = contribuyente.contribuyenteNumero;
 		condicionContribuyenteRepository.CrearCondicionContribuyente(condicion);
+
+		domContribuyente.contribuyenteNumero = contribuyente.contribuyenteNumero;
 		domicilioContribuyenteRepository.CrearDomicilioContribuyente(domContribuyente);
-		relacionadoRepository.CrearRelacionado(relacionado);
-		//domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRelacionado);
-		return null;
+
+		relacionado.contribuyenteNumero = contribuyente.contribuyenteNumero;
+		relacionado = relacionadoRepository.CrearRelacionado(relacionado);
+
+		domicilioRelacionadoRepository.CrearDomicilioRelacionado(relacionado);
+		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contribuyente);
 	}
 
-	public ResponseEntity<Object> Actualizar(ContribuyenteCustom e){
-		return contribuyenteRepository.ActualizarContribuyente(e);
+	public ResponseEntity<Object> Actualizar(ContribuyenteCustom contribuyente,
+											 CondicionContribuyenteCustom condicion,
+											 DomicilioContribuyente domContribuyente,
+											 RelacionadoCustom relacionado){
+		contribuyenteRepository.ActualizarContribuyente(contribuyente);
+		condicionContribuyenteRepository.ActualizarCondicionContribuyente(condicion);
+		domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(domContribuyente);
+		relacionadoRepository.ActualizarRelacionado(relacionado);
+		domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(relacionado);
+		return MessageResponse.setResponse(true, "El registro del contribuyente se actualizó satisfactoriamente", contribuyente);
 	}
 
 	public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero){

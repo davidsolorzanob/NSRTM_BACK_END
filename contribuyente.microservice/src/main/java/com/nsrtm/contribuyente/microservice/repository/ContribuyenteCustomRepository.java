@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface ContribuyenteCustomRepository {
 
-    ResponseEntity<Object> CrearContribuyente(ContribuyenteCustom custom);
-    ResponseEntity<Object> ActualizarContribuyente(ContribuyenteCustom custom);
+    ContribuyenteCustom CrearContribuyente(ContribuyenteCustom custom);
+    ContribuyenteCustom ActualizarContribuyente(ContribuyenteCustom custom);
     PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom);
 
 }

@@ -11,5 +11,5 @@ public class ContribuyenteModel {
     public CondicionContribuyenteCustom condicionContribuyenteCustom;
     public DomicilioContribuyente domicilioContribuyente;
     public RelacionadoCustom relacionadoCustom;
-    public DomicilioRelacionado domicilioRelacionado;
+
 }

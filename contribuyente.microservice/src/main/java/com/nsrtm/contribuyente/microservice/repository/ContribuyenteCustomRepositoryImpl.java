@@ -18,7 +18,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
     EntityManager entityManager;
 
     @Override
-    public ResponseEntity<Object> CrearContribuyente(ContribuyenteCustom custom) {
+    public ContribuyenteCustom CrearContribuyente(ContribuyenteCustom custom) {
         boolean success = false;
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
@@ -81,11 +81,11 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
         custom.contribuyenteNumero = (Long) query.getOutputParameterValue("P_CONTRIBUYENTE_NUMERO");
         custom.numeroDJ = (Long) query.getOutputParameterValue("P_NUMERO_DJ");
         custom.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
-        return MessageResponse.setResponse(true,"El contribuyente se registró satisfactoriamente",custom);
+        return custom;
     }
 
     @Override
-    public ResponseEntity<Object> ActualizarContribuyente(ContribuyenteCustom custom) {
+    public ContribuyenteCustom ActualizarContribuyente(ContribuyenteCustom custom) {
         boolean success = false;
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
@@ -148,7 +148,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
         query.execute();
-        return MessageResponse.setResponse(true,"Los datos del contribuyente se actualizaron satisfactoriamente",custom);
+        return custom;
     }
 
     @Override

@@ -4,6 +4,6 @@ import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyent
 import org.springframework.http.ResponseEntity;
 
 public interface CondicionContribuyenteCustomRepository {
-    ResponseEntity<Object> CrearCondicionContribuyente(CondicionContribuyenteCustom custom);
-    ResponseEntity<Object> ActualizarCondicionContribuyente(CondicionContribuyenteCustom custom);
+    CondicionContribuyenteCustom CrearCondicionContribuyente(CondicionContribuyenteCustom custom);
+    CondicionContribuyenteCustom ActualizarCondicionContribuyente(CondicionContribuyenteCustom custom);
 }

@@ -23,13 +23,16 @@ public class ContribuyenteResource {
 	@PostMapping("guardar")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> Guardar (@RequestBody ContribuyenteModel model) {
-		//if(model.contribuyenteCustom.contribuyenteNumero == null)
+		if(model.contribuyenteCustom.contribuyenteNumero == null)
 			return contribuyenteService.Crear(model.contribuyenteCustom,
 					                          model.condicionContribuyenteCustom,
 											  model.domicilioContribuyente,
 					 						  model.relacionadoCustom);
-		//else
-			//return contribuyenteService.Actualizar(model.contribuyenteCustom);
+		else
+			return contribuyenteService.Actualizar(model.contribuyenteCustom,
+					model.condicionContribuyenteCustom,
+					model.domicilioContribuyente,
+					model.relacionadoCustom);
 	}
 
 	@PostMapping("eliminar")

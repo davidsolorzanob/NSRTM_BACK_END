@@ -14,7 +14,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     EntityManager entityManager;
 
     @Override
-    public ResponseEntity<Object> CrearDomicilioContribuyente(DomicilioContribuyente custom) {
+    public DomicilioContribuyente CrearDomicilioContribuyente(DomicilioContribuyente custom) {
         boolean success = false;
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
@@ -88,11 +88,12 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
 
         query.execute();
         custom.domicilioContribuyenteNumero = (Long) query.getOutputParameterValue("P_DOM_CONTRIBUYENTE_NUMERO");
-        return MessageResponse.setResponse(true,"El domicilio del contribuyente se registró satisfactoriamente",custom);
+        //return MessageResponse.setResponse(true,"El domicilio del contribuyente se registró satisfactoriamente",custom);
+        return custom;
     }
 
     @Override
-    public ResponseEntity<Object> ActualizarDomicilioContribuyente(DomicilioContribuyente custom) {
+    public DomicilioContribuyente ActualizarDomicilioContribuyente(DomicilioContribuyente custom) {
         boolean success = false;
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
@@ -166,7 +167,8 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
 
         query.execute();
-        return MessageResponse.setResponse(true,"El domicilio del contribuyente se actualizó satisfactoriamente",custom);
+        //return MessageResponse.setResponse(true,"El domicilio del contribuyente se actualizó satisfactoriamente",custom);
+        return custom;
     }
 
 }

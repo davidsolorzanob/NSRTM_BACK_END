@@ -19,11 +19,13 @@ public class CondicionContribuyenteService {
     private CondicionContribuyenteRepository condicionContribuyenteRepository;
 
     public ResponseEntity<Object> Crear(CondicionContribuyenteCustom e){
-        return condicionContribuyenteRepository.CrearCondicionContribuyente(e);
+        condicionContribuyenteRepository.CrearCondicionContribuyente(e);
+        return MessageResponse.setResponse(true, "El registro de la condición del contribuyente se guardó satisfactoriamente");
     }
 
     public ResponseEntity<Object> Actualizar(CondicionContribuyenteCustom e){
-        return condicionContribuyenteRepository.ActualizarCondicionContribuyente(e);
+        condicionContribuyenteRepository.ActualizarCondicionContribuyente(e);
+        return MessageResponse.setResponse(true, "El registro de la condición del contribuyente se actualizó satisfactoriamente");
     }
 
     public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long conContribuyenteId){

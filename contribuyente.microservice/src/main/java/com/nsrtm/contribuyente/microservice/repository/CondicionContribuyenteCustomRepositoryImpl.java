@@ -15,7 +15,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
     EntityManager entityManager;
 
     @Override
-    public ResponseEntity<Object> CrearCondicionContribuyente(CondicionContribuyenteCustom custom) {
+    public CondicionContribuyenteCustom CrearCondicionContribuyente(CondicionContribuyenteCustom custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONDICION_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -55,11 +55,12 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
         query.execute();
         custom.conContribuyenteId = (Long) query.getOutputParameterValue("P_CON_CONTRIBUYENTE_ID");
-        return MessageResponse.setResponse(true,"La condición de  contribuyente se registró satisfactoriamente",custom);
+        //return MessageResponse.setResponse(true,"La condición de  contribuyente se registró satisfactoriamente",custom);
+        return custom;
     }
 
     @Override
-    public ResponseEntity<Object> ActualizarCondicionContribuyente(CondicionContribuyenteCustom custom) {
+    public CondicionContribuyenteCustom ActualizarCondicionContribuyente(CondicionContribuyenteCustom custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONDICION_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -99,7 +100,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
                 .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
         query.execute();
-        return MessageResponse.setResponse(true,"La condición del contribuyente se actualizó satisfactoriamente",custom);
+        return custom;
     }
 
 }

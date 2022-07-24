@@ -3,8 +3,11 @@ package com.nsrtm.contribuyente.microservice.service;
 import java.util.List;
 
 import com.nsrtm.contribuyente.microservice.domain.*;
+import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
+import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
+import com.nsrtm.contribuyente.microservice.repository.*;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
@@ -13,8 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import com.nsrtm.contribuyente.microservice.repository.ContribuyenteRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ContribuyenteService {
@@ -23,8 +25,29 @@ public class ContribuyenteService {
 	@Autowired
 	private ContribuyenteRepository contribuyenteRepository;
 
-	public ResponseEntity<Object> Crear(ContribuyenteCustom e){
-		return contribuyenteRepository.CrearContribuyente(e);
+	@Autowired
+	private CondicionContribuyenteRepository condicionContribuyenteRepository;
+
+	@Autowired
+	private DomicilioContribuyenteRepository domicilioContribuyenteRepository;
+
+	@Autowired
+	private RelacionadoRepository relacionadoRepository;
+
+	@Autowired
+	private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
+
+	@Transactional
+	public ResponseEntity<Object> Crear(ContribuyenteCustom contribuyente,
+										CondicionContribuyenteCustom condicion,
+										DomicilioContribuyente domContribuyente,
+										RelacionadoCustom relacionado){
+		contribuyenteRepository.CrearContribuyente(contribuyente);
+		condicionContribuyenteRepository.CrearCondicionContribuyente(condicion);
+		domicilioContribuyenteRepository.CrearDomicilioContribuyente(domContribuyente);
+		relacionadoRepository.CrearRelacionado(relacionado);
+		//domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRelacionado);
+		return null;
 	}
 
 	public ResponseEntity<Object> Actualizar(ContribuyenteCustom e){

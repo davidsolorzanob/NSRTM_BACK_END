@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
+import com.nsrtm.contribuyente.microservice.resource.model.ContribuyenteModel;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,14 @@ public class ContribuyenteResource {
 
 	@PostMapping("guardar")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> Guardar (@RequestBody ContribuyenteCustom contribuyente) {
-		if(contribuyente.contribuyenteNumero == null)
-			return contribuyenteService.Crear(contribuyente);
-		else
-			return contribuyenteService.Actualizar(contribuyente);
+	public ResponseEntity<Object> Guardar (@RequestBody ContribuyenteModel model) {
+		//if(model.contribuyenteCustom.contribuyenteNumero == null)
+			return contribuyenteService.Crear(model.contribuyenteCustom,
+					                          model.condicionContribuyenteCustom,
+											  model.domicilioContribuyente,
+					 						  model.relacionadoCustom);
+		//else
+			//return contribuyenteService.Actualizar(model.contribuyenteCustom);
 	}
 
 	@PostMapping("eliminar")

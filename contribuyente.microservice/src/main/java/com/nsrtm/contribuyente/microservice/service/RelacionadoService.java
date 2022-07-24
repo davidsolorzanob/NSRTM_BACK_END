@@ -45,15 +45,8 @@ public class RelacionadoService {
         return MessageResponse.setResponse(true, "El registro del contribuyente se eliminó satisfactoriamente");
     }
 
-    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
-        try {
-            RelacionadoId id = new RelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
-            return relacionadoRepository.findById(id).get();
-        }
-        catch (Exception ex){
-            logger.info(ex.getMessage());
-            throw ex;
-        }
+    public RelacionadoCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
+        return relacionadoRepository.ObtenerRelacionado(municipalidadId,contribuyenteNumero);
     }
 
     public List<TipoRelacionado> ListarTipoRelacionado(Integer tipo){

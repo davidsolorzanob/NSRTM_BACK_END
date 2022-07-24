@@ -3,6 +3,7 @@ package com.nsrtm.contribuyente.microservice.service;
 import com.nsrtm.contribuyente.microservice.domain.CondicionContribuyenteId;
 import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
 import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.repository.CondicionContribuyenteRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.apache.logging.log4j.LogManager;
@@ -21,6 +22,10 @@ public class CondicionContribuyenteService {
     public ResponseEntity<Object> Crear(CondicionContribuyenteCustom e){
         condicionContribuyenteRepository.CrearCondicionContribuyente(e);
         return MessageResponse.setResponse(true, "El registro de la condición del contribuyente se guardó satisfactoriamente");
+    }
+
+    public CondicionContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero){
+        return condicionContribuyenteRepository.ObtenerCondicionContribuyente(municipalidadId,contribuyenteNumero);
     }
 
     public ResponseEntity<Object> Actualizar(CondicionContribuyenteCustom e){

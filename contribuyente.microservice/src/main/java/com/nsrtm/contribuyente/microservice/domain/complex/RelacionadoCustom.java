@@ -1,12 +1,10 @@
 package com.nsrtm.contribuyente.microservice.domain.complex;
 
-import com.nsrtm.contribuyente.microservice.domain.Auditoria;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.RelacionadoId;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @IdClass(RelacionadoId.class)
@@ -29,8 +27,8 @@ public class RelacionadoCustom extends DomicilioRelacionado {
     @Column(name = "TIP_RELACIONADO_ID")
     public Integer tipoRelacionadoId;
 
-    @Column(name = "DOC_IDENTIDAD_ID")
-    public Integer docIdentidadId;
+    @Column(name = "DES_TIPO_RELACIONADO")
+    public String desTipoRelacionado;
 
     @Column(name = "FEC_VIG_INICIAL")
     public Date fechaVigenciaInicialRela;
@@ -41,8 +39,11 @@ public class RelacionadoCustom extends DomicilioRelacionado {
     @Column(name = "ESTADO_ID")
     public Integer estadoId;
 
-    @Column(name = "DESC_DOC_IDENTIDAD")
-    public Integer descDocIdentidadId;
+    @Column(name = "DOC_IDENTIDAD_ID")
+    public Integer docIdentidadId;
+
+    @Column(name = "DES_DOC_IDENTIDAD")
+    public Integer desDocIdentidad;
 
     @Column(name = "NUM_DOC_IDENTIDAD")
     public String numDocIdentidad;
@@ -77,4 +78,6 @@ public class RelacionadoCustom extends DomicilioRelacionado {
     @Column(name = "EST_CIVIL_TIP_ID")
     public Integer estadoCivil;
 
+    @Column(name = "DES_CIVIL_TIPO")
+    public String desEstadoCivil;
 }

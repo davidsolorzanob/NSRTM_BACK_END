@@ -1,8 +1,7 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
-import com.nsrtm.contribuyente.microservice.util.MessageResponse;
-import org.springframework.http.ResponseEntity;
+import com.nsrtm.contribuyente.microservice.domain.complex.DomicilioContribuyenteCustom;
 
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
@@ -171,4 +170,17 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
         return custom;
     }
 
+    @Override
+    public DomicilioContribuyenteCustom ObtenerDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_DOMICILIO_CONTRIBUYENTE",DomicilioContribuyenteCustom.class)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+
+        DomicilioContribuyenteCustom data = (DomicilioContribuyenteCustom)query.getSingleResult();
+        return data;
+    }
 }

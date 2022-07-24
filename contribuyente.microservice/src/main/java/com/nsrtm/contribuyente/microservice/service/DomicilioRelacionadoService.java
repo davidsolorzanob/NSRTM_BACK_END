@@ -28,34 +28,8 @@ public class DomicilioRelacionadoService {
     public ResponseEntity<Object> Actualizar(RelacionadoCustom e){
         return domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(e);
     }
-/*
-    public void Eliminar(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
-        try{
-            DomicilioRelacionadoId id = new DomicilioRelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
-            domicilioRelacionadoRepository.deleteById(id);
-        }
-        catch (Exception ex){
-            logger.info(ex.getMessage());
-            throw ex;
-        }
-    }
-    }
-*/
-    /*
-    public DomicilioRelacionado ObtenerPorId(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero,Long domicilioRelacionadoNumero) {
-        try {
-            DomicilioRelacionadoId id = new DomicilioRelacionadoId(municipalidadId,contribuyenteNumero,relContribuyenteNumero,domicilioRelacionadoNumero);
-            return domicilioRelacionadoRepository.findById(id).get();
-        }
-        catch (Exception ex){
-            logger.info(ex.getMessage());
-            throw ex;
-        }
-    }
 
-    public List<DomicilioRelacionado> Todos(){
-        return domicilioRelacionadoRepository.findAll();
+    public DomicilioRelacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
+        return domicilioRelacionadoRepository.ObtenerDomicilioRelacionado(municipalidadId, contribuyenteNumero, relContribuyenteNumero);
     }
-    */
-
 }

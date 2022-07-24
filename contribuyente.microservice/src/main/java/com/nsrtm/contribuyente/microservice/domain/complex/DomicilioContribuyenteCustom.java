@@ -1,14 +1,13 @@
-package com.nsrtm.contribuyente.microservice.domain;
+package com.nsrtm.contribuyente.microservice.domain.complex;
+
+import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteId;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="DOM_RELACIONADO", schema = "NSRTM")
-//@IdClass(DomicilioRelacionadoId.class)
+@Entity
+@IdClass(DomicilioContribuyenteId.class)
+public class DomicilioContribuyenteCustom {
 
-@MappedSuperclass
-public class DomicilioRelacionado extends Auditoria  {
-/*
     @Id
     @Column(name = "MUNICIPALIDAD_ID")
     public Long municipalidadId;
@@ -18,12 +17,8 @@ public class DomicilioRelacionado extends Auditoria  {
     public Long contribuyenteNumero;
 
     @Id
-    @Column(name = "REL_CONTRIBUYENTE_NUMERO")
-    public Long relContribuyenteNumero;
-*/
-   // @Id
-    @Column(name = "DOM_RELACIONADO_NUMERO")
-    public Long domicilioRelacionadoNumero;
+    @Column(name = "DOM_CONTRIBUYENTE_NUMERO")
+    public Long domicilioContribuyenteNumero;
 
     @Column(name = "DEPARTAMENTO_ID")
     public Integer departamentoId;
@@ -129,6 +124,12 @@ public class DomicilioRelacionado extends Auditoria  {
 
     @Column(name = "DES_EDIFICACION")
     public String desEdificacion;
+
+    @Column(name = "TIP_EDIFICACION_ID")
+    public Integer tipoEdificacionId;
+
+    @Column(name = "DES_TIPO_EDIFICACION")
+    public String desTipoEdificacion;
 
     @Column(name = "TIP_INTERIOR_ID")
     public Long tipoInteriorId;

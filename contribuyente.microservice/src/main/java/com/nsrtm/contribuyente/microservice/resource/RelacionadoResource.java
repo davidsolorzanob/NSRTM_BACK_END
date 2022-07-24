@@ -40,8 +40,8 @@ public class RelacionadoResource {
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero){
-        return relacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
+    public RelacionadoCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero){
+        return relacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero);
     }
 
     @GetMapping("todos")

@@ -2,6 +2,7 @@ package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteId;
+import com.nsrtm.contribuyente.microservice.domain.complex.DomicilioContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioContribuyenteRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
@@ -41,15 +42,8 @@ public class DomicilioContribuyenteService {
         }
     }
 
-    public DomicilioContribuyente ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero) {
-        try {
-            DomicilioContribuyenteId id = new DomicilioContribuyenteId(municipalidadId,contribuyenteNumero,domicilioContribuyenteNumero);
-            return domicilioContribuyenteRepository.findById(id).get();
-        }
-        catch (Exception ex){
-            logger.info(ex.getMessage());
-            throw ex;
-        }
+    public DomicilioContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
+        return domicilioContribuyenteRepository.ObtenerDomicilioContribuyente(municipalidadId, contribuyenteNumero);
     }
 
     public List<DomicilioContribuyente> Todos(){

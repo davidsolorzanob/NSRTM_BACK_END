@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.nsrtm.contribuyente.microservice.domain.Contribuyente;
 import com.nsrtm.contribuyente.microservice.service.ContribuyenteService;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/contribuyente")
@@ -43,8 +45,14 @@ public class ContribuyenteResource {
 
 	@GetMapping("obtener")
 	@ResponseStatus(HttpStatus.OK)
-	public Contribuyente ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
+	public ContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
 		return contribuyenteService.ObtenerPorId(municipalidadId, contribuyenteNumero);
+	}
+
+	@GetMapping("exportarExcel")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<StreamingResponseBody> ExportarExcel(@RequestBody ContribuyenteCustom custom, HttpServletResponse response) {
+		return ResponseEntity.ok(contribuyenteService.ExportarExcel(custom, response));
 	}
 
 	@PostMapping("listaContribuyentePaginado")

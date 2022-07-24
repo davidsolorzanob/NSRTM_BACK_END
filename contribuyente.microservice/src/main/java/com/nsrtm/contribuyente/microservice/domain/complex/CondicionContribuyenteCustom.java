@@ -25,11 +25,20 @@ public class CondicionContribuyenteCustom extends Auditoria {
     @Column(name = "TIP_CON_INAFECTACION_ID")
     public Integer tipoCondicionInafectacionId;
 
+    @Column(name = "DES_INAFECTACION_TIPO")
+    public String desTipoInafectacion;
+
     @Column(name = "TIP_CON_CONCURSAL_ID")
     public Integer tipoCondicionConcursalId;
 
+    @Column(name = "DES_CONCURSAL_TIPO")
+    public String desTipoConcursal;
+
     @Column(name = "TIP_DOCUMENTO_ID")
     public Integer tipoDocumentoId;
+
+    @Column(name = "DES_DOCUMENTO_TIPO")
+    public String desTipoDocumento;
 
     @Column(name = "NOM_DOCUMENTO")
     public String nombreDocumento;

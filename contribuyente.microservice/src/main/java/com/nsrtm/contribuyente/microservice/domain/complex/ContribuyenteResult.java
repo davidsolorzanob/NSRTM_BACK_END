@@ -2,6 +2,7 @@ package com.nsrtm.contribuyente.microservice.domain.complex;
 
 import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @IdClass(ContribuyenteId.class)
@@ -39,4 +40,9 @@ public class ContribuyenteResult
     @Column(name = "RAZ_SOCIAL")
     public String razonSocial;
 
+    @Column(name = "FECHA_DJ")
+    public Date fechaDJ;
+
+    @Column(name = "DES_ESTADO_DJ")
+    public String desEstadoDj;
 }

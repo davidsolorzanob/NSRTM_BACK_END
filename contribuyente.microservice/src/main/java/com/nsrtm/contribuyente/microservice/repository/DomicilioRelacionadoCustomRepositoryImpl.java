@@ -165,4 +165,19 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
         return MessageResponse.setResponse(true,"El domicilio del relacionado se actualizó satisfactoriamente",custom);
     }
 
+    @Override
+    public DomicilioRelacionado ObtenerDomicilioRelacionado(Long municipalidadId, Long contribuyenteNumero, Long relcontribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_DOMICILIO_RELACIONADO",DomicilioRelacionado.class)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_REL_CONTRIBUYENTE_NUMERO", relcontribuyenteNumero);
+
+        DomicilioRelacionado data = (DomicilioRelacionado)query.getSingleResult();
+        return data;
+    }
 }

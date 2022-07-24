@@ -29,23 +29,38 @@ public class ContribuyenteCustom extends Auditoria {
     @Column(name = "TIP_PERSONA_ID")
     public Integer tipoPersonaId;
 
+    @Column(name = "DES_TIP_PERSONA")
+    public String desTipoPersona;
+
     @Column(name = "MOTIVO_DJ_ID")
     public Integer motivoDjId;
+
+    @Column(name = "DES_MOTIVO_DJ")
+    public String desMotivoDj;
 
     @Column(name = "ESTADO_DJ_ID")
     public Integer estadoDjId;
 
     @Column(name = "DES_ESTADO_DJ")
-    public Integer desEstadoDj;
+    public String desEstadoDj;
 
     @Column(name = "MOD_OFICIO")
     public Integer modalidadOficio;
 
+    @Column(name = "DES_MOD_OFICIO")
+    public String desModalidadOficio;
+
     @Column(name = "TIP_MED_DETERMINA_ID")
     public Integer tipoMedioDeterminacionId;
 
+    @Column(name = "DES_TIP_MED_DETERMINACION")
+    public String desTipoMedioDeterminacion;
+
     @Column(name = "MED_DETERMINA_ID")
     public Integer medioDeterminacionId;
+
+    @Column(name = "DES_MED_DETERMINA")
+    public String desMedioDeterminacion;
 
     @Column(name = "SEG_CONTRIBUYENTE_ID")
     public Integer segContribuyenteId;
@@ -53,14 +68,17 @@ public class ContribuyenteCustom extends Auditoria {
     @Column(name = "FUENTE_INFO_ID")
     public Integer fuenteInformacionId;
 
+    @Column(name = "DES_FUENTE_INFO")
+    public String desFuenteInformacion;
+
     @Column(name = "PERSONA_ID")
     public Long personaId;
 
     @Column(name = "DOC_IDENTIDAD_ID")
     public Integer docIdentidadId;
 
-    @Column(name = "DESC_DOC_IDENTIDAD")
-    public String descDocIdentidadId;
+    @Column(name = "DES_DOC_IDENTIDAD")
+    public String descDocIdentidad;
 
     @Column(name = "NUM_DOC_IDENTIDAD")
     public String numDocIdentidad;
@@ -97,4 +115,7 @@ public class ContribuyenteCustom extends Auditoria {
 
     @Column(name = "EST_CIVIL_TIP_ID")
     public Integer estadoCivil;
+
+    @Column(name = "DES_CIVIL_TIPO")
+    public String desEstadoCivil;
 }

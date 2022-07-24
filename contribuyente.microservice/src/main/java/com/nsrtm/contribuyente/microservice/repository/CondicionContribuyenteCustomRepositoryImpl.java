@@ -1,7 +1,11 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
+import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
+import com.nsrtm.contribuyente.microservice.util.PageRequest;
+import com.nsrtm.contribuyente.microservice.util.PageResponse;
 import org.springframework.http.ResponseEntity;
 
 import javax.persistence.EntityManager;
@@ -9,6 +13,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
+import java.util.List;
 
 public class CondicionContribuyenteCustomRepositoryImpl implements CondicionContribuyenteCustomRepository {
     @PersistenceContext
@@ -101,6 +106,20 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
         query.execute();
         return custom;
+    }
+
+    @Override
+    public CondicionContribuyenteCustom ObtenerCondicionContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONDICION",CondicionContribuyenteCustom.class)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+
+        CondicionContribuyenteCustom data = (CondicionContribuyenteCustom)query.getSingleResult();
+        return data;
     }
 
 }

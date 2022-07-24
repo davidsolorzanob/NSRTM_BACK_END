@@ -2,10 +2,8 @@ package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
-import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -152,6 +150,20 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
     }
 
     @Override
+    public ContribuyenteCustom ObtenerContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE",ContribuyenteCustom.class)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+
+        ContribuyenteCustom data = (ContribuyenteCustom)query.getSingleResult();
+        return data;
+    }
+
+    @Override
     public PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR",ContribuyenteResult.class)
                 .registerStoredProcedureParameter("P_TIPO_FILTRO", Integer.class, ParameterMode.IN)
@@ -184,6 +196,37 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
         page.data = (List<ContribuyenteResult>)query.getResultList();
         page.totalRows = (Integer) query.getOutputParameterValue("P_TOTAL_FILAS");
         return page;
+    }
+
+    @Override
+    public List<ContribuyenteResult> ListaContribuyenteReporte(ContribuyenteCustom custom) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_REPORTE",ContribuyenteResult.class)
+                .registerStoredProcedureParameter("P_TIPO_FILTRO", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_DOC_IDENTIDAD_ID", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUM_DOC_IDENTIDAD", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_APE_PATERNO", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_APE_MATERNO", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NOMBRES", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_RAZ_SOCIAL", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NRO_PAGINA", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TAM_PAGINA", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TOTAL_FILAS", Integer.class, ParameterMode.OUT)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_TIPO_FILTRO", custom.tipoFiltro)
+                .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_DOC_IDENTIDAD_ID", custom.docIdentidadId)
+                .setParameter("P_NUM_DOC_IDENTIDAD", custom.numDocIdentidad)
+                .setParameter("P_APE_PATERNO", custom.apellidoPaterno)
+                .setParameter("P_APE_MATERNO", custom.apellidoMaterno)
+                .setParameter("P_NOMBRES", custom.nombres)
+                .setParameter("P_RAZ_SOCIAL",custom.razonSocial);
+
+        List<ContribuyenteResult> data = (List<ContribuyenteResult>)query.getResultList();
+        return data;
     }
 
 }

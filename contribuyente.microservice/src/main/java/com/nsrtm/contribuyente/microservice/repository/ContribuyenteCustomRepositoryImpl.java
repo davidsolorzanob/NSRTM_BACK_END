@@ -210,9 +210,6 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .registerStoredProcedureParameter("P_APE_MATERNO", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_NOMBRES", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_RAZ_SOCIAL", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_NRO_PAGINA", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TAM_PAGINA", Integer.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TOTAL_FILAS", Integer.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_TIPO_FILTRO", custom.tipoFiltro)

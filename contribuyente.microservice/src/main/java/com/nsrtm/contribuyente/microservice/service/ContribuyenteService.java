@@ -102,7 +102,7 @@ public class ContribuyenteService {
 			try (ByteArrayOutputStream out = new ByteArrayOutputStream();
 				 SXSSFWorkbook workbook = new SXSSFWorkbook(SXSSFWorkbook.DEFAULT_WINDOW_SIZE)) {
 				// Creating excel sheet
-				String sheetName = "Transactions";
+				String sheetName = "Contribuyentes";
 				Sheet sheet = workbook.createSheet(sheetName);
 
 				// Creating font style for excel sheet
@@ -174,7 +174,7 @@ public class ContribuyenteService {
 				workbook.dispose();
 
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-				String filename = "Transactions-" + date + ".xlsx";
+				String filename = "Reporte-Contribuyentes-" + date + ".xlsx";
 				response.setHeader("Content-Disposition", "attachment; filename=" + filename);
 				response.setContentLength((int) out.size());
 

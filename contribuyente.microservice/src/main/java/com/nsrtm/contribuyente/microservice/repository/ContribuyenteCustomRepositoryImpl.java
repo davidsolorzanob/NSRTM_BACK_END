@@ -76,10 +76,11 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
         query.execute();
-        custom.contribuyenteNumero = (Long) query.getOutputParameterValue("P_CONTRIBUYENTE_NUMERO");
-        custom.numeroDJ = (Long) query.getOutputParameterValue("P_NUMERO_DJ");
-        custom.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
-        return custom;
+        ContribuyenteCustom contribuyente = custom;
+        contribuyente.contribuyenteNumero = (Long) query.getOutputParameterValue("P_CONTRIBUYENTE_NUMERO");
+        contribuyente.numeroDJ = (Long) query.getOutputParameterValue("P_NUMERO_DJ");
+        contribuyente.personaId = (Long) query.getOutputParameterValue("P_PERSONA_ID");
+        return contribuyente;
     }
 
     @Override

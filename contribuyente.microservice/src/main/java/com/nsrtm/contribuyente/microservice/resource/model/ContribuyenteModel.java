@@ -7,9 +7,9 @@ import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 
 public class ContribuyenteModel {
-    public ContribuyenteCustom contribuyenteCustom;
-    public CondicionContribuyenteCustom condicionContribuyenteCustom;
+    public ContribuyenteCustom contribuyente;
+    public CondicionContribuyenteCustom condicionContribuyente;
     public DomicilioContribuyente domicilioContribuyente;
-    public RelacionadoCustom relacionadoCustom;
+    public RelacionadoCustom relacionado;
 
 }

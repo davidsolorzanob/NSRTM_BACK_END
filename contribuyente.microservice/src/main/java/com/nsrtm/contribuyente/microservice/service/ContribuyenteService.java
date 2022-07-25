@@ -53,19 +53,24 @@ public class ContribuyenteService {
 										DomicilioContribuyente domContribuyente,
 										RelacionadoCustom relacionado){
 
-		contribuyente = contribuyenteRepository.CrearContribuyente(contribuyente);
+		ContribuyenteCustom contri = contribuyenteRepository.CrearContribuyente(contribuyente);
 
-		condicion.contribuyenteNumero = contribuyente.contribuyenteNumero;
-		condicionContribuyenteRepository.CrearCondicionContribuyente(condicion);
+		CondicionContribuyenteCustom cnd = condicion;
+		cnd.contribuyenteNumero = contri.contribuyenteNumero;
+		condicionContribuyenteRepository.CrearCondicionContribuyente(cnd);
 
-		domContribuyente.contribuyenteNumero = contribuyente.contribuyenteNumero;
-		domicilioContribuyenteRepository.CrearDomicilioContribuyente(domContribuyente);
+		DomicilioContribuyente dom = domContribuyente;
+		dom.contribuyenteNumero = contri.contribuyenteNumero;
+		domicilioContribuyenteRepository.CrearDomicilioContribuyente(dom);
 
-		relacionado.contribuyenteNumero = contribuyente.contribuyenteNumero;
-		relacionado = relacionadoRepository.CrearRelacionado(relacionado);
+		RelacionadoCustom rela = relacionado;
+		rela.contribuyenteNumero = contri.contribuyenteNumero;
+		rela = relacionadoRepository.CrearRelacionado(rela);
 
-		domicilioRelacionadoRepository.CrearDomicilioRelacionado(relacionado);
-		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contribuyente);
+		RelacionadoCustom domRela = relacionado;
+		domRela.relContribuyenteNumero = rela.relContribuyenteNumero;
+		domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRela);
+		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
 	}
 
 	public ResponseEntity<Object> Actualizar(ContribuyenteCustom contribuyente,

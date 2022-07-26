@@ -43,7 +43,7 @@ public class RelacionadoCustom extends Auditoria {
     public Integer docIdentidadId;
 
     @Column(name = "DES_DOC_IDENTIDAD")
-    public Integer desDocIdentidad;
+    public String desDocIdentidad;
 
     @Column(name = "NUM_DOC_IDENTIDAD")
     public String numDocIdentidad;
@@ -230,4 +230,5 @@ public class RelacionadoCustom extends Auditoria {
 
     @Column(name = "DOM_ESTADO_ID")
     public Integer domEstadoId;
+
 }

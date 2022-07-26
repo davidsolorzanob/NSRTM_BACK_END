@@ -32,7 +32,7 @@ public class DomicilioContribuyenteCustom {
     @Column(name = "DES_PROVINCIA")
     public String desProvincia;
 
-    @Column(name = "DISTRITO")
+    @Column(name = "DISTRITO_ID")
     public Integer distritoId;
 
     @Column(name = "DES_DISTRITO")
@@ -56,7 +56,7 @@ public class DomicilioContribuyenteCustom {
     @Column(name = "DES_PROVINCIA_VIA")
     public String desViaProvincia;
 
-    @Column(name = "VIA_DISTRITO")
+    @Column(name = "VIA_DISTRITO_ID")
     public Integer viaDistritoId;
 
     @Column(name = "DES_DISTRITO_VIA")

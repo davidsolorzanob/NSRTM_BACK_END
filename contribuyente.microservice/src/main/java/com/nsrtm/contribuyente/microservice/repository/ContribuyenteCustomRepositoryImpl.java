@@ -165,6 +165,20 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
     }
 
     @Override
+    public boolean EliminarContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.DELETE_CONTRIBUYENTE")
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+
+        //ContribuyenteCustom data = (ContribuyenteCustom)query.getSingleResult();
+        query.execute();
+        return true;
+    }
+
+    @Override
     public PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR",ContribuyenteResult.class)
                 .registerStoredProcedureParameter("P_TIPO_FILTRO", Integer.class, ParameterMode.IN)

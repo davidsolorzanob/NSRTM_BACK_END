@@ -19,7 +19,7 @@ public class RelacionadoResource {
 
     @PostMapping("guardar")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> Guardar (@RequestBody RelacionadoCustom relacionado) {
+    public ResponseEntity<Object> Guardar (@RequestBody Relacionado relacionado) {
         if(relacionado.relContribuyenteNumero == null)
             return relacionadoService.Crear(relacionado);
         else
@@ -40,8 +40,14 @@ public class RelacionadoResource {
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public RelacionadoCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero){
+    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero){
         return relacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero);
+    }
+
+    @GetMapping("obtenercondomicilio")
+    @ResponseStatus(HttpStatus.OK)
+    public RelacionadoCustom ObtenerConDomicilioId(Long municipalidadId, Long contribuyenteNumero){
+        return relacionadoService.ObtenerConDomicilioPorId(municipalidadId,contribuyenteNumero);
     }
 
     @GetMapping("todos")

@@ -95,29 +95,29 @@ public class DomicilioContribuyenteCustom {
     @Column(name = "SUB_LOTE")
     public String subLote;
 
-    @Column(name = "TIP_ZONA_URBANA_ID")
-    public Integer tipoZonaUrbanaId;
-
-    @Column(name = "DES_TIPO_ZONA_URBANA")
-    public String desTipoZonaUrbana;
-
     @Column(name = "ZONA_URBANA_ID")
     public Long zonaUrbanaId;
 
     @Column(name = "DES_ZONA_URBANA")
     public String desZonaUrbana;
 
-    @Column(name = "TIP_SUBZONA_URBANA_ID")
-    public Integer tipoSubZonaUrbanaId;
+    @Column(name = "TIP_ZONA_URBANA_ID")
+    public Integer tipoZonaUrbanaId;
 
-    @Column(name = "DES_TIPO_SUBZONA_URBANA")
-    public String desTipoSubZonaUrbana;
+    @Column(name = "DES_TIPO_ZONA_URBANA")
+    public String desTipoZonaUrbana;
 
     @Column(name = "SUBZONA_URBANA_ID")
     public Long subZonaUrbanaId;
 
     @Column(name = "DES_SUBZONA_URBANA")
     public String desSubZonaUrbana;
+
+    @Column(name = "TIP_SUBZONA_URBANA_ID")
+    public Integer tipoSubZonaUrbanaId;
+
+    @Column(name = "DES_TIPO_SUBZONA_URBANA")
+    public String desTipoSubZonaUrbana;
 
     @Column(name = "EDIFICACION_ID")
     public Long edificacionId;
@@ -155,7 +155,7 @@ public class DomicilioContribuyenteCustom {
     @Column(name = "LATITUD")
     public double latitud;
 
-    @Column(name = "LONGITUG")
+    @Column(name = "LONGITUD")
     public double longitud;
 
     @Column(name = "DES_DOMICILIO")

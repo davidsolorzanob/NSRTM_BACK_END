@@ -1,13 +1,12 @@
-package com.nsrtm.contribuyente.microservice.domain;
+package com.nsrtm.contribuyente.microservice.domain.complex;
 
+import com.nsrtm.contribuyente.microservice.domain.Auditoria;
+
+import javax.persistence.Column;
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="DOM_RELACIONADO", schema = "NSRTM")
-//@IdClass(DomicilioRelacionadoId.class)
-
 @MappedSuperclass
-public class DomicilioRelacionado extends Auditoria  {
+public class DomicilioRelacionadoCustom extends Auditoria {
 
     @Column(name = "DOM_RELACIONADO_NUMERO")
     public Long domicilioRelacionadoNumero;
@@ -24,7 +23,7 @@ public class DomicilioRelacionado extends Auditoria  {
     @Column(name = "DES_PROVINCIA")
     public String desProvincia;
 
-    @Column(name = "DISTRITO")
+    @Column(name = "DISTRITO_ID")
     public Integer distritoId;
 
     @Column(name = "DES_DISTRITO")
@@ -48,7 +47,7 @@ public class DomicilioRelacionado extends Auditoria  {
     @Column(name = "DES_PROVINCIA_VIA")
     public String desViaProvincia;
 
-    @Column(name = "VIA_DISTRITO")
+    @Column(name = "VIA_DISTRITO_ID")
     public Integer viaDistritoId;
 
     @Column(name = "DES_DISTRITO_VIA")
@@ -87,23 +86,17 @@ public class DomicilioRelacionado extends Auditoria  {
     @Column(name = "SUB_LOTE")
     public String subLote;
 
-    @Column(name = "TIP_ZONA_URBANA_ID")
-    public Integer tipoZonaUrbanaId;
-
-    @Column(name = "DES_TIPO_ZONA_URBANA")
-    public String desTipoZonaUrbana;
-
     @Column(name = "ZONA_URBANA_ID")
     public Long zonaUrbanaId;
 
     @Column(name = "DES_ZONA_URBANA")
     public String desZonaUrbana;
 
-    @Column(name = "TIP_SUBZONA_URBANA_ID")
-    public Integer tipoSubZonaUrbanaId;
+    @Column(name = "TIP_ZONA_URBANA_ID")
+    public Integer tipoZonaUrbanaId;
 
-    @Column(name = "DES_TIPO_SUBZONA_URBANA")
-    public String desTipoSubZonaUrbana;
+    @Column(name = "DES_TIPO_ZONA_URBANA")
+    public String desTipoZonaUrbana;
 
     @Column(name = "SUBZONA_URBANA_ID")
     public Long subZonaUrbanaId;
@@ -111,11 +104,23 @@ public class DomicilioRelacionado extends Auditoria  {
     @Column(name = "DES_SUBZONA_URBANA")
     public String desSubZonaUrbana;
 
+    @Column(name = "TIP_SUBZONA_URBANA_ID")
+    public Integer tipoSubZonaUrbanaId;
+
+    @Column(name = "DES_TIPO_SUBZONA_URBANA")
+    public String desTipoSubZonaUrbana;
+
     @Column(name = "EDIFICACION_ID")
     public Long edificacionId;
 
     @Column(name = "DES_EDIFICACION")
     public String desEdificacion;
+
+    @Column(name = "TIP_EDIFICACION_ID")
+    public Integer tipoEdificacionId;
+
+    @Column(name = "DES_TIPO_EDIFICACION")
+    public String desTipoEdificacion;
 
     @Column(name = "TIP_INTERIOR_ID")
     public Long tipoInteriorId;
@@ -150,6 +155,6 @@ public class DomicilioRelacionado extends Auditoria  {
     @Column(name = "DES_FUENTE_INFO")
     public String desFuenteInformacion;
 
-    @Column(name = "ESTADO_ID")
-    public Integer estadoId;
+    @Column(name = "DOM_ESTADO_ID")
+    public Integer domEstadoId;
 }

@@ -1,6 +1,7 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
+import com.nsrtm.contribuyente.microservice.domain.Relacionado;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
     EntityManager entityManager;
 
     @Override
-    public RelacionadoCustom CrearDomicilioRelacionado(RelacionadoCustom custom) {
+    public Relacionado CrearDomicilioRelacionado(Relacionado custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_DOMICILIO_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -91,7 +92,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
     }
 
     @Override
-    public ResponseEntity<Object> ActualizarDomicilioRelacionado(RelacionadoCustom custom) {
+    public ResponseEntity<Object> ActualizarDomicilioRelacionado(Relacionado custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_DOMICILIO_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)

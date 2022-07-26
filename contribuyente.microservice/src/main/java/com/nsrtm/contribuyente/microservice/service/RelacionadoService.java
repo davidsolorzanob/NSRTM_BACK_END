@@ -24,8 +24,8 @@ public class RelacionadoService {
     private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
 
 
-    public ResponseEntity<Object> Crear(RelacionadoCustom e) {
-        RelacionadoCustom rel = relacionadoRepository.CrearRelacionado(e);
+    public ResponseEntity<Object> Crear(Relacionado e) {
+        Relacionado rel = relacionadoRepository.CrearRelacionado(e);
         //DomicilioRelacionado dom = e.domicilioRelacionado.get(0);
 
         if (rel.relContribuyenteNumero != null) {
@@ -35,7 +35,7 @@ public class RelacionadoService {
         return MessageResponse.setResponse(true,"El relacionado y su domicilio se registró correctamente", rel);
     }
 
-    public ResponseEntity<Object> Actualizar(RelacionadoCustom e){
+    public ResponseEntity<Object> Actualizar(Relacionado e){
         return relacionadoRepository.ActualizarRelacionado(e);
     }
 
@@ -45,8 +45,12 @@ public class RelacionadoService {
         return MessageResponse.setResponse(true, "El registro del contribuyente se eliminó satisfactoriamente");
     }
 
-    public RelacionadoCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
+    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
         return relacionadoRepository.ObtenerRelacionado(municipalidadId,contribuyenteNumero);
+    }
+
+    public RelacionadoCustom ObtenerConDomicilioPorId(Long municipalidadId, Long contribuyenteNumero) {
+        return relacionadoRepository.ObtenerRelacionadoConDomicilio(municipalidadId,contribuyenteNumero);
     }
 
     public List<TipoRelacionado> ListarTipoRelacionado(Integer tipo){

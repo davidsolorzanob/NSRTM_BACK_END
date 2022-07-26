@@ -1,9 +1,7 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
-import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
-import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
-import com.nsrtm.contribuyente.microservice.service.DomicilioContribuyenteService;
+import com.nsrtm.contribuyente.microservice.domain.Relacionado;
 import com.nsrtm.contribuyente.microservice.service.DomicilioRelacionadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +18,7 @@ public class DomicilioRelacionadoResource {
 
     @PostMapping("guardar")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> Guardar(@RequestBody RelacionadoCustom domicilio) {
+    public ResponseEntity<Object> Guardar(@RequestBody Relacionado domicilio) {
         //if(domicilio.domicilioRelacionadoNumero == null)
             //return domicilioRelacionadoService.Crear(domicilio);
        // else

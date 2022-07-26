@@ -3,6 +3,7 @@ package com.nsrtm.contribuyente.microservice.service;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionadoId;
+import com.nsrtm.contribuyente.microservice.domain.Relacionado;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioRelacionadoRepository;
 import org.apache.logging.log4j.LogManager;
@@ -21,11 +22,11 @@ public class DomicilioRelacionadoService {
     private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
 
 
-    public RelacionadoCustom Crear(RelacionadoCustom e){
+    public Relacionado Crear(Relacionado e){
         return domicilioRelacionadoRepository.CrearDomicilioRelacionado(e);
     }
 
-    public ResponseEntity<Object> Actualizar(RelacionadoCustom e){
+    public ResponseEntity<Object> Actualizar(Relacionado e){
         return domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(e);
     }
 

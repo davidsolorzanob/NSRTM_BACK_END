@@ -1,5 +1,6 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
+import com.nsrtm.contribuyente.microservice.domain.Relacionado;
 import com.nsrtm.contribuyente.microservice.domain.TipoRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.complex.DomicilioContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
@@ -18,7 +19,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
     EntityManager entityManager;
 
     @Override
-    public RelacionadoCustom CrearRelacionado(RelacionadoCustom custom) {
+    public Relacionado CrearRelacionado(Relacionado custom) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -72,7 +73,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
     }
 
     @Override
-    public ResponseEntity<Object> ActualizarRelacionado(RelacionadoCustom custom) {
+    public ResponseEntity<Object> ActualizarRelacionado(Relacionado custom) {
         boolean success = false;
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
@@ -125,8 +126,22 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
     }
 
     @Override
-    public RelacionadoCustom ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_RELACIONADO",RelacionadoCustom.class)
+    public Relacionado ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_RELACIONADO",Relacionado.class)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+
+        Relacionado data = (Relacionado)query.getSingleResult();
+        return data;
+    }
+
+    @Override
+    public RelacionadoCustom ObtenerRelacionadoConDomicilio(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_RELACIONADO_CON_DOMICILIO",RelacionadoCustom.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
@@ -137,7 +152,6 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
         RelacionadoCustom data = (RelacionadoCustom)query.getSingleResult();
         return data;
     }
-
     @Override
     public List<TipoRelacionado> ListaTipoRelacionado(Integer tipo) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_TIPO_RELACIONADO_LISTAR", TipoRelacionado.class)

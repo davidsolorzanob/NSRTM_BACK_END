@@ -1,5 +1,6 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
+import com.nsrtm.contribuyente.microservice.domain.Relacionado;
 import com.nsrtm.contribuyente.microservice.domain.TipoRelacionado;
 import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface RelacionadoCustomRepository {
-    RelacionadoCustom CrearRelacionado(RelacionadoCustom custom);
-    ResponseEntity<Object> ActualizarRelacionado(RelacionadoCustom custom);
+    Relacionado CrearRelacionado(Relacionado custom);
+    ResponseEntity<Object> ActualizarRelacionado(Relacionado custom);
     List<TipoRelacionado> ListaTipoRelacionado(Integer tipo);
-    RelacionadoCustom ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero);
+    Relacionado ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero);
+    RelacionadoCustom ObtenerRelacionadoConDomicilio(Long municipalidadId, Long contribuyenteNumero);
 }

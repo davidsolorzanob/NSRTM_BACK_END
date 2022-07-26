@@ -51,7 +51,7 @@ public class ContribuyenteService {
 	public ResponseEntity<Object> Crear(ContribuyenteCustom contribuyente,
 										CondicionContribuyenteCustom condicion,
 										DomicilioContribuyente domContribuyente,
-										RelacionadoCustom relacionado){
+										Relacionado relacionado){
 
 		ContribuyenteCustom contri = contribuyenteRepository.CrearContribuyente(contribuyente);
 
@@ -63,11 +63,11 @@ public class ContribuyenteService {
 		dom.contribuyenteNumero = contri.contribuyenteNumero;
 		domicilioContribuyenteRepository.CrearDomicilioContribuyente(dom);
 
-		RelacionadoCustom rela = relacionado;
+		Relacionado rela = relacionado;
 		rela.contribuyenteNumero = contri.contribuyenteNumero;
 		rela = relacionadoRepository.CrearRelacionado(rela);
 
-		RelacionadoCustom domRela = relacionado;
+		Relacionado domRela = relacionado;
 		domRela.relContribuyenteNumero = rela.relContribuyenteNumero;
 		domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRela);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
@@ -76,7 +76,7 @@ public class ContribuyenteService {
 	public ResponseEntity<Object> Actualizar(ContribuyenteCustom contribuyente,
 											 CondicionContribuyenteCustom condicion,
 											 DomicilioContribuyente domContribuyente,
-											 RelacionadoCustom relacionado){
+											 Relacionado relacionado){
 		contribuyenteRepository.ActualizarContribuyente(contribuyente);
 		condicionContribuyenteRepository.ActualizarCondicionContribuyente(condicion);
 		domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(domContribuyente);
@@ -86,8 +86,7 @@ public class ContribuyenteService {
 	}
 
 	public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero){
-		ContribuyenteId id = new ContribuyenteId(municipalidadId,contribuyenteNumero);
-		contribuyenteRepository.deleteById(id);
+		contribuyenteRepository.EliminarContribuyente(municipalidadId,contribuyenteNumero);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se eliminó satisfactoriamente");
 	}
 

@@ -83,8 +83,8 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
                 .registerStoredProcedureParameter("P_NUM_LICENCIA", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_NUM_EXPEDIENTE", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FEC_EXPEDIENTE", Date.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_USUARIO_CREACION", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_TERMINAL_CREACION", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)

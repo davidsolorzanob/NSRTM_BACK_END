@@ -66,7 +66,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
 
     @Override
     public CondicionContribuyenteCustom ActualizarCondicionContribuyente(CondicionContribuyenteCustom custom) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONDICION_CONTRIBUYENTE")
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_CONDICION_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CON_CONTRIBUYENTE_ID", Long.class, ParameterMode.IN)

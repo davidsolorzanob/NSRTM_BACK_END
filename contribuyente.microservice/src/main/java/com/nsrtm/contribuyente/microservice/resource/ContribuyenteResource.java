@@ -2,6 +2,9 @@ package com.nsrtm.contribuyente.microservice.resource;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.resource.model.ContribuyenteModel;
@@ -51,7 +54,8 @@ public class ContribuyenteResource {
 
 	@GetMapping("exportarExcel")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<StreamingResponseBody> ExportarExcel(@RequestBody ContribuyenteCustom custom, HttpServletResponse response) {
+	public ResponseEntity<StreamingResponseBody> ExportarExcel(String data, HttpServletResponse response) {
+		ContribuyenteCustom custom = new Gson().fromJson(data, ContribuyenteCustom.class);
 		return ResponseEntity.ok(contribuyenteService.ExportarExcel(custom, response));
 	}
 

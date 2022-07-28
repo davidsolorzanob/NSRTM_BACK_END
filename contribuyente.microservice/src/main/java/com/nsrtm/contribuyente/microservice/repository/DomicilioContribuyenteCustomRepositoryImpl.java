@@ -97,7 +97,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
+                .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PROVINCIA_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DISTRITO_ID", Integer.class, ParameterMode.IN)

@@ -33,13 +33,15 @@ public class ContribuyenteResource {
 					                          model.condicionContribuyente,
 											  model.domicilioContribuyente,
 					 						  model.relacionado,
-					                          model.contactos);
+					                          model.contactos,
+											  model.domicilios);
 		else
 			return contribuyenteService.Actualizar(model.contribuyente,
 					model.condicionContribuyente,
 					model.domicilioContribuyente,
 					model.relacionado,
-					model.contactos);
+					model.contactos,
+					model.domicilios);
 	}
 
 	@PostMapping("eliminar")

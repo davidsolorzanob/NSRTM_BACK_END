@@ -11,7 +11,6 @@ import com.nsrtm.contribuyente.microservice.domain.*;
 import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
-import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.*;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
@@ -47,11 +46,15 @@ public class ContribuyenteService {
 	@Autowired
 	private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
 
+	@Autowired
+	private ContactoContribuyenteRepository contactoContribuyenteRepository;
+
 	@Transactional
 	public ResponseEntity<Object> Crear(ContribuyenteCustom contribuyente,
 										CondicionContribuyenteCustom condicion,
 										DomicilioContribuyente domContribuyente,
-										Relacionado relacionado){
+										Relacionado relacionado,
+										List<ContactoContribuyente> contactos){
 
 		ContribuyenteCustom contri = contribuyenteRepository.CrearContribuyente(contribuyente);
 
@@ -70,18 +73,24 @@ public class ContribuyenteService {
 		Relacionado domRela = relacionado;
 		domRela.relContribuyenteNumero = rela.relContribuyenteNumero;
 		domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRela);
+
+		contactoContribuyenteRepository.EliminarContacto(contri.municipalidadId, contri.contribuyenteNumero, null);
+		contactoContribuyenteRepository.CrearContactoLista(contri.municipalidadId, contri.contribuyenteNumero,contactos);
+
 		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
 	}
 
 	public ResponseEntity<Object> Actualizar(ContribuyenteCustom contribuyente,
 											 CondicionContribuyenteCustom condicion,
 											 DomicilioContribuyente domContribuyente,
-											 Relacionado relacionado){
+											 Relacionado relacionado,
+											 List<ContactoContribuyente> contactos){
 		contribuyenteRepository.ActualizarContribuyente(contribuyente);
 		condicionContribuyenteRepository.ActualizarCondicionContribuyente(condicion);
 		domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(domContribuyente);
 		relacionadoRepository.ActualizarRelacionado(relacionado);
 		domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(relacionado);
+		contactoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero,contactos);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se actualizó satisfactoriamente", contribuyente);
 	}
 

@@ -23,7 +23,6 @@ public class RelacionadoService {
     @Autowired
     private DomicilioRelacionadoRepository domicilioRelacionadoRepository;
 
-
     public ResponseEntity<Object> Crear(Relacionado e) {
         Relacionado rel = relacionadoRepository.CrearRelacionado(e);
         //DomicilioRelacionado dom = e.domicilioRelacionado.get(0);

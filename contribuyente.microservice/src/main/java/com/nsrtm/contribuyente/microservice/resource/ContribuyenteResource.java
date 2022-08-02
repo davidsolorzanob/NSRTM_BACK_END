@@ -32,12 +32,14 @@ public class ContribuyenteResource {
 			return contribuyenteService.Crear(model.contribuyente,
 					                          model.condicionContribuyente,
 											  model.domicilioContribuyente,
-					 						  model.relacionado);
+					 						  model.relacionado,
+					                          model.contactos);
 		else
 			return contribuyenteService.Actualizar(model.contribuyente,
 					model.condicionContribuyente,
 					model.domicilioContribuyente,
-					model.relacionado);
+					model.relacionado,
+					model.contactos);
 	}
 
 	@PostMapping("eliminar")

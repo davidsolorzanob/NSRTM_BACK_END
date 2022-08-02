@@ -1,19 +1,12 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
-import com.nsrtm.contribuyente.microservice.util.MessageResponse;
-import com.nsrtm.contribuyente.microservice.util.PageRequest;
-import com.nsrtm.contribuyente.microservice.util.PageResponse;
-import org.springframework.http.ResponseEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
-import java.util.List;
 
 public class CondicionContribuyenteCustomRepositoryImpl implements CondicionContribuyenteCustomRepository {
     @PersistenceContext

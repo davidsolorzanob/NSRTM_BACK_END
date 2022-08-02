@@ -78,8 +78,8 @@ public class ContribuyenteService {
 		contactoContribuyenteRepository.EliminarContacto(contri.municipalidadId, contri.contribuyenteNumero, null);
 		contactoContribuyenteRepository.CrearContactoLista(contri.municipalidadId, contri.contribuyenteNumero,contactos);
 
-		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contri.municipalidadId, contri.contribuyenteNumero, null);
-		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contri.municipalidadId, contri.contribuyenteNumero, domicilios);
+		//domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contri.municipalidadId, contri.contribuyenteNumero, null);
+		//domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contri.municipalidadId, contri.contribuyenteNumero, domicilios);
 
 		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
 	}
@@ -96,8 +96,8 @@ public class ContribuyenteService {
 		relacionadoRepository.ActualizarRelacionado(relacionado);
 		domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(relacionado);
 		contactoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero,contactos);
-		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null);
-		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, domicilios);
+		//domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null);
+		//domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, domicilios);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se actualizó satisfactoriamente", contribuyente);
 	}
 

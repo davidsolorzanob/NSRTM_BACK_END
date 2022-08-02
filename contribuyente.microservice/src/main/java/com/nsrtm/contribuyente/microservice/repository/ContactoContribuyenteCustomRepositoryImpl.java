@@ -1,10 +1,7 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.ContactoContribuyente;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
-import com.nsrtm.contribuyente.microservice.util.PageRequest;
-import com.nsrtm.contribuyente.microservice.util.PageResponse;
 
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
@@ -13,7 +10,7 @@ import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
 import java.util.List;
 
-public class ContactoContribuyenteRepositoryImpl implements ContactoContribuyenteRepository {
+public class ContactoContribuyenteCustomRepositoryImpl implements ContactoContribuyenteCustomRepository {
     @PersistenceContext
     EntityManager entityManager;
 
@@ -99,7 +96,7 @@ public class ContactoContribuyenteRepositoryImpl implements ContactoContribuyent
 
     @Override
     public List<ContactoContribuyente> ListaContacto(Long municipalidadId, Long contribuyenteNumero) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTACTO_LISTAR",ContribuyenteResult.class)
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTACTO_LISTAR", ContribuyenteResult.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)

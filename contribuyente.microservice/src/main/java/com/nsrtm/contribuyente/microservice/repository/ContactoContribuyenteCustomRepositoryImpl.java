@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ContactoContribuyenteCustomRepositoryImpl implements ContactoContri
 
     @Override
     public List<ContactoContribuyente> CrearContactoLista(Long municipalidadId, Long contribuyenteNumero, List<ContactoContribuyente> lista) {
-        List<ContactoContribuyente> saveLista = null;
+        List<ContactoContribuyente> saveLista = new ArrayList<ContactoContribuyente>();
         for (ContactoContribuyente item:lista) {
             item.municipalidadId = municipalidadId;
             item.contribuyenteNumero = contribuyenteNumero;

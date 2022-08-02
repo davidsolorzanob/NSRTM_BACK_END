@@ -14,5 +14,5 @@ public class ContribuyenteModel {
     public DomicilioContribuyente domicilioContribuyente;
     public Relacionado relacionado;
     public List<ContactoContribuyente> contactos;
-
+    public List<DomicilioContribuyente> domicilios;
 }

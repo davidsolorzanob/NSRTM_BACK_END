@@ -1,5 +1,6 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
+import com.nsrtm.contribuyente.microservice.domain.ContactoContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.complex.DomicilioContribuyenteCustom;
 
@@ -7,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioContribuyenteCustomRepository {
     @PersistenceContext
@@ -87,8 +90,19 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
 
         query.execute();
         custom.domicilioContribuyenteNumero = (Long) query.getOutputParameterValue("P_DOM_CONTRIBUYENTE_NUMERO");
-        //return MessageResponse.setResponse(true,"El domicilio del contribuyente se registró satisfactoriamente",custom);
         return custom;
+    }
+
+    @Override
+    public List<DomicilioContribuyente> CrearDomicilioContribuyenteLista(Long municipalidadId, Long contribuyenteNumero, List<DomicilioContribuyente> lista) {
+        List<DomicilioContribuyente> saveLista = new ArrayList<DomicilioContribuyente>();
+        for (DomicilioContribuyente item:lista) {
+            item.municipalidadId = municipalidadId;
+            item.contribuyenteNumero = contribuyenteNumero;
+            item = CrearDomicilioContribuyente(item);
+            saveLista.add(item);
+        }
+        return saveLista;
     }
 
     @Override
@@ -166,7 +180,6 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
 
         query.execute();
-        //return MessageResponse.setResponse(true,"El domicilio del contribuyente se actualizó satisfactoriamente",custom);
         return custom;
     }
 
@@ -175,12 +188,46 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_DOMICILIO_CONTRIBUYENTE",DomicilioContribuyenteCustom.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", null);
 
         DomicilioContribuyenteCustom data = (DomicilioContribuyenteCustom)query.getSingleResult();
+        return data;
+    }
+
+    @Override
+    public boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long domContribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.DEL_DOMICILIO_CONTRIBUYENTE")
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", domContribuyenteNumero);
+
+        query.execute();
+        return true;
+    }
+
+    @Override
+    public List<DomicilioContribuyenteCustom> ListaDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_DOMICILIO_CONTRIBUYENTE",DomicilioContribuyenteCustom.class)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", null);
+
+        List<DomicilioContribuyenteCustom> data = (List<DomicilioContribuyenteCustom>)query.getResultList();
         return data;
     }
 }

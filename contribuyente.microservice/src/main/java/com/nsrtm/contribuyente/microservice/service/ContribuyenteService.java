@@ -54,7 +54,8 @@ public class ContribuyenteService {
 										CondicionContribuyenteCustom condicion,
 										DomicilioContribuyente domContribuyente,
 										Relacionado relacionado,
-										List<ContactoContribuyente> contactos){
+										List<ContactoContribuyente> contactos,
+										List<DomicilioContribuyente> domicilios){
 
 		ContribuyenteCustom contri = contribuyenteRepository.CrearContribuyente(contribuyente);
 
@@ -76,6 +77,9 @@ public class ContribuyenteService {
 
 		contactoContribuyenteRepository.EliminarContacto(contri.municipalidadId, contri.contribuyenteNumero, null);
 		contactoContribuyenteRepository.CrearContactoLista(contri.municipalidadId, contri.contribuyenteNumero,contactos);
+
+		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contri.municipalidadId, contri.contribuyenteNumero, null);
+		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contri.municipalidadId, contri.contribuyenteNumero, domicilios);
 
 		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
 	}

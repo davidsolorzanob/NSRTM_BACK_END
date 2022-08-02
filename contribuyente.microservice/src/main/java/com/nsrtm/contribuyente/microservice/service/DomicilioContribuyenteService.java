@@ -3,7 +3,6 @@ package com.nsrtm.contribuyente.microservice.service;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyenteId;
 import com.nsrtm.contribuyente.microservice.domain.complex.DomicilioContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioContribuyenteRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.apache.logging.log4j.LogManager;

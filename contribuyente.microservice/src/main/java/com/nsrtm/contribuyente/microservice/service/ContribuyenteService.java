@@ -75,7 +75,7 @@ public class ContribuyenteService {
 		domRela.relContribuyenteNumero = rela.relContribuyenteNumero;
 		domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRela);
 
-		contactoContribuyenteRepository.EliminarContacto(contri.municipalidadId, contri.contribuyenteNumero, null);
+		contactoContribuyenteRepository.EliminarContacto(contri.municipalidadId, contri.contribuyenteNumero, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
 		contactoContribuyenteRepository.CrearContactoLista(contri.municipalidadId, contri.contribuyenteNumero,contactos);
 
 		//domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contri.municipalidadId, contri.contribuyenteNumero, null);

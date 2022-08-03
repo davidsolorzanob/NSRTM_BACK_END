@@ -20,10 +20,10 @@ public class ContactoContribuyenteCustomRepositoryImpl implements ContactoContri
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONTACTO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_MED_CON_CONTRIBUYENTE_ID", Date.class, ParameterMode.OUT)
-                .registerStoredProcedureParameter("P_TIP_MED_CONTACTO_ID", Date.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_CLA_MED_CONTACTO_ID", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("P_DES_MED_CON_CONTRIBUYENTE", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_MED_CON_CONTRIBUYENTE_ID", Long.class, ParameterMode.OUT)
+                .registerStoredProcedureParameter("P_TIP_MED_CONTACTO_ID", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CLA_MED_CONTACTO_ID", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_DES_MED_CON_CONTRIBUYENTE", String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PRINCIPAL", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_USUARIO_CREACION", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_CREACION", String.class, ParameterMode.IN)
@@ -81,15 +81,19 @@ public class ContactoContribuyenteCustomRepositoryImpl implements ContactoContri
     }
 
     @Override
-    public boolean EliminarContacto(Long municipalidadId, Long contribuyenteNumero, Long contactoContribuyenteId) {
+    public boolean EliminarContacto(Long municipalidadId, Long contribuyenteNumero, Long contactoContribuyenteId, Long usuarioRegistro, String terminalRegistro) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.DEL_CONTACTO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_MED_CON_CONTRIBUYENTE_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
-                .setParameter("P_MED_CON_CONTRIBUYENTE_ID", contactoContribuyenteId);
+                .setParameter("P_MED_CON_CONTRIBUYENTE_ID", contactoContribuyenteId)
+                .setParameter("P_USUARIO_MODIFICACION", usuarioRegistro)
+                .setParameter("P_TERMINAL_MODIFICACION", terminalRegistro);
 
         query.execute();
         return true;
@@ -108,6 +112,5 @@ public class ContactoContribuyenteCustomRepositoryImpl implements ContactoContri
         List<ContactoContribuyente> data = (List<ContactoContribuyente>) query.getResultList();
         return data;
     }
-
 
 }

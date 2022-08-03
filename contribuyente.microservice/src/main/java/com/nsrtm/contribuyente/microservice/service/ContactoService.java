@@ -24,8 +24,8 @@ public class ContactoService {
         return MessageResponse.setResponse(true,"El contacto del contribuyente se actualizó correctamente", e);
     }
 
-    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long contactoContribuyenteId){
-        contactoContribuyenteRepository.EliminarContacto(municipalidadId, contribuyenteNumero, contactoContribuyenteId);
+    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long contactoContribuyenteId, Long usuario, String terminal){
+        contactoContribuyenteRepository.EliminarContacto(municipalidadId, contribuyenteNumero, contactoContribuyenteId, usuario, terminal);
         return MessageResponse.setResponse(true, "El registro del contribuyente se eliminó satisfactoriamente");
     }
 

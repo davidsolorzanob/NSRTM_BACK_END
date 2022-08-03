@@ -41,7 +41,8 @@ public class ContribuyenteResource {
 					model.domicilioContribuyente,
 					model.relacionado,
 					model.contactos,
-					model.domicilios);
+					model.domicilios
+			);
 	}
 
 	@PostMapping("eliminar")

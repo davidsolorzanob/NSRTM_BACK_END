@@ -3,7 +3,6 @@ package com.nsrtm.contribuyente.microservice.domain;
 import javax.persistence.*;
 
 @Entity
-//@Table(name="MED_CON_CONTRIBUYENTE", schema = "NSRTM")
 @IdClass(ContactoContribuyenteId.class)
 public class ContactoContribuyente extends Auditoria {
     @Id

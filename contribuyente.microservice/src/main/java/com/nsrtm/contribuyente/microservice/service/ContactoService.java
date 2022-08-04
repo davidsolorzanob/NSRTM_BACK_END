@@ -7,7 +7,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class ContactoService {
     private static final Logger logger = LogManager.getLogger(ContribuyenteService.class);
 
@@ -29,4 +33,7 @@ public class ContactoService {
         return MessageResponse.setResponse(true, "El registro del contribuyente se eliminó satisfactoriamente");
     }
 
+    public List<ContactoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
+        return contactoContribuyenteRepository.ListaContacto(municipalidadId, contribuyenteNumero);
+    }
 }

@@ -95,6 +95,7 @@ public class ContribuyenteService {
 		domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(domContribuyente);
 		relacionadoRepository.ActualizarRelacionado(relacionado);
 		domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(relacionado);
+		contactoContribuyenteRepository.EliminarContacto(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null,contribuyente.usuarioModificacion,contribuyente.terminalModificacion);
 		contactoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero,contactos);
 		//domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null);
 		//domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, domicilios);

@@ -197,16 +197,19 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     }
 
     @Override
-    public boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long domContribuyenteNumero) {
+    public boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long domContribuyenteNumero, Long usuarioRegistro, String terminalRegistro) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.DEL_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
-                .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", domContribuyenteNumero);
+                .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", domContribuyenteNumero)
+                .setParameter("P_USUARIO_MODIFICACION", usuarioRegistro)
+                .setParameter("P_TERMINAL_MODIFICACION", terminalRegistro);
 
         query.execute();
         return true;

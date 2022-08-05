@@ -12,6 +12,7 @@ import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyent
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.repository.*;
+import com.nsrtm.contribuyente.microservice.util.Catalogo;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
@@ -78,7 +79,7 @@ public class ContribuyenteService {
 		contactoContribuyenteRepository.EliminarContacto(contri.municipalidadId, contri.contribuyenteNumero, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
 		contactoContribuyenteRepository.CrearContactoLista(contri.municipalidadId, contri.contribuyenteNumero,contactos);
 
-		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contri.municipalidadId, contri.contribuyenteNumero, null);
+		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contri.municipalidadId, contri.contribuyenteNumero, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
 		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contri.municipalidadId, contri.contribuyenteNumero, domicilios);
 
 		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
@@ -97,7 +98,7 @@ public class ContribuyenteService {
 		domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(relacionado);
 		contactoContribuyenteRepository.EliminarContacto(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null,contribuyente.usuarioModificacion,contribuyente.terminalModificacion);
 		contactoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero,contactos);
-		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null);
+		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null, contribuyente.usuarioCreacion, contribuyente.terminalCreacion);
 		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, domicilios);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se actualizó satisfactoriamente", contribuyente);
 	}
@@ -137,22 +138,41 @@ public class ContribuyenteService {
 				Row headerRow = sheet.createRow(0);
 
 				// Name of the columns to be added in the sheet
-				String[] columns = new String[] { "Nro", "Nro Contribuyente", "Tipo Documento", "Nro doc. identidad", "Apellido Paterno", "Apellido Materno",
-						"Nombres", "Razon Social", "Fecha D.J.", "Estado D.J." };
+				String[] columns = new String[] {
+						"Nro",
+						"Código contribuyente",
+						"Nombres/Razón Social",
+						"Fecha de Declaración(Modificación/Registro)",
+						"Documento de identidad",
+						"Nro documento de identidad",
+						"Tipo de Medio",
+						"Medio",
+						"Motivo",
+						"Tipo de contribuyente",
+						"Condición de contribuyente",
+						"Departamento",
+						"Provincia",
+						"Distrito",
+						"Dirección fiscal",
+						"Estado",
+						"Área usuaria",
+						"Usuario de creación",
+						"Fecha de creación",
+						"Terminal de creación",
+						"Usuario de modificación",
+						"Fecha de modificación",
+						"Terminal de modificación"};
 
-				// Creating header column at the first row
 				for (int i = 0; i < columns.length; i++) {
 					Cell headerColumn = headerRow.createCell(i);
 					headerColumn.setCellValue(columns[i]);
 					headerColumn.setCellStyle(headerColumnStyle);
 				}
 
-				// Date formatting
 				CellStyle dataColumnDateFormatStyle = workbook.createCellStyle();
 				CreationHelper createHelper = workbook.getCreationHelper();
 				dataColumnDateFormatStyle.setDataFormat(createHelper.createDataFormat().getFormat("d/m/yy h:mm;@"));
 
-				// Adding data to sheet from the second row
 				int rowIndex = 1;
 				for (ContribuyenteResult result : lista) {
 					// Creating row for writing data
@@ -164,29 +184,68 @@ public class ContribuyenteService {
 					Cell colNroContribuyente = dataRow.createCell(1);
 					colNroContribuyente.setCellValue(String.valueOf(result.contribuyenteNumero));
 
-					Cell colTipoDoc = dataRow.createCell(2);
-					colTipoDoc.setCellValue(result.descDocIdentidad);
+					Cell colNombresRazon = dataRow.createCell(2);
+					colNombresRazon.setCellValue(result.docIdentidadId == Catalogo.Maestro.TipoDocumentoIdentidad.Ruc ? result.razonSocial: (result.apellidoPaterno + result.apellidoMaterno + result.nombres));
 
-					Cell colNroIdentidad = dataRow.createCell(3);
-					colNroIdentidad.setCellValue(result.numDocIdentidad);
+					Cell colFechaDec = dataRow.createCell(3);
+					colFechaDec.setCellValue(String.valueOf(result.fechaInscripcion == null ? "": result.fechaInscripcion.getTime()));
 
-					Cell colApePaterno = dataRow.createCell(4);
-					colApePaterno.setCellValue(result.apellidoPaterno);
+					Cell colDocIdentidad = dataRow.createCell(4);
+					colDocIdentidad.setCellValue(result.desDocIdentidad);
 
-					Cell colApeMaterno = dataRow.createCell(5);
-					colApeMaterno.setCellValue(result.apellidoMaterno);
+					Cell colNroDocumento = dataRow.createCell(5);
+					colNroDocumento.setCellValue(result.numDocIdentidad);
 
-					Cell colNombres = dataRow.createCell(6);
-					colNombres.setCellValue(result.nombres);
+					Cell colTipoMedio = dataRow.createCell(6);
+					colTipoMedio.setCellValue(result.desTipoMedioDeterminacion);
 
-					Cell colRazonSocial = dataRow.createCell(7);
-					colRazonSocial.setCellValue(result.razonSocial);
+					Cell colMedioDetermina = dataRow.createCell(7);
+					colMedioDetermina.setCellValue(result.desMedioDeterminacion);
 
-					Cell colFechaDj = dataRow.createCell(8);
-					colFechaDj.setCellValue(String.valueOf(result.fechaDJ.getTime()));
+					Cell colMotivo = dataRow.createCell(8);
+					colMotivo.setCellValue(result.desMotivoDj);
 
-					Cell colDesEstadoDj = dataRow.createCell(9);
-					colDesEstadoDj.setCellValue(result.desEstadoDj);
+					Cell colTipoContri = dataRow.createCell(9);
+					colTipoContri.setCellValue(result.desTipoPersona);
+
+					Cell colCondicion = dataRow.createCell(10);
+					colCondicion.setCellValue(result.desCondicion);
+
+					Cell colDepartamento = dataRow.createCell(11);
+					colDepartamento.setCellValue(result.departamento);
+
+					Cell colProvincia = dataRow.createCell(12);
+					colProvincia.setCellValue(result.provincia);
+
+					Cell colDistrito = dataRow.createCell(13);
+					colDistrito.setCellValue(result.distrito);
+
+					Cell colDomicilio = dataRow.createCell(14);
+					colDomicilio.setCellValue(result.desDomicilio);
+
+					Cell colEstado = dataRow.createCell(15);
+					colEstado.setCellValue(result.desEstadoDj);
+
+					Cell colArea = dataRow.createCell(16);
+					colArea.setCellValue("");
+
+					Cell colUsuarioCrea = dataRow.createCell(17);
+					colUsuarioCrea.setCellValue(result.usuarioCreacion);
+
+					Cell colFechaCrea = dataRow.createCell(18);
+					colFechaCrea.setCellValue(String.valueOf(result.fechaCreacion == null ? "" : result.fechaCreacion.getTime()));
+
+					Cell colTerminalCrea = dataRow.createCell(19);
+					colTerminalCrea.setCellValue(result.terminalCreacion == null ? "":result.terminalCreacion);
+
+					Cell colUsuarioMod = dataRow.createCell(20);
+					colUsuarioMod.setCellValue(result.usuarioModificacion == null ? "":result.usuarioModificacion.toString());
+
+					Cell colFechaMod = dataRow.createCell(21);
+					colFechaMod.setCellValue(String.valueOf(result.fechaModificacion == null ? "" : result.fechaModificacion.getTime()));
+
+					Cell colTerminalMod = dataRow.createCell(22);
+					colTerminalMod.setCellValue(result.terminalModificacion == null ? "":result.terminalModificacion);
 
 					rowIndex++;
 				}

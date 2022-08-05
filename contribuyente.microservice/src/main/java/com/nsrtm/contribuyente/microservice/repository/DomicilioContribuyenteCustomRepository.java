@@ -9,5 +9,5 @@ public interface DomicilioContribuyenteCustomRepository {
     DomicilioContribuyente ActualizarDomicilioContribuyente(DomicilioContribuyente custom);
     DomicilioContribuyenteCustom ObtenerDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero);
     List<DomicilioContribuyenteCustom> ListaDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero);
-    boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long domContribuyenteNumero);
+    boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long domContribuyenteNumero, Long usuarioRegistro, String terminalRegistro);
 }

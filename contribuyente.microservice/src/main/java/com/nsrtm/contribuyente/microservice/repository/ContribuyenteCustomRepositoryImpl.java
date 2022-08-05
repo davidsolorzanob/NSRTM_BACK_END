@@ -179,7 +179,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
 
     @Override
     public PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR",ContribuyenteResult.class)
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR_2",ContribuyenteResult.class)
                 .registerStoredProcedureParameter("P_TIPO_FILTRO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
@@ -214,7 +214,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
 
     @Override
     public List<ContribuyenteResult> ListaContribuyenteReporte(ContribuyenteCustom custom) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_REPORTE",ContribuyenteResult.class)
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_REPORTE_2",ContribuyenteResult.class)
                 .registerStoredProcedureParameter("P_TIPO_FILTRO", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)

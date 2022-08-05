@@ -1,8 +1,6 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
 import com.nsrtm.contribuyente.microservice.domain.ContactoContribuyente;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
-
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;

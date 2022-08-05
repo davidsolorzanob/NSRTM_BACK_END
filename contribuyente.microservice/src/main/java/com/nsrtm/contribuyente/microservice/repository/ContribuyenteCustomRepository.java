@@ -4,7 +4,6 @@ import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
-
 import java.util.List;
 
 public interface ContribuyenteCustomRepository {

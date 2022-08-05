@@ -1,9 +1,7 @@
 package com.nsrtm.contribuyente.microservice.repository;
 
-import com.nsrtm.contribuyente.microservice.domain.ContactoContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.complex.DomicilioContribuyenteCustom;
-
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
@@ -85,9 +83,8 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
                 .setParameter("P_ESTRUCTURADO", custom.estructurado)
                 .setParameter("P_FUENTE_INFO_ID", custom.fuenteInformacionId)
                 .setParameter("P_ESTADO_ID", custom.estadoId)
-                .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion)
-                .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion);
-
+                .setParameter("P_USUARIO_CREACION", custom.usuarioCreacion == null ? custom.usuarioModificacion:custom.usuarioCreacion)
+                .setParameter("P_TERMINAL_CREACION", custom.terminalCreacion ==null ? custom.terminalModificacion:custom.terminalCreacion);
         query.execute();
         custom.domicilioContribuyenteNumero = (Long) query.getOutputParameterValue("P_DOM_CONTRIBUYENTE_NUMERO");
         return custom;

@@ -37,6 +37,12 @@ public class DomicilioContribuyenteResource {
         return domicilioContribuyenteService.ObtenerPorId(municipalidadId,contribuyenteNumero);
     }
 
+    @GetMapping("listar")
+    @ResponseStatus(HttpStatus.OK)
+    public List<DomicilioContribuyenteCustom> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
+        return domicilioContribuyenteService.ObtenerLista(municipalidadId,contribuyenteNumero);
+    }
+
     @GetMapping("todos")
     @ResponseStatus(HttpStatus.OK)
     public List<DomicilioContribuyente> Todos() {

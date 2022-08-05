@@ -1,7 +1,6 @@
 package com.nsrtm.contribuyente.microservice.repository;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.complex.DomicilioContribuyenteCustom;
-
 import java.util.List;
 
 public interface DomicilioContribuyenteCustomRepository {

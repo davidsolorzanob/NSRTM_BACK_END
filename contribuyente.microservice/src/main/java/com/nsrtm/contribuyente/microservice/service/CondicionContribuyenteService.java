@@ -1,9 +1,7 @@
 package com.nsrtm.contribuyente.microservice.service;
 
 import com.nsrtm.contribuyente.microservice.domain.CondicionContribuyenteId;
-import com.nsrtm.contribuyente.microservice.domain.ContribuyenteId;
 import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.repository.CondicionContribuyenteRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.apache.logging.log4j.LogManager;

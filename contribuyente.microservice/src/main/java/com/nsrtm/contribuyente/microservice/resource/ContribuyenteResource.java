@@ -3,8 +3,6 @@ package com.nsrtm.contribuyente.microservice.resource;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.resource.model.ContribuyenteModel;

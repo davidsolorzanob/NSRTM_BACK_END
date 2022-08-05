@@ -1,6 +1,7 @@
 package com.nsrtm.contribuyente.microservice.resource.model;
 
 import com.nsrtm.contribuyente.microservice.domain.ContactoContribuyente;
+import com.nsrtm.contribuyente.microservice.domain.DocSustentoContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.Relacionado;
 import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
@@ -15,4 +16,5 @@ public class ContribuyenteModel {
     public Relacionado relacionado;
     public List<ContactoContribuyente> contactos;
     public List<DomicilioContribuyente> domicilios;
+    public List<DocSustentoContribuyente> sustentos;
 }

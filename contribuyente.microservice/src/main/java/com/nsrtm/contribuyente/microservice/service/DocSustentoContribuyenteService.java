@@ -1,8 +1,6 @@
 package com.nsrtm.contribuyente.microservice.service;
 
-import com.nsrtm.contribuyente.microservice.domain.ContactoContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DocSustentoContribuyente;
-import com.nsrtm.contribuyente.microservice.repository.ContactoContribuyenteRepository;
 import com.nsrtm.contribuyente.microservice.repository.DocSustentoContribuyenteRepository;
 import com.nsrtm.contribuyente.microservice.util.MessageResponse;
 import org.apache.logging.log4j.LogManager;

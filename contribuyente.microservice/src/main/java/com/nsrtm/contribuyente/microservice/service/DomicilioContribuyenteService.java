@@ -45,6 +45,10 @@ public class DomicilioContribuyenteService {
         return domicilioContribuyenteRepository.ObtenerDomicilioContribuyente(municipalidadId, contribuyenteNumero);
     }
 
+    public List<DomicilioContribuyenteCustom> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
+        return domicilioContribuyenteRepository.ListaDomicilioContribuyente(municipalidadId, contribuyenteNumero);
+    }
+
     public List<DomicilioContribuyente> Todos(){
         return domicilioContribuyenteRepository.findAll();
     }

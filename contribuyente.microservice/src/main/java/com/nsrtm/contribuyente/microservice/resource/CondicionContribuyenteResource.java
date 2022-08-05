@@ -1,7 +1,6 @@
 package com.nsrtm.contribuyente.microservice.resource;
 
 import com.nsrtm.contribuyente.microservice.domain.complex.CondicionContribuyenteCustom;
-import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteCustom;
 import com.nsrtm.contribuyente.microservice.service.CondicionContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

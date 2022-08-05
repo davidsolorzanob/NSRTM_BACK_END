@@ -5,7 +5,6 @@ import com.nsrtm.contribuyente.microservice.domain.complex.ContribuyenteResult;
 import com.nsrtm.contribuyente.microservice.util.PageRequest;
 import com.nsrtm.contribuyente.microservice.util.PageResponse;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;

@@ -1,18 +1,13 @@
 package com.nsrtm.contribuyente.microservice.service;
 
-import com.nsrtm.contribuyente.microservice.domain.DomicilioContribuyente;
 import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionado;
-import com.nsrtm.contribuyente.microservice.domain.DomicilioRelacionadoId;
 import com.nsrtm.contribuyente.microservice.domain.Relacionado;
-import com.nsrtm.contribuyente.microservice.domain.complex.RelacionadoCustom;
 import com.nsrtm.contribuyente.microservice.repository.DomicilioRelacionadoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class DomicilioRelacionadoService {

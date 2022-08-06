@@ -29,6 +29,9 @@ public class ContribuyenteResult extends Auditoria
     @Column(name = "DOC_IDENTIDAD_ID")
     public Integer docIdentidadId;
 
+    @Column(name = "TIP_PERSONA_ID")
+    public Integer tipoPersonaId;
+
     @Column(name = "DES_TIP_PERSONA")
     public String desTipoPersona;
 

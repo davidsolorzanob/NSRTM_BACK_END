@@ -1,0 +1,47 @@
+ body {
+   font-family: 'Roboto', sans-serif;
+     font-weight: normal;
+     font-style: normal;
+ }
+ h1 {
+     color: #25a7e7;
+     text-align: center;
+ }
+ .receipt-header {
+     width: 100%;
+ }
+ .receipt {
+     width: 100%;
+ }
+ .receipt, .receipt th, .receipt td {
+     border: 1px solid #25a7e7;
+     border-collapse: collapse;
+ }
+ .receipt th {
+     background-color: #25a7e7;
+     color: white;
+ }
+ .total {
+     text-align: right;
+ }
+ .title-dj{
+     border: 1px solid #25a7e7;
+     font-size: 11px;
+     font-weight: 900;
+     width: 70% !important;
+ }
+ .w-10{
+     width: 10% !important;
+ }
+ .w-20{
+     width: 20% !important;
+ }
+ .w-30{
+     width: 30% !important;
+ }
+ .w-90{
+     width: 90% !important;
+ }
+ .w-100{
+     width: 100% !important;
+ }

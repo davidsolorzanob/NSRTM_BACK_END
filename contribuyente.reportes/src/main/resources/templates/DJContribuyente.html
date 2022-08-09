@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style type="text/css" media="print">
+        @page { size: landscape; }
+    </style>
+    <style type="text/css">
+        @font-face {
+            font-family: 'Roboto';
+            src: url('Roboto-ThinItalic-webfont.eot');
+            src: url('Roboto-ThinItalic-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('Roboto-ThinItalic-webfont.woff') format('woff'),
+                 url('Roboto-ThinItalic-webfont.ttf') format('truetype'),
+                 url('Roboto-ThinItalic-webfont.svg#RobotoThinItalic') format('svg'); (under the Apache Software License).
+            font-weight: 200;
+            font-style: italic;
+        }
+    </style>
+    <style type="text/css">
+     body {
+       font-family: 'Roboto', sans-serif;
+         font-weight: normal;
+         font-style: normal;
+     }
+     h1 {
+         color: #25a7e7;
+         text-align: center;
+     }
+     .receipt-header {
+         width: 100%;
+     }
+     .receipt {
+         width: 100%;
+         font-size:10px;
+     }
+     .receipt, .receipt th, .receipt td {
+         border: 1px solid #e2e8f0;
+         border-collapse: collapse;
+     }
+     .receipt th {
+         background-color: #e2e8f0;
+         color: white;
+     }
+     .total {
+         text-align: right;
+     }
+     .title-dj{
+         border: 1px solid #e2e8f0;
+         font-size: 16px;
+         font-weight: 600;
+         text-align: center;
+     }
+     .w-10{
+         width: 10% !important;
+     }
+     .w-20{
+         width: 20% !important;
+     }
+     .w-30{
+         width: 30% !important;
+     }
+     .w-40{
+         width: 40% !important;
+     }
+     .w-60{
+         width: 60% !important;
+     }
+     .w-70{
+         width: 70% !important;
+     }
+     .w-80{
+         width: 80% !important;
+     }
+     .w-90{
+         width: 90% !important;
+     }
+     .w-100{
+         width: 100% !important;
+     }
+     .pt-50{
+        padding-top: 50px;
+     }
+     .pt-30{
+        padding-top: 30px;
+     }
+     .pt-15{
+        padding-top: 15px;
+     }
+     .bg-gray{
+        background-color: #cbd5e1;
+     }
+     .bold-600{
+        font-weight: 600;
+     }
+
+     .y-20{
+        min-height: 20px;
+     }
+     .y-25{
+        min-height: 25px;
+     }
+     .y-50{
+        min-height: 50px;
+     }
+     .y-75{
+        min-height: 75px;
+     }
+
+     .bt-1{
+        border-top: 1px solid #e2e8f0;
+     }
+     .font-10{
+         font-size: 10px;
+     }
+     .text-center{
+        text-align: center;
+     }
+    </style>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td class="w-30"></td>
+                <td class="w-40 title-dj">DECLARACIÓN JURADA DE DOMICILIO Y DATOS DEL CONTRIBUYENTE</td>
+                <td class="w-30" align="right"><img width="140" src="https://www.mef.gob.pe/images/banners/logo_mef.jpg" /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="pt-30 w-70">
+        <table class="receipt">
+            <tr>
+                <td class="w-40 bold-600">CÓDIGO DE CONTRIBUYENTE</td>
+                <td class="w-60" th:text="${contribuyente.contribuyenteNumero}"></td>
+            </tr>
+            <tr>
+                <td class="bold-600">APELLIDOS Y NOMBRES O RAZÓN SOCIAL</td>
+                <td th:text="${contribuyente.nombres}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="pt-15">
+        <table class="receipt">
+            <tbody>
+                <!-- Datos Contribuyente-->
+                <tr class="w-100 bg-gray bold-600"><td colspan="10">DATOS DEL CONTRIBUYENTE</td></tr>
+                <tr>
+                    <td class="w-10 bold-600">TIPO DE CONTRIBUYENTE</td>
+                    <td class="w-10 bold-600">TIPO DE DOCUMENTO DE IDENTIDAD</td>
+                    <td class="w-20 bold-600" colspan="2">N° DOC. IDENTIDAD</td>
+                    <td class="w-20 bold-600" colspan="2">TELÉFONO FIJO</td>
+                    <td class="w-10 bold-600">TELÉFONO MÓVIL</td>
+                    <td class="w-20 bold-600" colspan="2">CORREO ELECTRÓNICO</td>
+                    <td class="w-10 bold-600"></td>
+                </tr>
+                <tr>
+                    <td class="w-10" th:text="${contribuyente.desTipoPersona}"></td>
+                    <td class="w-10" th:text="${contribuyente.desDocIdentidad}"></td>
+                    <td class="w-20" colspan="2" th:text="${contribuyente.numDocIdentidad}"></td>
+                    <td class="w-20" colspan="2"></td>
+                    <td class="w-10"></td>
+                    <td class="w-20" colspan="2"></td>
+                    <td class="w-10"></td>
+                </tr>
+                <tr>
+                    <td class="w-10 bold-600">CONDICIÓN CONCURSAL</td>
+                    <td class="w-10 bold-600">FECHA INICIO</td>
+                    <td class="w-10 bold-600">FECHA FINAL</td>
+                    <td class="w-20 bold-600" colspan="2">CONDICIÓN CONTRIBUYENTE</td>
+                    <td class="w-10 bold-600">FECHA INICIO</td>
+                    <td class="w-10 bold-600">FECHA FINAL</td>
+                    <td class="w-10 bold-600">CONDICIÓN ESPECIAL</td>
+                    <td class="w-10 bold-600">FECHA INICIO</td>
+                    <td class="w-10 bold-600">FECHA FINAL</td>
+                </tr>
+                <tr>
+                    <td class="w-10" th:text="${contribuyente.desCondConcursal}"></td>
+                    <td class="w-10" th:text="${contribuyente.fechaVigencialInicial}"></td>
+                    <td class="w-10" th:text="${contribuyente.fechaVigencialFinal}"></td>
+                    <td class="w-20" colspan="2" th:text="${contribuyente.desCondInafectacion}"></td>
+                    <td class="w-10" th:text="${contribuyente.fechaVigencialInicial}"></td>
+                    <td class="w-10" th:text="${contribuyente.fechaVigencialFinal}"></td>
+                    <td class="w-10"></td>
+                    <td class="w-10"></td>
+                    <td class="w-10"></td>
+                </tr>
+                <tr class="y-20"><td colspan="10"></td></tr>
+                <!-- Domicilio Fiscal-->
+                <tr>
+                    <td colspan="10" class="bg-gray bold-600">DOMICILIO FISCAL</td>
+                </tr>
+                <tr class="y-25">
+                    <td class="w-10 bold-600">DIRECCIÓN</td>
+                    <td colspan="9" class="w-90" th:text="${contribuyente.desDomicilio}"></td>
+                </tr>
+                <!-- Datos de conyuge-->
+                <tr>
+                    <td colspan="10" class="bg-gray bold-600">DATOS DEL CÓNYUGE / REPRESENTANTE LEGAL</td>
+                </tr>
+                <tr>
+                    <td class="w-10 bold-600">TIPO DE RELACIONADO</td>
+                    <td class="w-10 bold-600">TIPO DE DOCUMENTO IDENTIDAD</td>
+                    <td class="w-20 bold-600" colspan="2">N° DOC. IDENTIDAD</td>
+                    <td class="w-30 bold-600" colspan="3">APELLIDOS Y NOMBRES/RAZÓN SOCIAL</td>
+                    <td class="w-30 bold-600" colspan="3">DOMICILIO</td>
+                </tr>
+                <tr>
+                    <td class="w-10" th:text="${relacionado.desTipoRelacionado}"></td>
+                    <td class="w-10" th:text="${relacionado.desDocIdentidad}"></td>
+                    <td class="w-20" colspan="2" th:text="${relacionado.numDocIdentidad}"></td>
+                    <td class="w-30" colspan="3" th:text="${relacionado.apellidoPaterno}"></td>
+                    <td class="w-30" colspan="3" th:text="${relacionado.desDomicilio}"></td>
+                </tr>
+                <!-- Documentos exhibidos -->
+                <tr>
+                    <td colspan="10" class="bg-gray bold-600">DOCUMENTOS EXHIBIDOS</td>
+                </tr>
+                <tr class="y-20">
+                    <td colspan="10"></td>
+                </tr>
+                <tr>
+                    <td class="w-30" colspan="3">AUTORIZO SE ME NOTIFIQUE A TRAVÉS DEL CORREO ELECTRÓNICO</td>
+                    <td class="w-10 bold-600 text-center">SI</td>
+                    <td class="w-10"></td>
+                    <td class="w-10 bold-600 text-center">NO</td>
+                    <td class="w-10"></td>
+                    <td colspan="3"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pt-30 font-10">
+        <table>
+            <tr>
+                <td class="w-60"></td>
+                <td class="w-40">DECLARO BAJO JURAMENTO QUE LOS DATOS CONSIGNADOS EN LA PRESENTE DECLARACIÓN SON VERDADEROS:</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td th:text="${contribuyente.departamento} + ', ' + ${fechaGeneradoReporte}"></td>
+            </tr>
+            <tr class="y-75">
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="bt-1 text-center">Firma del Propietario o Representante Legal</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="text-center">D.N.I.</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

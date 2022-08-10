@@ -27,6 +27,9 @@ public class RelacionadoResult {
     @Column(name = "DES_TIPO_RELACIONADO")
     public String desTipoRelacionado;
 
+    @Column(name = "TIP_PERSONA_ID")
+    public Integer tipoPersonaId;
+
     @Column(name = "DES_DOMICILIO")
     public String desDomicilio;
 

@@ -81,10 +81,19 @@ public class ContribuyenteResult {
     public String desCondInafectacion;
 
     @Column(name = "FEC_VIG_INICIAL")
-    public Date fechaVigencialInicial;
+    public Date fechaVigenciaInicial;
 
     @Column(name = "FEC_VIG_FINAL")
-    public Date fechaVigencialFinal;
+    public Date fechaVigenciaFinal;
+
+    @Column(name = "TELEFONO")
+    public String telefono;
+
+    @Column(name = "CORREO")
+    public String correo;
+
+    @Column(name = "CELULAR")
+    public String celular;
 
     @Column(name = "DEPARTAMENTO")
     public String departamento;
@@ -94,4 +103,11 @@ public class ContribuyenteResult {
 
     @Column(name = "DISTRITO")
     public String distrito;
+
+    @Column(name = "TIP_CON_INAFECTACION_ID")
+    public Integer tipoCondInafectacionId;
+
+    @Column(name = "TIP_CON_CONCURSAL_ID")
+    public Integer tipoCondConcursalId;
+
 }

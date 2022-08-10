@@ -135,7 +135,7 @@
             </tr>
             <tr>
                 <td class="bold-600">APELLIDOS Y NOMBRES O RAZÓN SOCIAL</td>
-                <td th:text="${contribuyente.nombres}"></td>
+                <td th:text="${contribuyente.tipoPersonaId} == 1 ? ${contribuyente.nombreCompleto} : ${contribuyente.razonSocial}"></td>
             </tr>
         </table>
     </div>
@@ -157,9 +157,9 @@
                     <td class="w-10" th:text="${contribuyente.desTipoPersona}"></td>
                     <td class="w-10" th:text="${contribuyente.desDocIdentidad}"></td>
                     <td class="w-20" colspan="2" th:text="${contribuyente.numDocIdentidad}"></td>
-                    <td class="w-20" colspan="2"></td>
-                    <td class="w-10"></td>
-                    <td class="w-20" colspan="2"></td>
+                    <td class="w-20" colspan="2" th:text="${contribuyente.telefono}"></td>
+                    <td class="w-10" th:text="${contribuyente.celular}"></td>
+                    <td class="w-20" colspan="2" th:text="${contribuyente.correo}"></td>
                     <td class="w-10"></td>
                 </tr>
                 <tr>
@@ -175,11 +175,11 @@
                 </tr>
                 <tr>
                     <td class="w-10" th:text="${contribuyente.desCondConcursal}"></td>
-                    <td class="w-10" th:text="${contribuyente.fechaVigencialInicial}"></td>
-                    <td class="w-10" th:text="${contribuyente.fechaVigencialFinal}"></td>
+                    <td class="w-10" th:text="${contribuyente.tipoCondConcursalId} == 0 ? '' : ${#dates.format(contribuyente.fechaVigenciaInicial, 'dd/MM/yyyy')}"></td>
+                    <td class="w-10" th:text="${contribuyente.tipoCondConcursalId} == 0 ? '' : ${#dates.format(contribuyente.fechaVigenciaFinal, 'dd/MM/yyyy')}"></td>
                     <td class="w-20" colspan="2" th:text="${contribuyente.desCondInafectacion}"></td>
-                    <td class="w-10" th:text="${contribuyente.fechaVigencialInicial}"></td>
-                    <td class="w-10" th:text="${contribuyente.fechaVigencialFinal}"></td>
+                    <td class="w-10" th:text="${contribuyente.tipoCondInafectacionId} == 0 ? '' : ${#dates.format(contribuyente.fechaVigenciaInicial, 'dd/MM/yyyy')}"></td>
+                    <td class="w-10" th:text="${contribuyente.tipoCondInafectacionId} == 0 ? '' : ${#dates.format(contribuyente.fechaVigenciaFinal, 'dd/MM/yyyy')}"></td>
                     <td class="w-10"></td>
                     <td class="w-10"></td>
                     <td class="w-10"></td>
@@ -208,7 +208,7 @@
                     <td class="w-10" th:text="${relacionado.desTipoRelacionado}"></td>
                     <td class="w-10" th:text="${relacionado.desDocIdentidad}"></td>
                     <td class="w-20" colspan="2" th:text="${relacionado.numDocIdentidad}"></td>
-                    <td class="w-30" colspan="3" th:text="${relacionado.apellidoPaterno}"></td>
+                    <td class="w-30" colspan="3" th:text="${relacionado.tipoPersonaId} == 1 ? ${relacionado.nombreCompleto} : ${relacionado.razonSocial}"></td>
                     <td class="w-30" colspan="3" th:text="${relacionado.desDomicilio}"></td>
                 </tr>
                 <!-- Documentos exhibidos -->
@@ -235,7 +235,7 @@
                 <td class="w-60"></td>
                 <td class="w-40">DECLARO BAJO JURAMENTO QUE LOS DATOS CONSIGNADOS EN LA PRESENTE DECLARACIÓN SON VERDADEROS:</td>
             </tr>
-            <tr>
+            <tr class="y-20">
                 <td></td>
                 <td th:text="${contribuyente.departamento} + ', ' + ${fechaGeneradoReporte}"></td>
             </tr>

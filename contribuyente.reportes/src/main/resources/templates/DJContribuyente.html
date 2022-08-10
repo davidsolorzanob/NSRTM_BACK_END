@@ -34,7 +34,7 @@
          font-size:10px;
      }
      .receipt, .receipt th, .receipt td {
-         border: 1px solid #e2e8f0;
+         border: 1px solid #1e293b;
          border-collapse: collapse;
      }
      .receipt th {
@@ -45,7 +45,7 @@
          text-align: right;
      }
      .title-dj{
-         border: 1px solid #e2e8f0;
+         border: 1px solid #1e293b;
          font-size: 16px;
          font-weight: 600;
          text-align: center;
@@ -107,7 +107,7 @@
      }
 
      .bt-1{
-        border-top: 1px solid #e2e8f0;
+        border-top: 1px solid #1e293b;
      }
      .font-10{
          font-size: 10px;
@@ -135,7 +135,7 @@
             </tr>
             <tr>
                 <td class="bold-600">APELLIDOS Y NOMBRES O RAZÓN SOCIAL</td>
-                <td th:text="${contribuyente.tipoPersonaId} == 1 ? ${contribuyente.nombreCompleto} : ${contribuyente.razonSocial}"></td>
+                <td th:text="${contribuyente.tipoPersonaId} == 2 ? ${contribuyente.razonSocial}:${contribuyente.nombreCompleto}"></td>
             </tr>
         </table>
     </div>
@@ -208,15 +208,18 @@
                     <td class="w-10" th:text="${relacionado.desTipoRelacionado}"></td>
                     <td class="w-10" th:text="${relacionado.desDocIdentidad}"></td>
                     <td class="w-20" colspan="2" th:text="${relacionado.numDocIdentidad}"></td>
-                    <td class="w-30" colspan="3" th:text="${relacionado.tipoPersonaId} == 1 ? ${relacionado.nombreCompleto} : ${relacionado.razonSocial}"></td>
+                    <td class="w-30" colspan="3" th:text="${relacionado.docIdentidadId} == 2 ? ${relacionado.razonSocial}:${relacionado.nombreCompleto}"></td>
                     <td class="w-30" colspan="3" th:text="${relacionado.desDomicilio}"></td>
                 </tr>
                 <!-- Documentos exhibidos -->
                 <tr>
                     <td colspan="10" class="bg-gray bold-600">DOCUMENTOS EXHIBIDOS</td>
                 </tr>
-                <tr class="y-20">
-                    <td colspan="10"></td>
+                <tr class="y-20" th:each="sustento : ${sustentos}">
+                    <td colspan="10" th:text="'  - ' + ${sustento.desTipoDocSustento}"></td>
+                </tr>
+                <tr class="y-20" th:if="${#lists.size(sustentos)} == 0">
+                    <td colspan="10"> - No se registraron sustentos</td>
                 </tr>
                 <tr>
                     <td class="w-30" colspan="3">AUTORIZO SE ME NOTIFIQUE A TRAVÉS DEL CORREO ELECTRÓNICO</td>

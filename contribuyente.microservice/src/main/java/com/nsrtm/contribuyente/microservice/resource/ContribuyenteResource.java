@@ -32,14 +32,16 @@ public class ContribuyenteResource {
 											  model.domicilioContribuyente,
 					 						  model.relacionado,
 					                          model.contactos,
-											  model.domicilios);
+											  model.domicilios,
+											  model.sustentos);
 		else
 			return contribuyenteService.Actualizar(model.contribuyente,
 					model.condicionContribuyente,
 					model.domicilioContribuyente,
 					model.relacionado,
 					model.contactos,
-					model.domicilios
+					model.domicilios,
+					model.sustentos
 			);
 	}
 

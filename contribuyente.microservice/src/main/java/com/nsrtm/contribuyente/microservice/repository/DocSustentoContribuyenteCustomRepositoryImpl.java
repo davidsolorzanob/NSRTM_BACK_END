@@ -88,7 +88,7 @@ public class DocSustentoContribuyenteCustomRepositoryImpl implements DocSustento
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
-                .setParameter("P_MED_CON_CONTRIBUYENTE_ID", docSustentoId)
+                .setParameter("P_DOC_SUS_CONTRIBUYENTE_ID", docSustentoId)
                 .setParameter("P_USUARIO_MODIFICACION", usuarioRegistro)
                 .setParameter("P_TERMINAL_MODIFICACION", terminalRegistro);
 

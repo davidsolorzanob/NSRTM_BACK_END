@@ -50,13 +50,17 @@ public class ContribuyenteService {
 	@Autowired
 	private ContactoContribuyenteRepository contactoContribuyenteRepository;
 
+	@Autowired
+	private DocSustentoContribuyenteRepository docSustentoContribuyenteRepository;
+
 	@Transactional
 	public ResponseEntity<Object> Crear(ContribuyenteCustom contribuyente,
 										CondicionContribuyenteCustom condicion,
 										DomicilioContribuyente domContribuyente,
 										Relacionado relacionado,
 										List<ContactoContribuyente> contactos,
-										List<DomicilioContribuyente> domicilios){
+										List<DomicilioContribuyente> domicilios,
+										List<DocSustentoContribuyente> documentos){
 
 		ContribuyenteCustom contri = contribuyenteRepository.CrearContribuyente(contribuyente);
 
@@ -82,6 +86,8 @@ public class ContribuyenteService {
 		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contri.municipalidadId, contri.contribuyenteNumero, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
 		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contri.municipalidadId, contri.contribuyenteNumero, domicilios);
 
+		docSustentoContribuyenteRepository.EliminarDocSustento(contri.municipalidadId, contri.contribuyenteNumero, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
+		docSustentoContribuyenteRepository.CrearContactoLista(contri.municipalidadId, contri.contribuyenteNumero, documentos);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
 	}
 
@@ -90,7 +96,8 @@ public class ContribuyenteService {
 											 DomicilioContribuyente domContribuyente,
 											 Relacionado relacionado,
 											 List<ContactoContribuyente> contactos,
-											 List<DomicilioContribuyente> domicilios){
+											 List<DomicilioContribuyente> domicilios,
+											 List<DocSustentoContribuyente> documentos){
 		contribuyenteRepository.ActualizarContribuyente(contribuyente);
 		condicionContribuyenteRepository.ActualizarCondicionContribuyente(condicion);
 		domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(domContribuyente);
@@ -100,6 +107,8 @@ public class ContribuyenteService {
 		contactoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero,contactos);
 		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null, contribuyente.usuarioCreacion, contribuyente.terminalCreacion);
 		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, domicilios);
+		docSustentoContribuyenteRepository.EliminarDocSustento(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
+		docSustentoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, documentos);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se actualizó satisfactoriamente", contribuyente);
 	}
 

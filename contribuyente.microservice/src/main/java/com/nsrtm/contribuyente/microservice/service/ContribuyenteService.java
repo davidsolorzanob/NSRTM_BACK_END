@@ -66,6 +66,7 @@ public class ContribuyenteService {
 
 		CondicionContribuyenteCustom cnd = condicion;
 		cnd.contribuyenteNumero = contri.contribuyenteNumero;
+		cnd.numeroDJ = contri.numeroDJ;
 		condicionContribuyenteRepository.CrearCondicionContribuyente(cnd);
 /*
 		DomicilioContribuyente dom = domContribuyente;
@@ -75,9 +76,11 @@ public class ContribuyenteService {
 		if(relacionado.tipoRelacionadoId != null) {
 			Relacionado rela = relacionado;
 			rela.contribuyenteNumero = contri.contribuyenteNumero;
+			rela.numeroDJ = relacionado.numeroDJ;
 			rela = relacionadoRepository.CrearRelacionado(rela);
 
 			Relacionado domRela = relacionado;
+			domRela.numeroDJ = relacionado.numeroDJ;
 			domRela.relContribuyenteNumero = rela.relContribuyenteNumero;
 			domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRela);
 		}

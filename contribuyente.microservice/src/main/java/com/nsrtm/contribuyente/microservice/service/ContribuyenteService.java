@@ -76,11 +76,11 @@ public class ContribuyenteService {
 		if(relacionado.tipoRelacionadoId != null) {
 			Relacionado rela = relacionado;
 			rela.contribuyenteNumero = contri.contribuyenteNumero;
-			rela.numeroDJ = relacionado.numeroDJ;
+			rela.numeroDJ = contri.numeroDJ;
 			rela = relacionadoRepository.CrearRelacionado(rela);
 
 			Relacionado domRela = relacionado;
-			domRela.numeroDJ = relacionado.numeroDJ;
+			domRela.numeroDJ = contri.numeroDJ;
 			domRela.relContribuyenteNumero = rela.relContribuyenteNumero;
 			domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRela);
 		}
@@ -112,6 +112,7 @@ public class ContribuyenteService {
 
 		//domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(domContribuyente);
 		if(relacionado.tipoRelacionadoId!=null) {
+			relacionado.numeroDJ = contri.numeroDJ;
 			relacionadoRepository.ActualizarRelacionado(relacionado);
 			domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(relacionado);
 		}

@@ -24,13 +24,13 @@ public class CondicionContribuyenteResource {
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public CondicionContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
-        return condicionContribuyenteService.ObtenerPorId(municipalidadId, contribuyenteNumero);
+    public CondicionContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
+        return condicionContribuyenteService.ObtenerPorId(municipalidadId, contribuyenteNumero,numeroDJ);
     }
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long conContribuyenteId) {
-        return condicionContribuyenteService.Eliminar(municipalidadId, contribuyenteNumero, conContribuyenteId);
+    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long conContribuyenteId, Long numeroDJ) {
+        return condicionContribuyenteService.Eliminar(municipalidadId, contribuyenteNumero, conContribuyenteId,numeroDJ);
     }
 }

@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 public interface DomicilioRelacionadoCustomRepository {
     Relacionado CrearDomicilioRelacionado(Relacionado custom);
     ResponseEntity<Object> ActualizarDomicilioRelacionado(Relacionado custom);
-    DomicilioRelacionado ObtenerDomicilioRelacionado(Long municipalidadId, Long contribuyenteNumero, Long relcontribuyenteNumero);
+    DomicilioRelacionado ObtenerDomicilioRelacionado(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long relcontribuyenteNumero);
 }

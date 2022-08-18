@@ -28,8 +28,8 @@ public class RelacionadoResource {
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
-        return relacionadoService.Eliminar(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
+    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long relContribuyenteNumero) {
+        return relacionadoService.Eliminar(municipalidadId,contribuyenteNumero,numeroDJ,relContribuyenteNumero);
     }
 
     @GetMapping("listarTipoRelacionado")
@@ -40,14 +40,14 @@ public class RelacionadoResource {
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero){
-        return relacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero);
+    public Relacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return relacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero,numeroDJ);
     }
 
     @GetMapping("obtenercondomicilio")
     @ResponseStatus(HttpStatus.OK)
-    public RelacionadoCustom ObtenerConDomicilioId(Long municipalidadId, Long contribuyenteNumero){
-        return relacionadoService.ObtenerConDomicilioPorId(municipalidadId,contribuyenteNumero);
+    public RelacionadoCustom ObtenerConDomicilioId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return relacionadoService.ObtenerConDomicilioPorId(municipalidadId,contribuyenteNumero,numeroDJ);
     }
 
     @GetMapping("todos")

@@ -16,7 +16,7 @@ public class ContactoContribuyenteResource {
 
     @GetMapping("listar")
     @ResponseStatus(HttpStatus.OK)
-    public List<ContactoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
-        return contactoService.ObtenerLista(municipalidadId,contribuyenteNumero);
+    public List<ContactoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return contactoService.ObtenerLista(municipalidadId,contribuyenteNumero,numeroDJ);
     }
 }

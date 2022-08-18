@@ -28,12 +28,12 @@ public class DocSustentoContribuyenteService {
         return MessageResponse.setResponse(true,"El documento de sustento se actualizó correctamente", e);
     }
 
-    public ResponseEntity<Object> EliminarDocSustento(Long municipalidadId, Long contribuyenteNumero, Long docSustentoId, Long usuario, String terminal){
-        docSustentoRepository.EliminarDocSustento(municipalidadId, contribuyenteNumero, docSustentoId, usuario, terminal);
+    public ResponseEntity<Object> EliminarDocSustento(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long docSustentoId, Long usuario, String terminal){
+        docSustentoRepository.EliminarDocSustento(municipalidadId, contribuyenteNumero, numeroDJ, docSustentoId, usuario, terminal);
         return MessageResponse.setResponse(true, "El registro del documento de sustento se eliminó satisfactoriamente");
     }
 
-    public List<DocSustentoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
-        return docSustentoRepository.ListaDocSustento(municipalidadId, contribuyenteNumero);
+    public List<DocSustentoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return docSustentoRepository.ListaDocSustento(municipalidadId, contribuyenteNumero, numeroDJ);
     }
 }

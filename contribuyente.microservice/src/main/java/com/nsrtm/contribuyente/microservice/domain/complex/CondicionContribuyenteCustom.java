@@ -22,6 +22,10 @@ public class CondicionContribuyenteCustom extends Auditoria {
     @Column(name = "CON_CONTRIBUYENTE_ID")
     public Long conContribuyenteId;
 
+    @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
     @Column(name = "TIP_CON_INAFECTACION_ID")
     public Integer tipoCondicionInafectacionId;
 

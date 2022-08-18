@@ -15,6 +15,10 @@ public class Relacionado extends DomicilioRelacionado {
     @Column(name = "CONTRIBUYENTE_NUMERO")
     public Long contribuyenteNumero;
 
+    @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
     @Column(name = "REL_CONTRIBUYENTE_NUMERO")
     public Long relContribuyenteNumero;
 

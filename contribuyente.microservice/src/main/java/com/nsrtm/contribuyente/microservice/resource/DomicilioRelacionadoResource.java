@@ -25,8 +25,8 @@ public class DomicilioRelacionadoResource {
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public DomicilioRelacionado ObtenerPorId(Long municipalidadId,Long contribuyenteNumero,Long relContribuyenteNumero) {
-        return domicilioRelacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero,relContribuyenteNumero);
+    public DomicilioRelacionado ObtenerPorId(Long municipalidadId,Long contribuyenteNumero,Long numeroDJ, Long relContribuyenteNumero) {
+        return domicilioRelacionadoService.ObtenerPorId(municipalidadId,contribuyenteNumero, numeroDJ, relContribuyenteNumero);
     }
 
 }

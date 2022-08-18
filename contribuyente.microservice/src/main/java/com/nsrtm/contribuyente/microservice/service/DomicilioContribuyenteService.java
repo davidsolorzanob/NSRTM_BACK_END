@@ -30,9 +30,9 @@ public class DomicilioContribuyenteService {
         return MessageResponse.setResponse(true,"El domicilio del contribuyente se actualizó correctamente", e);
     }
 
-    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero) {
+    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long domicilioContribuyenteNumero) {
         try {
-            DomicilioContribuyenteId id = new DomicilioContribuyenteId(municipalidadId,contribuyenteNumero,domicilioContribuyenteNumero);
+            DomicilioContribuyenteId id = new DomicilioContribuyenteId(municipalidadId,contribuyenteNumero,numeroDJ,domicilioContribuyenteNumero);
             domicilioContribuyenteRepository.deleteById(id);
         }
         catch (Exception ex){
@@ -41,12 +41,12 @@ public class DomicilioContribuyenteService {
         }
     }
 
-    public DomicilioContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
-        return domicilioContribuyenteRepository.ObtenerDomicilioContribuyente(municipalidadId, contribuyenteNumero);
+    public DomicilioContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
+        return domicilioContribuyenteRepository.ObtenerDomicilioContribuyente(municipalidadId, contribuyenteNumero, numeroDJ);
     }
 
-    public List<DomicilioContribuyenteCustom> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
-        return domicilioContribuyenteRepository.ListaDomicilioContribuyente(municipalidadId, contribuyenteNumero);
+    public List<DomicilioContribuyenteCustom> ObtenerLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return domicilioContribuyenteRepository.ListaDomicilioContribuyente(municipalidadId, contribuyenteNumero, numeroDJ);
     }
 
     public List<DomicilioContribuyente> Todos(){

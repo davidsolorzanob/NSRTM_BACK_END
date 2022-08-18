@@ -17,6 +17,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_CONDICION_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CON_CONTRIBUYENTE_ID", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_TIP_CON_INAFECTACION_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TIP_CON_CONCURSAL_ID", Integer.class, ParameterMode.IN)
@@ -36,6 +37,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_TIP_CON_INAFECTACION_ID", custom.tipoCondicionInafectacionId)
                 .setParameter("P_TIP_CON_CONCURSAL_ID", custom.tipoCondicionConcursalId)
                 .setParameter("P_TIP_DOCUMENTO_ID", custom.tipoDocumentoId)
@@ -62,6 +64,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_CONDICION_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CON_CONTRIBUYENTE_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TIP_CON_INAFECTACION_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TIP_CON_CONCURSAL_ID", Integer.class, ParameterMode.IN)
@@ -81,6 +84,7 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_CON_CONTRIBUYENTE_ID", custom.conContribuyenteId)
                 .setParameter("P_TIP_CON_INAFECTACION_ID", custom.tipoCondicionInafectacionId)
                 .setParameter("P_TIP_CON_CONCURSAL_ID", custom.tipoCondicionConcursalId)
@@ -102,17 +106,40 @@ public class CondicionContribuyenteCustomRepositoryImpl implements CondicionCont
     }
 
     @Override
-    public CondicionContribuyenteCustom ObtenerCondicionContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+    public CondicionContribuyenteCustom ObtenerCondicionContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONDICION",CondicionContribuyenteCustom.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ);
 
         CondicionContribuyenteCustom data = (CondicionContribuyenteCustom)query.getSingleResult();
         return data;
+    }
+
+    @Override
+    public boolean EliminarCondicion(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long contactoContribuyenteId, Long usuarioRegistro, String terminalRegistro) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.DEL_CONDICION_CONTRIBUYENTE")
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CON_CONTRIBUYENTE_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ)
+                .setParameter("P_CON_CONTRIBUYENTE_ID", contactoContribuyenteId)
+                .setParameter("P_USUARIO_MODIFICACION", usuarioRegistro)
+                .setParameter("P_TERMINAL_MODIFICACION", terminalRegistro);
+
+        query.execute();
+        return true;
     }
 
 }

@@ -10,8 +10,8 @@ public interface ContribuyenteCustomRepository {
 
     ContribuyenteCustom CrearContribuyente(ContribuyenteCustom custom);
     ContribuyenteCustom ActualizarContribuyente(ContribuyenteCustom custom);
-    ContribuyenteCustom ObtenerContribuyente(Long municipalidadId, Long contribuyenteNumero);
+    ContribuyenteCustom ObtenerContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ);
     PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom);
-    boolean EliminarContribuyente(Long municipalidadId, Long contribuyenteNumero);
+    boolean EliminarContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ);
     List<ContribuyenteResult> ListaContribuyenteReporte(ContribuyenteCustom custom);
 }

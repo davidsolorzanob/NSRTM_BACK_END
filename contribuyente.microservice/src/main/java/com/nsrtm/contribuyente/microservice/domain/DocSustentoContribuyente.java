@@ -17,6 +17,10 @@ public class DocSustentoContribuyente extends Auditoria {
     public Long contribuyenteNumero;
 
     @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
+    @Id
     @Column(name = "DOC_SUS_CONTRIBUYENTE_ID")
     public Long docSustentoId;
 

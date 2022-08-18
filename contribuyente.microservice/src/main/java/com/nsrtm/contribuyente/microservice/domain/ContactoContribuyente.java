@@ -14,6 +14,10 @@ public class ContactoContribuyente extends Auditoria {
     public Long contribuyenteNumero;
 
     @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
+    @Id
     @Column(name = "MED_CON_CONTRIBUYENTE_ID")
     public Long contactoContribuyenteId;
 

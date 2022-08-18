@@ -18,6 +18,10 @@ public class RelacionadoCustom extends Auditoria {
     public Long contribuyenteNumero;
 
     @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
+    @Id
     @Column(name = "REL_CONTRIBUYENTE_NUMERO")
     public Long relContribuyenteNumero;
 

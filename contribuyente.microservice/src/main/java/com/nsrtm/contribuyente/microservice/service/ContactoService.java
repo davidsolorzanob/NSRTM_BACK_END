@@ -28,12 +28,12 @@ public class ContactoService {
         return MessageResponse.setResponse(true,"El contacto del contribuyente se actualizó correctamente", e);
     }
 
-    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long contactoContribuyenteId, Long usuario, String terminal){
-        contactoContribuyenteRepository.EliminarContacto(municipalidadId, contribuyenteNumero, contactoContribuyenteId, usuario, terminal);
+    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long contactoContribuyenteId, Long usuario, String terminal){
+        contactoContribuyenteRepository.EliminarContacto(municipalidadId, contribuyenteNumero, numeroDJ, contactoContribuyenteId, usuario, terminal);
         return MessageResponse.setResponse(true, "El registro del contribuyente se eliminó satisfactoriamente");
     }
 
-    public List<ContactoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
-        return contactoContribuyenteRepository.ListaContacto(municipalidadId, contribuyenteNumero);
+    public List<ContactoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return contactoContribuyenteRepository.ListaContacto(municipalidadId, contribuyenteNumero,numeroDJ);
     }
 }

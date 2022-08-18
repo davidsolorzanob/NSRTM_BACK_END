@@ -7,14 +7,17 @@ public class RelacionadoId implements Serializable {
 
     public Long contribuyenteNumero;
 
+    public Long numeroDJ;
+
     public Long relContribuyenteNumero;
 
     public RelacionadoId() {
     }
 
-    public RelacionadoId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
+    public RelacionadoId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero, Long numeroDJ) {
         this.municipalidadId = municipalidadId;
         this.contribuyenteNumero = contribuyenteNumero;
         this.relContribuyenteNumero = relContribuyenteNumero;
+        this.numeroDJ = numeroDJ;
     }
 }

@@ -27,20 +27,20 @@ public class DomicilioContribuyenteResource {
 
     @PostMapping("eliminar")
     @ResponseStatus(HttpStatus.OK)
-    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero ) {
-        domicilioContribuyenteService.Eliminar(municipalidadId,contribuyenteNumero,domicilioContribuyenteNumero);
+    public void Eliminar(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero, Long numeroDJ ) {
+        domicilioContribuyenteService.Eliminar(municipalidadId,contribuyenteNumero,domicilioContribuyenteNumero, numeroDJ);
     }
 
     @GetMapping("obtener")
     @ResponseStatus(HttpStatus.OK)
-    public DomicilioContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
-        return domicilioContribuyenteService.ObtenerPorId(municipalidadId,contribuyenteNumero);
+    public DomicilioContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
+        return domicilioContribuyenteService.ObtenerPorId(municipalidadId,contribuyenteNumero, numeroDJ);
     }
 
     @GetMapping("listar")
     @ResponseStatus(HttpStatus.OK)
-    public List<DomicilioContribuyenteCustom> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
-        return domicilioContribuyenteService.ObtenerLista(municipalidadId,contribuyenteNumero);
+    public List<DomicilioContribuyenteCustom> ObtenerLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return domicilioContribuyenteService.ObtenerLista(municipalidadId,contribuyenteNumero, numeroDJ);
     }
 
     @GetMapping("todos")

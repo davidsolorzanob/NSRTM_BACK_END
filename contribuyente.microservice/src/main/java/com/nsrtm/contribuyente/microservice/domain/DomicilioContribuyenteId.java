@@ -7,14 +7,17 @@ public class DomicilioContribuyenteId implements Serializable {
 
     public Long contribuyenteNumero;
 
+    public Long numeroDJ;
+
     public Long domicilioContribuyenteNumero;
 
     public DomicilioContribuyenteId() {
     }
 
-    public DomicilioContribuyenteId(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero) {
+    public DomicilioContribuyenteId(Long municipalidadId, Long contribuyenteNumero, Long domicilioContribuyenteNumero, Long numeroDJ) {
         this.municipalidadId = municipalidadId;
         this.contribuyenteNumero = contribuyenteNumero;
         this.domicilioContribuyenteNumero = domicilioContribuyenteNumero;
+        this.numeroDJ = numeroDJ;
     }
 }

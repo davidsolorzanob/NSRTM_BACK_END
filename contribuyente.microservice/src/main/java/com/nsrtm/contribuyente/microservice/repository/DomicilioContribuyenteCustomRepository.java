@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface DomicilioContribuyenteCustomRepository {
     DomicilioContribuyente CrearDomicilioContribuyente(DomicilioContribuyente custom);
-    List<DomicilioContribuyente> CrearDomicilioContribuyenteLista(Long municipalidadId, Long contribuyenteNumero, List<DomicilioContribuyente> lista);
+    List<DomicilioContribuyente> CrearDomicilioContribuyenteLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, List<DomicilioContribuyente> lista);
     DomicilioContribuyente ActualizarDomicilioContribuyente(DomicilioContribuyente custom);
-    DomicilioContribuyenteCustom ObtenerDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero);
-    List<DomicilioContribuyenteCustom> ListaDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero);
-    boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long domContribuyenteNumero, Long usuarioRegistro, String terminalRegistro);
+    DomicilioContribuyenteCustom ObtenerDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ);
+    List<DomicilioContribuyenteCustom> ListaDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ);
+    boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long domContribuyenteNumero, Long usuarioRegistro, String terminalRegistro);
 }

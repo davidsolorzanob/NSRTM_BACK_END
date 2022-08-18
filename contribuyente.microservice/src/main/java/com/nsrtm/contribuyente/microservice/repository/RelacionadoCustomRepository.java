@@ -11,6 +11,6 @@ public interface RelacionadoCustomRepository {
     Relacionado CrearRelacionado(Relacionado custom);
     ResponseEntity<Object> ActualizarRelacionado(Relacionado custom);
     List<TipoRelacionado> ListaTipoRelacionado(Integer tipo);
-    Relacionado ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero);
-    RelacionadoCustom ObtenerRelacionadoConDomicilio(Long municipalidadId, Long contribuyenteNumero);
+    Relacionado ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ);
+    RelacionadoCustom ObtenerRelacionadoConDomicilio(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ);
 }

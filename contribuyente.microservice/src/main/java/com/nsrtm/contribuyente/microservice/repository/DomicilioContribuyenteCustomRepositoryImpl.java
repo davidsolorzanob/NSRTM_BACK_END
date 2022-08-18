@@ -19,6 +19,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PROVINCIA_ID", Integer.class, ParameterMode.IN)
@@ -54,6 +55,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_DEPARTAMENTO_ID", custom.departamentoId)
                 .setParameter("P_PROVINCIA_ID", custom.provinciaId)
                 .setParameter("P_DISTRITO_ID", custom.distritoId)
@@ -91,11 +93,12 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     }
 
     @Override
-    public List<DomicilioContribuyente> CrearDomicilioContribuyenteLista(Long municipalidadId, Long contribuyenteNumero, List<DomicilioContribuyente> lista) {
+    public List<DomicilioContribuyente> CrearDomicilioContribuyenteLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, List<DomicilioContribuyente> lista) {
         List<DomicilioContribuyente> saveLista = new ArrayList<DomicilioContribuyente>();
         for (DomicilioContribuyente item:lista) {
             item.municipalidadId = municipalidadId;
             item.contribuyenteNumero = contribuyenteNumero;
+            item.numeroDJ = numeroDJ;
             item = CrearDomicilioContribuyente(item);
             saveLista.add(item);
         }
@@ -108,6 +111,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PROVINCIA_ID", Integer.class, ParameterMode.IN)
@@ -143,6 +147,7 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", custom.domicilioContribuyenteNumero)
                 .setParameter("P_DEPARTAMENTO_ID", custom.departamentoId)
                 .setParameter("P_PROVINCIA_ID", custom.provinciaId)
@@ -181,15 +186,17 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     }
 
     @Override
-    public DomicilioContribuyenteCustom ObtenerDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+    public DomicilioContribuyenteCustom ObtenerDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_DOMICILIO_CONTRIBUYENTE",DomicilioContribuyenteCustom.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ)
                 .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", null);
 
         DomicilioContribuyenteCustom data = (DomicilioContribuyenteCustom)query.getSingleResult();
@@ -197,16 +204,18 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     }
 
     @Override
-    public boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long domContribuyenteNumero, Long usuarioRegistro, String terminalRegistro) {
+    public boolean EliminarDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long domContribuyenteNumero, Long usuarioRegistro, String terminalRegistro) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.DEL_DOMICILIO_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_USUARIO_MODIFICACION", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TERMINAL_MODIFICACION", String.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ)
                 .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", domContribuyenteNumero)
                 .setParameter("P_USUARIO_MODIFICACION", usuarioRegistro)
                 .setParameter("P_TERMINAL_MODIFICACION", terminalRegistro);
@@ -216,15 +225,17 @@ public class DomicilioContribuyenteCustomRepositoryImpl implements DomicilioCont
     }
 
     @Override
-    public List<DomicilioContribuyenteCustom> ListaDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+    public List<DomicilioContribuyenteCustom> ListaDomicilioContribuyente(Long municipalidadId, Long contribuyenteNumero,Long numeroDJ) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_DOMICILIO_CONTRIBUYENTE",DomicilioContribuyenteCustom.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ)
                 .setParameter("P_DOM_CONTRIBUYENTE_NUMERO", null);
 
         List<DomicilioContribuyenteCustom> data = (List<DomicilioContribuyenteCustom>)query.getResultList();

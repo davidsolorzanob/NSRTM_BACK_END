@@ -25,7 +25,7 @@ public class DomicilioRelacionadoService {
         return domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(e);
     }
 
-    public DomicilioRelacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
-        return domicilioRelacionadoRepository.ObtenerDomicilioRelacionado(municipalidadId, contribuyenteNumero, relContribuyenteNumero);
+    public DomicilioRelacionado ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long relContribuyenteNumero) {
+        return domicilioRelacionadoRepository.ObtenerDomicilioRelacionado(municipalidadId, contribuyenteNumero, numeroDJ, relContribuyenteNumero);
     }
 }

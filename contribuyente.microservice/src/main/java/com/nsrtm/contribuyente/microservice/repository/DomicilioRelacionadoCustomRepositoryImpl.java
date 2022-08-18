@@ -18,6 +18,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_DOMICILIO_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_RELACIONADO_NUMERO", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
@@ -52,6 +53,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_REL_CONTRIBUYENTE_NUMERO", custom.relContribuyenteNumero)
                 .setParameter("P_DEPARTAMENTO_ID", custom.departamentoId)
                 .setParameter("P_PROVINCIA_ID", custom.provinciaId)
@@ -94,6 +96,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_DOMICILIO_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DOM_RELACIONADO_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_DEPARTAMENTO_ID", Integer.class, ParameterMode.IN)
@@ -128,6 +131,7 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_REL_CONTRIBUYENTE_NUMERO", custom.relContribuyenteNumero)
                 .setParameter("P_DOM_RELACIONADO_NUMERO", custom.domicilioRelacionadoNumero)
                 .setParameter("P_DEPARTAMENTO_ID", custom.departamentoId)
@@ -165,15 +169,17 @@ public class DomicilioRelacionadoCustomRepositoryImpl implements DomicilioRelaci
     }
 
     @Override
-    public DomicilioRelacionado ObtenerDomicilioRelacionado(Long municipalidadId, Long contribuyenteNumero, Long relcontribuyenteNumero) {
+    public DomicilioRelacionado ObtenerDomicilioRelacionado(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, Long relcontribuyenteNumero) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_DOMICILIO_RELACIONADO",DomicilioRelacionado.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ)
                 .setParameter("P_REL_CONTRIBUYENTE_NUMERO", relcontribuyenteNumero);
 
         DomicilioRelacionado data = (DomicilioRelacionado)query.getSingleResult();

@@ -22,8 +22,8 @@ public class CondicionContribuyenteService {
         return MessageResponse.setResponse(true, "El registro de la condición del contribuyente se guardó satisfactoriamente");
     }
 
-    public CondicionContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero){
-        return condicionContribuyenteRepository.ObtenerCondicionContribuyente(municipalidadId,contribuyenteNumero);
+    public CondicionContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return condicionContribuyenteRepository.ObtenerCondicionContribuyente(municipalidadId,contribuyenteNumero,numeroDJ);
     }
 
     public ResponseEntity<Object> Actualizar(CondicionContribuyenteCustom e){
@@ -31,8 +31,8 @@ public class CondicionContribuyenteService {
         return MessageResponse.setResponse(true, "El registro de la condición del contribuyente se actualizó satisfactoriamente");
     }
 
-    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long conContribuyenteId){
-        CondicionContribuyenteId id = new CondicionContribuyenteId(municipalidadId,contribuyenteNumero,conContribuyenteId);
+    public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long conContribuyenteId, Long numeroDJ){
+        CondicionContribuyenteId id = new CondicionContribuyenteId(municipalidadId,contribuyenteNumero,conContribuyenteId, numeroDJ);
         condicionContribuyenteRepository.deleteById(id);
         return MessageResponse.setResponse(true, "El registro de la condición del contribuyente se eliminó satisfactoriamente");
     }

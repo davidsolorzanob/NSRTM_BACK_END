@@ -47,14 +47,14 @@ public class ContribuyenteResource {
 
 	@PostMapping("eliminar")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero) {
-		return contribuyenteService.Eliminar(municipalidadId, contribuyenteNumero);
+	public ResponseEntity<Object> Eliminar(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
+		return contribuyenteService.Eliminar(municipalidadId, contribuyenteNumero, numeroDJ);
 	}
 
 	@GetMapping("obtener")
 	@ResponseStatus(HttpStatus.OK)
-	public ContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero) {
-		return contribuyenteService.ObtenerPorId(municipalidadId, contribuyenteNumero);
+	public ContribuyenteCustom ObtenerPorId(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
+		return contribuyenteService.ObtenerPorId(municipalidadId, contribuyenteNumero, numeroDJ);
 	}
 
 	@GetMapping("exportarExcel")

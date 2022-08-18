@@ -7,6 +7,8 @@ public class DocSustentoContribuyenteId implements Serializable {
 
     public Long contribuyenteNumero;
 
+    public Long numeroDJ;
+
     public Long docSustentoId;
 
     public DocSustentoContribuyenteId() {

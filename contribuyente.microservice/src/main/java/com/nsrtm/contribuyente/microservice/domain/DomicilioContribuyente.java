@@ -16,6 +16,10 @@ public class DomicilioContribuyente extends Auditoria {
     public Long contribuyenteNumero;
 
     @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
+    @Id
     @Column(name = "DOM_CONTRIBUYENTE_NUMERO")
     public Long domicilioContribuyenteNumero;
 

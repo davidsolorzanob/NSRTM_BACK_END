@@ -21,6 +21,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.INS_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_PERSONA_ID", Long.class, ParameterMode.OUT)
                 .registerStoredProcedureParameter("P_TIP_RELACIONADO_ID", Integer.class, ParameterMode.IN)
@@ -45,6 +46,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.contribuyenteNumero)
                 .setParameter("P_TIP_RELACIONADO_ID", custom.tipoRelacionadoId)
                 .setParameter("P_FEC_VIG_INICIAL", custom.fechaVigenciaInicialRela)
                 .setParameter("P_FEC_VIG_FINAL", custom.fechaVigenciaFinalRela)
@@ -76,6 +78,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_RELACIONADO")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_REL_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_PERSONA_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_TIP_RELACIONADO_ID", Integer.class, ParameterMode.IN)
@@ -100,6 +103,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_REL_CONTRIBUYENTE_NUMERO", custom.relContribuyenteNumero)
                 .setParameter("P_TIP_RELACIONADO_ID", custom.tipoRelacionadoId)
                 .setParameter("P_FEC_VIG_INICIAL", custom.fechaVigenciaInicialRela)
@@ -124,28 +128,32 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
     }
 
     @Override
-    public Relacionado ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero) {
+    public Relacionado ObtenerRelacionado(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_RELACIONADO",Relacionado.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ);
 
         Relacionado data = (Relacionado)query.getSingleResult();
         return data;
     }
 
     @Override
-    public RelacionadoCustom ObtenerRelacionadoConDomicilio(Long municipalidadId, Long contribuyenteNumero) {
+    public RelacionadoCustom ObtenerRelacionadoConDomicilio(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_RELACIONADO_CON_DOMICILIO",RelacionadoCustom.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ);
 
         RelacionadoCustom data = (RelacionadoCustom)query.getSingleResult();
         return data;

@@ -88,6 +88,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.UPD_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.INOUT)
                 .registerStoredProcedureParameter("P_FEC_INSCRIPCION", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_FECHA_DJ", Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
@@ -119,6 +120,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_FEC_INSCRIPCION", custom.fechaInscripcion)
                 .setParameter("P_FECHA_DJ", custom.fechaDJ)
                 .setParameter("P_NUMERO_DJ", custom.numeroDJ)
@@ -146,31 +148,37 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
         query.execute();
-        return custom;
+        ContribuyenteCustom contribuyente = custom;
+        contribuyente.numeroDJ = (Long) query.getOutputParameterValue("P_NUMERO_DJ");
+        return contribuyente;
     }
 
     @Override
-    public ContribuyenteCustom ObtenerContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+    public ContribuyenteCustom ObtenerContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE",ContribuyenteCustom.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ);
 
         ContribuyenteCustom data = (ContribuyenteCustom)query.getSingleResult();
         return data;
     }
 
     @Override
-    public boolean EliminarContribuyente(Long municipalidadId, Long contribuyenteNumero) {
+    public boolean EliminarContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.DELETE_CONTRIBUYENTE")
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", numeroDJ);
 
         //ContribuyenteCustom data = (ContribuyenteCustom)query.getSingleResult();
         query.execute();

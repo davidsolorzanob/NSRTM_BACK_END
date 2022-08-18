@@ -19,7 +19,7 @@ public class DocSustentoContribuyenteResource {
 
     @GetMapping("listar")
     @ResponseStatus(HttpStatus.OK)
-    public List<DocSustentoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero){
-        return docSustentoService.ObtenerLista(municipalidadId,contribuyenteNumero);
+    public List<DocSustentoContribuyente> ObtenerLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return docSustentoService.ObtenerLista(municipalidadId,contribuyenteNumero,numeroDJ);
     }
 }

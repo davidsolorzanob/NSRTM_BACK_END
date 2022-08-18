@@ -134,6 +134,10 @@ public class ContribuyenteService {
 		return contribuyenteRepository.ListaContribuyentePaginado(custom);
 	}
 
+	public List<ContribuyenteResult> ListaContribuyenteHistorico(Long municipalidadId, Long contribuyenteNumero){
+		return contribuyenteRepository.ListaContribuyenteHistorico(municipalidadId, contribuyenteNumero);
+	}
+
 	public StreamingResponseBody ExportarExcel(ContribuyenteCustom custom, HttpServletResponse response) {
 
 		List<ContribuyenteResult> lista = contribuyenteRepository.ListaContribuyenteReporte(custom);

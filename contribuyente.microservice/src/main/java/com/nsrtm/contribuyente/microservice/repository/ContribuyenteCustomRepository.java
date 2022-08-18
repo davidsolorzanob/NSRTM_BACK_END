@@ -14,4 +14,5 @@ public interface ContribuyenteCustomRepository {
     PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(PageRequest<ContribuyenteCustom> custom);
     boolean EliminarContribuyente(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ);
     List<ContribuyenteResult> ListaContribuyenteReporte(ContribuyenteCustom custom);
+    List<ContribuyenteResult> ListaContribuyenteHistorico(Long municipalidadId, Long contribuyenteNumero);
 }

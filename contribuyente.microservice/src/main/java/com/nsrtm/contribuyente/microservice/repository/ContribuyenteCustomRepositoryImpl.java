@@ -248,4 +248,18 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
         return data;
     }
 
+    @Override
+    public List<ContribuyenteResult> ListaContribuyenteHistorico(Long municipalidadId, Long contribuyenteNumero) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_LISTAR_HIST",ContribuyenteResult.class)
+                .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
+
+                .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
+                .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero);
+
+        List<ContribuyenteResult> data = (List<ContribuyenteResult>)query.getResultList();
+        return data;
+    }
+
 }

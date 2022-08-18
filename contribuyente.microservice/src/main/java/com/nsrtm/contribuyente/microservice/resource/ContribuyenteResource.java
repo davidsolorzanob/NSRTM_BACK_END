@@ -69,4 +69,10 @@ public class ContribuyenteResource {
 	public PageResponse<List<ContribuyenteResult>> ListaContribuyentePaginado(@RequestBody PageRequest<ContribuyenteCustom> custom){
 		return contribuyenteService.ListaContribuyentePaginado(custom);
 	}
+
+	@GetMapping("listaContribuyenteHistorico")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ContribuyenteResult> listaContribuyenteHistorico(Long municipalidadId, Long contribuyenteNumero){
+		return contribuyenteService.ListaContribuyenteHistorico(municipalidadId, contribuyenteNumero);
+	}
 }

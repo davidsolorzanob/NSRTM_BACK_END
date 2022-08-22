@@ -80,6 +80,7 @@ public class ContribuyenteService {
 			rela = relacionadoRepository.CrearRelacionado(rela);
 
 			Relacionado domRela = relacionado;
+			domRela.contribuyenteNumero = contri.contribuyenteNumero;
 			domRela.numeroDJ = contri.numeroDJ;
 			domRela.relContribuyenteNumero = rela.relContribuyenteNumero;
 			domicilioRelacionadoRepository.CrearDomicilioRelacionado(domRela);

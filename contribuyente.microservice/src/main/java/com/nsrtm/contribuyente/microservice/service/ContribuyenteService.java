@@ -107,6 +107,7 @@ public class ContribuyenteService {
 		ContribuyenteCustom contri = contribuyenteRepository.ActualizarContribuyente(contribuyente);
 
 		condicion.numeroDJ = contri.numeroDJ;
+		condicion.usuarioCreacion = condicion.usuarioModificacion;
 		condicionContribuyenteRepository.EliminarCondicion(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, nroDJ, null,contribuyente.usuarioModificacion,contribuyente.terminalModificacion);
 		condicionContribuyenteRepository.CrearCondicionContribuyente(condicion);
 

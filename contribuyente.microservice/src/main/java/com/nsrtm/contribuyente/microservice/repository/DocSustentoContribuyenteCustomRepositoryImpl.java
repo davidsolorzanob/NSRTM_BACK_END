@@ -42,7 +42,7 @@ public class DocSustentoContribuyenteCustomRepositoryImpl implements DocSustento
     }
 
     @Override
-    public List<DocSustentoContribuyente> CrearContactoLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, List<DocSustentoContribuyente> lista) {
+    public List<DocSustentoContribuyente> CrearSustentoLista(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ, List<DocSustentoContribuyente> lista) {
         List<DocSustentoContribuyente> saveLista = new ArrayList<DocSustentoContribuyente>();
         for (DocSustentoContribuyente item:lista) {
             item.municipalidadId = municipalidadId;

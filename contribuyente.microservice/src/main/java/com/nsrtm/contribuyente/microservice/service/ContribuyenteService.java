@@ -93,7 +93,7 @@ public class ContribuyenteService {
 		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contri.municipalidadId, contri.contribuyenteNumero, contri.numeroDJ, domicilios);
 
 		docSustentoContribuyenteRepository.EliminarDocSustento(contri.municipalidadId, contri.contribuyenteNumero, contri.numeroDJ,null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
-		docSustentoContribuyenteRepository.CrearContactoLista(contri.municipalidadId, contri.contribuyenteNumero, contri.numeroDJ, documentos);
+		docSustentoContribuyenteRepository.CrearSustentoLista(contri.municipalidadId, contri.contribuyenteNumero, contri.numeroDJ, documentos);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se guardó satisfactoriamente", contri);
 	}
 
@@ -108,9 +108,7 @@ public class ContribuyenteService {
 		ContribuyenteCustom contri = contribuyenteRepository.ActualizarContribuyente(contribuyente);
 
 		condicion.numeroDJ = contri.numeroDJ;
-		condicion.usuarioCreacion = condicion.usuarioModificacion;
-		condicion.terminalCreacion = condicion.terminalModificacion;
-		condicionContribuyenteRepository.EliminarCondicion(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, nroDJ, null,contribuyente.usuarioModificacion,contribuyente.terminalModificacion);
+		condicionContribuyenteRepository.EliminarCondicion(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, nroDJ, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
 		condicionContribuyenteRepository.CrearCondicionContribuyente(condicion);
 
 		//domicilioContribuyenteRepository.ActualizarDomicilioContribuyente(domContribuyente);
@@ -119,12 +117,12 @@ public class ContribuyenteService {
 			relacionadoRepository.ActualizarRelacionado(relacionado);
 			domicilioRelacionadoRepository.ActualizarDomicilioRelacionado(relacionado);
 		}
-		contactoContribuyenteRepository.EliminarContacto(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, nroDJ, null,contribuyente.usuarioModificacion,contribuyente.terminalModificacion);
+		contactoContribuyenteRepository.EliminarContacto(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, nroDJ, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
 		contactoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, contri.numeroDJ, contactos);
 		domicilioContribuyenteRepository.EliminarDomicilioContribuyente(contribuyente.municipalidadId, contribuyente.contribuyenteNumero,nroDJ, null, contribuyente.usuarioCreacion, contribuyente.terminalCreacion);
 		domicilioContribuyenteRepository.CrearDomicilioContribuyenteLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero,contri.numeroDJ, domicilios);
 		docSustentoContribuyenteRepository.EliminarDocSustento(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, nroDJ, null,contribuyente.usuarioCreacion,contribuyente.terminalCreacion);
-		docSustentoContribuyenteRepository.CrearContactoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, contri.numeroDJ, documentos);
+		docSustentoContribuyenteRepository.CrearSustentoLista(contribuyente.municipalidadId, contribuyente.contribuyenteNumero, contri.numeroDJ, documentos);
 		return MessageResponse.setResponse(true, "El registro del contribuyente se actualizó satisfactoriamente", contribuyente);
 	}
 

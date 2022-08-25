@@ -143,7 +143,7 @@ public class ContribuyenteCustomRepositoryImpl implements ContribuyenteCustomRep
                 .setParameter("P_FALLECIO", custom.fallecido)
                 .setParameter("P_FEC_FALLECIMIENTO", custom.fechaFallecimiento)
                 .setParameter("P_EST_CIVIL_TIP_ID", custom.estadoCivil)
-                .setParameter("P_USUARIO_MODIFICACION", custom.usuarioModificacion)
+                .setParameter("P_USUARIO_MODIFICACION", custom.usuarioCreacion)
                 .setParameter("P_TERMINAL_MODIFICACION", custom.terminalModificacion);
         query.execute();
         ContribuyenteCustom contribuyente = custom;

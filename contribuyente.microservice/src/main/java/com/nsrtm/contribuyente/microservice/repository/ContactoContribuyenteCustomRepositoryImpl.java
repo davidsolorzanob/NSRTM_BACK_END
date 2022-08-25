@@ -114,7 +114,7 @@ public class ContactoContribuyenteCustomRepositoryImpl implements ContactoContri
 
                 .setParameter("P_MUNICIPALIDAD_ID", municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", contribuyenteNumero)
-                .setParameter("P_NUMERO_DJ", contribuyenteNumero);
+                .setParameter("P_NUMERO_DJ", numeroDJ);
 
         List<ContactoContribuyente> data = (List<ContactoContribuyente>) query.getResultList();
         return data;

@@ -46,7 +46,7 @@ public class RelacionadoCustomRepositoryImpl implements RelacionadoCustomReposit
 
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
-                .setParameter("P_NUMERO_DJ", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ)
                 .setParameter("P_TIP_RELACIONADO_ID", custom.tipoRelacionadoId)
                 .setParameter("P_FEC_VIG_INICIAL", custom.fechaVigenciaInicialRela)
                 .setParameter("P_FEC_VIG_FINAL", custom.fechaVigenciaFinalRela)

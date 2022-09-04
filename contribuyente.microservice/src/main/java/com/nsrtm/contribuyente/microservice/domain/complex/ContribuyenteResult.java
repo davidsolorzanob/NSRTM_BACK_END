@@ -25,7 +25,7 @@ public class ContribuyenteResult extends Auditoria
 
     @Id
     @Column(name = "NUMERO_DJ")
-    public String numeroDJ;
+    public Long numeroDJ;
 
     @Column(name = "DOC_IDENTIDAD_ID")
     public Integer docIdentidadId;

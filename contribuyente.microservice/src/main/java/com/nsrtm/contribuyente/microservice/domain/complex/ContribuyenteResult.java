@@ -23,6 +23,7 @@ public class ContribuyenteResult extends Auditoria
     @Column(name = "FECHA_DJ")
     public Date fechaDJ;
 
+    @Id
     @Column(name = "NUMERO_DJ")
     public String numeroDJ;
 

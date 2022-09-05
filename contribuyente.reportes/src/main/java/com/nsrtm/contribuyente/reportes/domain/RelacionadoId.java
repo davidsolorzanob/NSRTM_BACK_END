@@ -9,12 +9,15 @@ public class RelacionadoId implements Serializable {
 
     public Long relContribuyenteNumero;
 
+    public Long numeroDJ;
+
     public RelacionadoId() {
     }
 
-    public RelacionadoId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero) {
+    public RelacionadoId(Long municipalidadId, Long contribuyenteNumero, Long relContribuyenteNumero, Long numeroDJ) {
         this.municipalidadId = municipalidadId;
         this.contribuyenteNumero = contribuyenteNumero;
         this.relContribuyenteNumero = relContribuyenteNumero;
+        this.numeroDJ = numeroDJ;
     }
 }

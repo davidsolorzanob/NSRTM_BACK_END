@@ -16,9 +16,11 @@ public class ContribuyenteReporteCustomRepositoryImpl implements ContribuyenteRe
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("NSRTM.PKG_CONTRIBUYENTE.GET_CONTRIBUYENTE_REPORTE_DJ",ContribuyenteResult.class)
                 .registerStoredProcedureParameter("P_MUNICIPALIDAD_ID", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("P_CONTRIBUYENTE_NUMERO", Long.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("P_NUMERO_DJ", Long.class, ParameterMode.IN)
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
-                .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero);
+                .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ);
 
         ContribuyenteResult data = (ContribuyenteResult)query.getSingleResult();
         return data;

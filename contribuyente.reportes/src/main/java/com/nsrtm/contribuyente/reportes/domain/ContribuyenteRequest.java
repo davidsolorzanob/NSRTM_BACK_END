@@ -17,6 +17,10 @@ public class ContribuyenteRequest {
     @Column(name = "CONTRIBUYENTE_NUMERO")
     public Long contribuyenteNumero;
 
+    @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
     @Column(name = "TIP_PERSONA_ID")
     public Integer tipoPersonaId;
 

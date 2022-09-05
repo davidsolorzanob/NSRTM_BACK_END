@@ -66,15 +66,15 @@ public class ReporteContribuyenteService {
         return relacionadoReporteRepository.ObtenerRelacionadoReporte(custom);
     }
 
-    public List<DocSustentoContribuyente> ListaDocSustento(Long municipalidadId, Long contribuyenteNumero){
-        return docSustentoContribuyenteRepository.ListaDocSustento(municipalidadId,contribuyenteNumero);
+    public List<DocSustentoContribuyente> ListaDocSustento(Long municipalidadId, Long contribuyenteNumero, Long numeroDJ){
+        return docSustentoContribuyenteRepository.ListaDocSustento(municipalidadId,contribuyenteNumero, numeroDJ);
     }
 
     private Map<String, Object> MapDataReporteContribuyente(ContribuyenteRequest custom) {
         Map<String, Object> data = new HashMap<>();
         ContribuyenteResult contribuyente = ObtenerContribuyenteReporte(custom);
         RelacionadoResult relacionado = ObtenerRelacionadoReporte(custom);
-        List<DocSustentoContribuyente> lista = ListaDocSustento(custom.municipalidadId, custom.contribuyenteNumero);
+        List<DocSustentoContribuyente> lista = ListaDocSustento(custom.municipalidadId, custom.contribuyenteNumero, custom.numeroDJ);
 
         data.put("contribuyente", contribuyente);
         data.put("relacionado", relacionado);

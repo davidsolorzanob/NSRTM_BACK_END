@@ -21,6 +21,10 @@ public class RelacionadoResult {
     @Column(name = "REL_CONTRIBUYENTE_NUMERO")
     public Long relContribuyenteNumero;
 
+    @Id
+    @Column(name = "NUMERO_DJ")
+    public Long numeroDJ;
+
     @Column(name = "DOC_IDENTIDAD_ID")
     public Integer docIdentidadId;
 

@@ -20,7 +20,7 @@ public class RelacionadoReporteCustomRepositoryImpl implements RelacionadoReport
                 .registerStoredProcedureParameter("RESULT_CSR", void.class, ParameterMode.REF_CURSOR)
                 .setParameter("P_MUNICIPALIDAD_ID", custom.municipalidadId)
                 .setParameter("P_CONTRIBUYENTE_NUMERO", custom.contribuyenteNumero)
-                .setParameter("P_NUMERO_DJ", custom.contribuyenteNumero);
+                .setParameter("P_NUMERO_DJ", custom.numeroDJ);
 
         RelacionadoResult data = (RelacionadoResult)query.getSingleResult();
         return data;

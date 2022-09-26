@@ -8,20 +8,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.time.Duration;
 import java.util.Arrays;
 
+@EnableWebMvc
 @SpringBootApplication
 public class Application {
 
-	@Autowired
-	private CORS cors;
+	//@Autowired
+	//private CORS cors;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
+	/*
 	@Bean
 	CorsFilter corsFilter() {
 		CorsConfiguration config = new CorsConfiguration();
@@ -36,4 +39,6 @@ public class Application {
 
 		return new CorsFilter(source);
 	}
+*/
+
 }

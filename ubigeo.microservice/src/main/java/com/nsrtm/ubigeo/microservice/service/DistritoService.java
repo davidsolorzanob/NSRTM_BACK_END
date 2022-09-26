@@ -2,8 +2,6 @@ package com.nsrtm.ubigeo.microservice.service;
 
 import com.nsrtm.ubigeo.microservice.domain.Distrito;
 import com.nsrtm.ubigeo.microservice.domain.DistritoId;
-import com.nsrtm.ubigeo.microservice.domain.Provincia;
-import com.nsrtm.ubigeo.microservice.domain.ProvinciaId;
 import com.nsrtm.ubigeo.microservice.repository.DistritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;

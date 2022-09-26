@@ -18,7 +18,7 @@ public class Maestro
 {
 	@Id
 	@Column(name = "ID_MAESTRO")
-	public Integer maestroId;
+public Integer maestroId;
 	
 	@Column(name = "DESCRIPCION")
 	public String descripcion;

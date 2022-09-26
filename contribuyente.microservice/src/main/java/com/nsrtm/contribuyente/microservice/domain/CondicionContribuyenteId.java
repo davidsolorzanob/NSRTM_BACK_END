@@ -14,7 +14,8 @@ public class CondicionContribuyenteId implements Serializable {
     public CondicionContribuyenteId() {
     }
 
-    public CondicionContribuyenteId(Long municipalidadId, Long contribuyenteNumero, Long conContribuyenteId, Long numeroDJ) {
+    public CondicionContribuyenteId(Long municipalidadId, Long contribuyenteNumero, Long conContribuyenteId, Long numeroDJ
+    ) {
         this.municipalidadId = municipalidadId;
         this.contribuyenteNumero = contribuyenteNumero;
         this.conContribuyenteId = conContribuyenteId;

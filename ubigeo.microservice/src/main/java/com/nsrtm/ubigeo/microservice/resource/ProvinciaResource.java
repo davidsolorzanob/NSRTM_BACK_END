@@ -43,10 +43,12 @@ public class ProvinciaResource {
     public List<Provincia>  FiltrarPorDepartamento(Long idDepartamento) {
         return provinciaService.FiltrarPorDepartamento(idDepartamento);
     }
-
+/*
     @GetMapping("todos")
     @ResponseStatus(HttpStatus.OK)
     public List<Provincia> Todos() {
         return provinciaService.Todos();
     }
+
+ */
 }

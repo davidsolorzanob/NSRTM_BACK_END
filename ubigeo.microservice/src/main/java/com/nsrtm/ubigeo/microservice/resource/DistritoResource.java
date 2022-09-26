@@ -1,7 +1,6 @@
 package com.nsrtm.ubigeo.microservice.resource;
 
 import com.nsrtm.ubigeo.microservice.domain.Distrito;
-import com.nsrtm.ubigeo.microservice.domain.Provincia;
 import com.nsrtm.ubigeo.microservice.service.DistritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,10 +43,12 @@ public class DistritoResource {
     public List<Distrito>  FiltrarPorProvincia(Long idDepartamento, Long idProvincia) {
         return distritoService.FiltrarPorProvincia(idDepartamento, idProvincia);
     }
-
+/*
     @GetMapping("todos")
     @ResponseStatus(HttpStatus.OK)
     public List<Distrito> Todos() {
         return distritoService.Todos();
     }
+
+ */
 }
